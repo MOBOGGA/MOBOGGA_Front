@@ -21,7 +21,7 @@ function Landing() {
           교내 공연 정보와 동아리 정보 확인은 모두 <span className={styles.landing_words_highlight}>모보까</span>에서
         </div>
         <div className={styles.google_start_btn_box}>
-          <img className={styles.google_start_btn} src={isHovering ? GoogleStartBtnHover : GoogleStartBtnDefault} alt="google-start-btn" onMouseOver={onMouseOver}
+          <img className={styles.google_start_btn_box} src={isHovering ? GoogleStartBtnHover : GoogleStartBtnDefault} alt="google-start-btn" onMouseOver={onMouseOver}
           onMouseOut={onMouseOut} />
         </div>
       </div>

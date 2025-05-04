@@ -5,5 +5,5 @@
 }
 
 .landing_words_highlight {
-  color: #FF3D12;
+  color: var(--ORANGE);
 }
