@@ -1,9 +1,9 @@
 import React from "react";
-// import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-// import Header from "./Components/Header";
-// import Footer from "./Components/Footer";
-import Landing from "./Pages/Landing";
+// import Header from "./components/Header";
+// import Footer from "./components/Footer";
+import Landing from "./pages/Landing";
 
 import './App.css';
 
