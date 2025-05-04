@@ -1,22 +1,25 @@
 import React from "react";
-// import { Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes } from "react-router-dom";
 
-// import Header from "./Components/Header";
-// import Footer from "./Components/Footer";
-// import Main from "./Pages/Main";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./pages/Main.js";
 
 import './App.css';
 
 function App() {
   return (
+  <BrowserRouter>
+    <Header />
     <div className="App">
       hello world
-      {/* <Header />
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>
-      <Footer /> */}
     </div>
+
+      {/* <Footer /> */}
+  </BrowserRouter>
   );
 }
 
