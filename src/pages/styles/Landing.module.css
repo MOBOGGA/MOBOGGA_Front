@@ -1,0 +1,9 @@
+.google_start_btn {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.landing_words_highlight {
+  color: #FF3D12;
+}

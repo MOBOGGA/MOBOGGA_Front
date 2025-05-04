@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './styles/Landing.css';
+import styles from './styles/Landing.module.css';
 import GoogleStartBtnDefault from '../assets/GoogleStartBtn-Default.svg';
 import GoogleStartBtnHover from '../assets/GoogleStartBtn-Hover.svg';
 
@@ -16,12 +16,12 @@ function Landing() {
 
   return (
     <>
-      <div className="landing-body">
-        <div className="landing-words">
-          교내 공연 정보와 동아리 정보 확인은 모두 <span className="landing-words-highlight">모보까</span>에서
+      <div className={styles.body}>
+        <div className={styles.landing_words}>
+          교내 공연 정보와 동아리 정보 확인은 모두 <span className={styles.landing_words_highlight}>모보까</span>에서
         </div>
-        <div className="google-start-btn-box">
-          <img className="google-start-btn" src={isHovering ? GoogleStartBtnHover : GoogleStartBtnDefault} alt="google-start-btn" onMouseOver={onMouseOver}
+        <div className={styles.google_start_btn_box}>
+          <img className={styles.google_start_btn} src={isHovering ? GoogleStartBtnHover : GoogleStartBtnDefault} alt="google-start-btn" onMouseOver={onMouseOver}
           onMouseOut={onMouseOut} />
         </div>
       </div>
