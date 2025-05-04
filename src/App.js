@@ -3,19 +3,18 @@ import React from "react";
 
 // import Header from "./Components/Header";
 // import Footer from "./Components/Footer";
-// import Main from "./Pages/Main";
+import Landing from "./Pages/Landing";
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      hello world
-      {/* <Header />
+      {/* <Header /> */}
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Landing />} />
       </Routes>
-      <Footer /> */}
+      {/* <Footer /> */}
     </div>
   );
 }
