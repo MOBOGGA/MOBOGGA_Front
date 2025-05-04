@@ -1,0 +1,5 @@
+.google-start-btn-box {
+  &:hover {
+    cursor: pointer;
+  }
+}
