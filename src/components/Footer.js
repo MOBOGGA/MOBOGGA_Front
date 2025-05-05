@@ -23,7 +23,7 @@ function Footer() {
         <img src={moboggaLogo} className={styles.logoImg} alt=""/>
         <p>연락처: 010-9543-8893  |  메일: mobogga.service@gmail.com</p>
         <p>주소: 경상북도 포항시 북구 흥해읍 한동로 558, 한동대학교</p>
-        <div className={styles.insta} alt="">
+        <div className={styles.insta} >
           <img src={insta}/ alt="">
           <span>instagram</span>
         </div>
