@@ -1,0 +1,66 @@
+.footer{
+  width: 1280px;
+  height: 200px;
+  flex-shrink: 0;
+
+  background: #EAEAEA;
+
+  box-sizing: border-box;
+  padding:12px 128px 20px 128px;
+}
+
+.firstContainer{
+  display: flex;
+  color:rgba(62, 62, 62, 1);
+}
+
+.firstContainer div{
+  border-left: 1px solid #3E3E3E;
+  border-right: 1px solid #3E3E3E;
+
+  padding: 0px 20px;
+  margin: 0px 20px;
+}
+
+.firstContainer span:hover{
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.secondContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.secondContainer p{
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--Gray-06, #636363);
+}
+
+.logoImg{
+  margin-top:7px;
+  margin-bottom:17px;
+}
+
+.insta{
+  display: flex;
+  margin-top:7px;
+  margin-bottom:21px;
+}
+
+.insta span{
+  color: var(--Gray-08, #3E3E3E);
+  font-size: 11px;
+  font-weight: 500;
+
+  margin-left:6px;
+}
+
+.secondContainer span{
+  color: var(--Gray-06, #636363);
+  font-size: 11px;
+}

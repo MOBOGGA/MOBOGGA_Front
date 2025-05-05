@@ -16,6 +16,10 @@ function App() {
         <Route path="/" element={<Landing />} />
       </Routes>
     </div>
+
+
+      <Footer />
+
   </BrowserRouter>
   );
 }

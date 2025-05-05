@@ -1,6 +1,54 @@
+.logo{
+  cursor: pointer;
+}
+
+.right div{
+  cursor: pointer;
+}
+
 .header{
-  width: 1280px;
   height: 88px;
 
   border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: var(--gray-01-background, #FBFBFB);
+  padding:0px 128px;
+}
+
+.right{
+  display: flex;
+}
+
+.right div{
+  height: 24px;
+  flex-shrink: 0;
+  padding: 4px 24px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.watching:hover{
+  font-weight: 700;
+}
+
+.recruiting:hover{
+  font-weight: 700;
+}
+
+.club:hover{
+  font-weight: 700;
+}
+
+.login{
+  border: 1px solid black;
+  margin-left: 68px;
+}
+
+.login:hover{
+  font-weight: 700;
 }
