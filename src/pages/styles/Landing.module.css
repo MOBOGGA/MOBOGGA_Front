@@ -1,9 +1,25 @@
+.body {
+  display: flex;
+  position: relative; 
+  height: 745px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: end;
+  background-color: #EEEEEE;
+}
+
+.words_box {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+
+.words_img_box {
+  margin-bottom: 10%;
+}
+
 .google_start_btn {
   &:hover {
     cursor: pointer;
   }
-}
-
-.landing_words_highlight {
-  color: var(--ORANGE);
 }

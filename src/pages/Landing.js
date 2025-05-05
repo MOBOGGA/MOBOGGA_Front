@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './styles/Landing.module.css';
 import GoogleStartBtnDefault from '../assets/GoogleStartBtn-Default.svg';
 import GoogleStartBtnHover from '../assets/GoogleStartBtn-Hover.svg';
+import LandingPageTape from '../assets/LandingPageTape.svg'
+import LandingPageWords from '../assets/landingPageWords.svg'
 
 function Landing() {
   const [isHovering, setIsHovering] = useState(false);
@@ -23,12 +25,17 @@ function Landing() {
   return (
     <>
       <div className={styles.body}>
-        <div className={styles.landing_words}>
-          교내 공연 정보와 동아리 정보 확인은 모두 <span className={styles.landing_words_highlight}>모보까</span>에서
+        <div className={styles.words_box}>
+          <div className={styles.words_img_box}>
+            <img className={styles.words_img} src={LandingPageWords} alt="" />
+          </div>
+          <div className={styles.google_start_btn_box}>
+            <img className={styles.google_start_btn} src={isHovering ? GoogleStartBtnHover : GoogleStartBtnDefault} alt="google-start-btn" onMouseOver={onMouseOver}
+            onMouseOut={onMouseOut} onClick={onClickGoogleStartBtn}/>
+          </div>
         </div>
-        <div className={styles.google_start_btn_box}>
-          <img className={styles.google_start_btn} src={isHovering ? GoogleStartBtnHover : GoogleStartBtnDefault} alt="google-start-btn" onMouseOver={onMouseOver}
-          onMouseOut={onMouseOut} onClick={onClickGoogleStartBtn}/>
+        <div className={styles.tape_box}>
+          <img className={styles.landing_tape} src={LandingPageTape} alt="" />
         </div>
       </div>
 
