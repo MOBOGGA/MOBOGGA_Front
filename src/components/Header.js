@@ -16,7 +16,7 @@ function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img src={moboggaLogo} alt="MoboggaLogo" className="logoImg" onclick={() => navigate("/")}
+        <img src={moboggaLogo} alt="MoboggaLogo" className="logoImg" onClick={() => navigate("/")}
           //onClick={() => {noLoginInfo === true ? navigate("/") : navigate("/hansum")}}
           />
       </div>
@@ -34,7 +34,7 @@ function Header() {
           <span>동아리</span>
         </div>
 
-        <div className={styles.login}>
+        <div className={styles.login} onClick={() => navigate("/login")}>
           <span>로그인</span>
         </div>
       </div>
