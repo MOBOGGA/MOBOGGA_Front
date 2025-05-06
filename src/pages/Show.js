@@ -1,7 +1,27 @@
 import React from "react";
-import moduleName from "module";
+import { useState } from "react";
+import axios from "axios";
 
 function Show() {
+  const [show, setShow] = useState({});
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(``);
+      console.log("API 응답 데이터:", response.data);
+      if (response.data && response.data.show) {
+        setShow(response.data.show);
+        console.log("API 전체", show);
+      } else {
+        console.error("API에 show 데이더가 없습니다.");
+        setShow(null);
+      }
+    } catch (error) {
+      console.error("Fetch Error: ", error);
+      setShow(null);
+    }
+  };
+
   return (
     <div>
       <div className="show_Intro">
