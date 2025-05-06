@@ -18,6 +18,10 @@
   margin-bottom: 10%;
 }
 
+.google_start_btn_box {
+  text-align: left;
+}
+
 .google_start_btn {
   &:hover {
     cursor: pointer;
