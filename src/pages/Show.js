@@ -34,27 +34,40 @@ function Show() {
             <div className="infos">
               <div className="info_Box">
                 <span className="fixed_Info">소개글</span>
-                <span className="variable_Info"></span>
+                <span className="variable_Info">
+                  {show || "소개글 정보 없음"}
+                </span>
               </div>
               <div className="info_Box">
                 <span className="fixed_Info">장소</span>
-                <span className="variable_Info"></span>
+                <span className="variable_Info">
+                  {show.location || "장소 정보 없음"}
+                </span>
               </div>
               <div className="info_Box">
                 <span className="fixed_Info">날짜</span>
-                <span className="variable_Info"></span>
+                <span className="variable_Info">
+                  {show.startDate || "시작 날짜 정보 없음"} -
+                  {show.endDate || "끝 날짜 정보 없음"}
+                </span>
               </div>
               <div className="info_Box">
                 <span className="fixed_Info">러닝타임</span>
-                <span className="variable_Info"></span>
+                <span className="variable_Info">
+                  {show.runtime || "러닝타임 정보 없음"}분
+                </span>
               </div>
               <div className="info_Box">
                 <span className="fixed_Info">담당자</span>
-                <span className="variable_Info"></span>
+                <span className="variable_Info">
+                  {show || "담당자 정보 없음"}
+                </span>
               </div>
               <div className="info_Box">
                 <span className="fixed_Info">공지</span>
-                <span className="variable_Info"></span>
+                <span className="variable_Info">
+                  {show || "공지 정보 없음"}
+                </span>
               </div>
             </div>
           </div>
