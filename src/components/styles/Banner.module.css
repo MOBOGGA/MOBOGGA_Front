@@ -1,0 +1,119 @@
+.banner{
+  height: 560px;
+  flex-shrink: 0;
+
+  background: var(--Gradient-02, linear-gradient(180deg, #CCC 0%, #FBFBFB 50%, #CCC 100%));
+
+  padding: 18px 140px 42px 142px;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.show {
+  opacity: 1;
+}
+
+.text{
+  display: flex;
+
+  margin-bottom: 30px;
+}
+
+.text span{
+  color: var(--gray-10-typo-color, #121212);
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow:   /* 글씨 더 굵게 보이게  */
+  -0.2px 0 currentColor,
+   0.2px 0 currentColor,
+   0   -0.2px currentColor,
+   0    0.2px currentColor;
+}
+
+.container{
+  display: flex;
+}
+
+.leftImg{
+  width: 322px;
+  height: 436px;
+  flex-shrink: 0;
+}
+
+.leftImg img{
+  width: 322px;
+  height: 436px;
+}
+
+.rightContainer{
+  width:700px;
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 72px;
+}
+
+.textContainer{
+  width: 534px;
+  height: 200px;
+  flex-shrink: 0;
+
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.clubName{
+  color: var(--main-02, #FF3D12);
+  font-size: 26px;
+  font-weight: 700;
+  text-shadow:   /* 글씨 더 굵게 보이게  */
+  -0.2px 0 currentColor,
+   0.2px 0 currentColor,
+   0   -0.2px currentColor,
+   0    0.2px currentColor;
+  letter-spacing: 0.84px;
+}
+
+.name{
+  color: var(--Gray-08, #3E3E3E);
+  font-size: 56px;
+  font-weight: 700;
+  text-shadow:   /* 글씨 더 굵게 보이게  */
+  -0.4px 0 currentColor,
+   0.4px 0 currentColor,
+   0   -0.4px currentColor,
+   0    0.4px currentColor;
+   letter-spacing: 1.68px;
+
+  margin-top:4px;
+  margin-bottom:28px;
+}
+
+.date{
+  color: var(--gray-10-typo-color, #121212);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.imgContainer{
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 114px;
+}
+
+.imgBox{
+  width: 84.286px;
+  height: 118px;
+
+  margin-left: 36px;
+}
+
+.imgBox img{
+  width: 84.286px;
+  height: 118px;
+}
