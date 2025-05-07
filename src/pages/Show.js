@@ -76,9 +76,19 @@ function Show() {
       <div className="show_ticket">
         <div className="ticket_Box">
           <div className="section">공연 회차 선택</div>
-          <select className="choose_ticket_Box">
-            <option value="">회차를 선택해주세요</option>
-          </select>
+
+          {show?.schedule.map((sch) => (
+            <input
+              type="radio"
+              value={sch.id}
+              name={sch.id}
+              disabled={!sch.applyPeople}
+              className="ticket_Radio"
+            >
+              {sch.order}공: {sch.date} {sch.time} | {sch.cost}원 |{" "}
+              {sch.applyPeople}/{sch.maxPeople}
+            </input>
+          ))}
         </div>
         <div className="ticket_Box">
           <div className="section">구매 매수</div>
