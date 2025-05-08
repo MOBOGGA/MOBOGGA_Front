@@ -1,17 +1,28 @@
 .wrap {
   display: flex;
-  flex-direction: column;
-  width: 1280px;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 20px;
 }
 
+.back_Div {
+  margin-left: 85px;
+}
+
+.back_Btn {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
 .show_Intro {
   display: flex;
-  padding-left: 80px;
+  padding-left: 20px;
 }
 
 .intro_Info {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .intro_con {
@@ -24,21 +35,14 @@
   gap: 40px;
 }
 
-.intro_Info {
-  display: flex;
-  align-items: flex-start;
-}
-
 .show_Pic {
   width: 457px;
   height: 646px;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
 }
 
 .intro_con {
-  margin-left: 30px;
   display: flex;
   flex-direction: row;
 }
@@ -48,12 +52,12 @@
   font-size: 24px;
   font-weight: bold;
   color: #121212;
-  margin-bottom: 12px;
+  margin-bottom: 30px;
   text-align: left;
 }
 
 .show_Info {
-  width: 450px;
+  width: 550px;
   margin-left: 64px;
   text-align: left;
 }
@@ -85,7 +89,7 @@
 }
 
 .fixed_Info {
-  min-width: 70px;
+  width: 60px;
   font-weight: bold;
   color: #6666ff;
 }
@@ -112,12 +116,18 @@
   margin-bottom: 10px;
 }
 
-.back_Btn {
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
 .fixed_Info {
   color: #8e3dff;
+}
+
+.show_ticket {
+}
+
+.sch_Item {
+  display: flex;
+  width: 100%;
+}
+
+.ticket_Radio {
+  accent-color: #121212;
 }

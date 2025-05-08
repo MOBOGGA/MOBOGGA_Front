@@ -125,98 +125,100 @@ function Show() {
 
   return (
     <div className={styles.wrap}>
-      <div className={styles.show_Intro}>
-        <div className={styles.back_Div}>
-          <button className={styles.back_Btn} onClick={navigateToPrepage}>
-            <img src={BACK} className={styles.move_Back} alt="back" />
-          </button>
-        </div>
-        <div className={styles.intro_Info}>
-          <div className={styles.show_Top}>공연정보</div>
-          <div className={styles.intro_con}>
-            <img
-              src="../assets/bannerTest/1.png"
-              className={styles.show_Pic}
-              alt="show_IMG"
-            />
-            <div className={styles.show_Info}>
-              <div className={styles.title}>
-                {/* {show.name || "타이틀 정보 없음"} */}
-                우리 집에 왜 왔니?
-              </div>
-              <div className={styles.club}>
-                {/* {clubs.name || "동아리 정보 없음"} */}
-                어메이징스토리
-              </div>
-              <div className={styles.infos}>
-                <div className={styles.info_Box}>
-                  <span className={styles.fixed_Info}>소개글</span>
-                  <span className={styles.variable_Info}>
-                    {show.introductionLetter || "소개글 정보 없음"}
-                  </span>
+      <div className={styles.back_Div}>
+        <button className={styles.back_Btn} onClick={navigateToPrepage}>
+          <img src={BACK} className={styles.move_Back} alt="back" />
+        </button>
+      </div>
+      <div className={styles.show_con}>
+        <div className={styles.show_Intro}>
+          <div className={styles.intro_Info}>
+            <div className={styles.show_Top}>공연정보</div>
+            <div className={styles.intro_con}>
+              <img
+                src="../assets/bannerTest/1.png"
+                className={styles.show_Pic}
+                alt="show_IMG"
+              />
+              <div className={styles.show_Info}>
+                <div className={styles.title}>
+                  {/* {show.name || "타이틀 정보 없음"} */}
+                  우리 집에 왜 왔니?
                 </div>
-                <div className={styles.info_Box}>
-                  <span className={styles.fixed_Info}>장소</span>
-                  <span className={styles.variable_Info}>
-                    {/* {show.location || "장소 정보 없음"} */}학관 102호
-                  </span>
+                <div className={styles.club}>
+                  {/* {clubs.name || "동아리 정보 없음"} */}
+                  어메이징스토리
                 </div>
-                <div className={styles.info_Box}>
-                  <span className={styles.fixed_Info}>날짜</span>
-                  <span className={styles.variable_Info}>
-                    {/* {show.startDate || "시작 날짜 정보 없음"} -
+                <div className={styles.infos}>
+                  <div className={styles.info_Box}>
+                    <span className={styles.fixed_Info}>소개글</span>
+                    <span className={styles.variable_Info}>
+                      {show.introductionLetter || "소개글 정보 없음"}
+                    </span>
+                  </div>
+                  <div className={styles.info_Box}>
+                    <span className={styles.fixed_Info}>장소</span>
+                    <span className={styles.variable_Info}>
+                      {/* {show.location || "장소 정보 없음"} */}학관 102호
+                    </span>
+                  </div>
+                  <div className={styles.info_Box}>
+                    <span className={styles.fixed_Info}>날짜</span>
+                    <span className={styles.variable_Info}>
+                      {/* {show.startDate || "시작 날짜 정보 없음"} -
                     {show.endDate || "끝 날짜 정보 없음"} */}
-                    2025.05.23 - 2025.05.25
-                  </span>
-                </div>
-                <div className={styles.info_Box}>
-                  <span className={styles.fixed_Info}>러닝타임</span>
-                  <span className={styles.variable_Info}>
-                    {/* {show.runtime || "러닝타임 정보 없음"}분 */}
-                    90분
-                  </span>
-                </div>
-                <div className={styles.info_Box}>
-                  <span className={styles.fixed_Info}>담당자</span>
-                  <span className={styles.variable_Info}>
-                    {/* {clubs.userId || "담당자 정보 없음"} */}
-                    010-1234-5678(김이름)
-                  </span>
-                </div>
-                <div className={styles.info_Box}>
-                  <span className={styles.fixed_Info}>공지</span>
-                  <span className={styles.variable_Info}>
-                    {show.noticeLetter || "공지 정보 없음"}
-                  </span>
+                      2025.05.23 - 2025.05.25
+                    </span>
+                  </div>
+                  <div className={styles.info_Box}>
+                    <span className={styles.fixed_Info}>러닝타임</span>
+                    <span className={styles.variable_Info}>
+                      {/* {show.runtime || "러닝타임 정보 없음"}분 */}
+                      90분
+                    </span>
+                  </div>
+                  <div className={styles.info_Box}>
+                    <span className={styles.fixed_Info}>담당자</span>
+                    <span className={styles.variable_Info}>
+                      {/* {clubs.userId || "담당자 정보 없음"} */}
+                      010-1234-5678(김이름)
+                    </span>
+                  </div>
+                  <div className={styles.info_Box}>
+                    <span className={styles.fixed_Info}>공지</span>
+                    <span className={styles.variable_Info}>
+                      {show.noticeLetter || "공지 정보 없음"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.show_ticket}>
-        <div className={styles.ticket_Box}>
-          <div className={styles.section}>공연 회차 선택</div>
-          {Array.isArray(show.schedules) &&
-            show.schedules.map((sch) => (
-              <label key={sch.id}>
-                <input
-                  type="radio"
-                  value={sch.id}
-                  name={sch.id}
-                  disabled={!sch.applyPeople}
-                  className={styles.ticket_Radio}
-                />
-                {sch.order}공: {sch.date} {sch.time} | {sch.cost}원 |{" "}
-                {sch.applyPeople}/{sch.maxPeople}
-              </label>
-            ))}
-        </div>
-        <div className={styles.ticket_Box}>
-          <div className={styles.section}>구매 매수</div>
-        </div>
-        <div className={styles.ticket_Box}>
-          <div className={styles.section}>총 금액</div>
+        <div className={styles.show_ticket}>
+          <div className={styles.ticket_Box}>
+            <div className={styles.section}>공연 회차 선택</div>
+            {Array.isArray(show.schedules) &&
+              show.schedules.map((sch) => (
+                <label className={styles.sch_Item} key={sch.id}>
+                  <input
+                    type="radio"
+                    value={sch.id}
+                    name={sch.id}
+                    disabled={!sch.applyPeople}
+                    className={styles.ticket_Radio}
+                  />
+                  {sch.order}공: {sch.date} {sch.time} | {sch.cost}원 |{" "}
+                  {sch.applyPeople}/{sch.maxPeople}
+                </label>
+              ))}
+          </div>
+          <div className={styles.ticket_Box}>
+            <div className={styles.section}>구매 매수</div>
+          </div>
+          <div className={styles.ticket_Box}>
+            <div className={styles.section}>총 금액</div>
+          </div>
         </div>
       </div>
     </div>
