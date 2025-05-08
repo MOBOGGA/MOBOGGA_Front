@@ -1,0 +1,9 @@
+.body {
+  padding: 4px 94px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid var(--ORANGE);
+  background: var(--ORANGE);
+}

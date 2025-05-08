@@ -26,6 +26,7 @@
 .infos {
   width: 294px;
   height: 132px;
+  margin-bottom: 103px;
 }
 
 .info {
@@ -42,6 +43,6 @@
 
 .info_body input {
   height: 1.5em;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   padding: 0.5em;
 }
