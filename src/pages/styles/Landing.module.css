@@ -1,11 +1,11 @@
 .body {
   display: flex;
-  position: relative; 
+  position: relative;
   height: 745px;
   overflow: hidden;
   align-items: center;
   justify-content: end;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
 .words_box {
