@@ -1,0 +1,32 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 745px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbfbfb;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0.18px;
+}
+
+.logo_box {
+  margin-bottom: 40px;
+}
+
+.words_box {
+  margin-bottom: 156px;
+}
+
+.highlight_word {
+  color: var(--ORANGE);
+}
+
+.google_login_btn:hover {
+  cursor: pointer;
+}
