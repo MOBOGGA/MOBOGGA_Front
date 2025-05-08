@@ -1,5 +1,4 @@
 .footer{
-  width: 1280px;
   height: 200px;
   flex-shrink: 0;
 
@@ -20,6 +19,10 @@
 
   padding: 0px 20px;
   margin: 0px 20px;
+}
+
+.firstContainer span{
+  font-weight: 500;
 }
 
 .firstContainer span:hover{
