@@ -1,0 +1,133 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.back_Div {
+  margin-left: 85px;
+}
+
+.back_Btn {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.show_Intro {
+  display: flex;
+  padding-left: 20px;
+}
+
+.intro_Info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.intro_con {
+  width: 100vw - 24px;
+}
+
+.show_Intro {
+  display: flex;
+  max-width: 1200px;
+  gap: 40px;
+}
+
+.show_Pic {
+  width: 457px;
+  height: 646px;
+  object-fit: contain;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.intro_con {
+  display: flex;
+  flex-direction: row;
+}
+
+.show_Top {
+  width: 100vw;
+  font-size: 24px;
+  font-weight: bold;
+  color: #121212;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.show_Info {
+  width: 550px;
+  margin-left: 64px;
+  text-align: left;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.club {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff3d12;
+  margin-bottom: 20px;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info_Box {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.fixed_Info {
+  width: 60px;
+  font-weight: bold;
+  color: #6666ff;
+}
+
+.variable_Info {
+  color: #333;
+  white-space: pre-line;
+}
+
+/* 공연 회차 선택 등 */
+.show_ticket {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.ticket_Box {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.section {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.fixed_Info {
+  color: #8e3dff;
+}
+
+.show_ticket {
+}
+
+.sch_Item {
+  display: flex;
+  width: 100%;
+}
+
+.ticket_Radio {
+  accent-color: #121212;
+}
