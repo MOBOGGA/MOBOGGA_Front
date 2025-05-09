@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./styles/ShowCard.module.css";
 
 import top1 from "../assets/main/topTag.png";
-import top2 from "../assets/main/topTag2.png";
+//import top2 from "../assets/main/topTag2.png";
 import side1 from "../assets/main/sideTag.png";
-import side2 from "../assets/main/sideTag2.png";
+//import side2 from "../assets/main/sideTag2.png";
 
 
 function ShowCard({ show }) {
