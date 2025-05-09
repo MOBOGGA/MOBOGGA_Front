@@ -79,16 +79,18 @@ function Banner() {
 
           <div className={styles.imgContainer}>
             <div className={styles.imgBox}>              
-              <img src={banner1} alt={bannerList[0].name}/>
+
+              <img src={banner1} alt="banner1"/>
             </div>
             <div className={styles.imgBox}>              
-              <img src={banner2} alt={bannerList[1].name}/>
+              <img src={banner2} alt="banner2"/>
             </div>
             <div className={styles.imgBox}>              
-              <img src={banner3} alt={bannerList[2].name}/>
+              <img src={banner3} alt="banner3"/>
             </div>
             <div className={styles.imgBox}>              
-              <img src={banner4} alt={bannerList[3].name}/>
+              <img src={banner4} alt="banner4"/>
+
             </div>
           </div>
         </div>
