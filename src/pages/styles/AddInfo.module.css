@@ -1,0 +1,48 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 745px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbfbfb;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px; /* 166.667% */
+  letter-spacing: 0.18px;
+}
+
+.logo_box {
+  margin-bottom: 40px;
+}
+
+.words_box {
+  margin-bottom: 56px;
+}
+
+.infos {
+  width: 294px;
+  height: 132px;
+  margin-bottom: 103px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.info_head {
+  margin-right: auto;
+}
+
+.info_body input {
+  height: 1.5em;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+}

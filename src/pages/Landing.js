@@ -19,7 +19,7 @@ function Landing() {
   };
 
   const onClickGoogleStartBtn = () => {
-    navigate(`/구글 로그인 페이지`);
+    navigate(`/add-info`);
   };
 
   return (
