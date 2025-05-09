@@ -72,6 +72,9 @@ function AddInfo() {
             navigate("/main");
           }}
         />
+        <div className={styles.caution}>
+          *모보까에 가입함으로써 개인정보 수집에 관해 동의하게 됩니다
+        </div>
       </div>
     </>
   );
