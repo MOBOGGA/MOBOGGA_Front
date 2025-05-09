@@ -1,4 +1,4 @@
-.body {
+.FilledLongBtnDefault {
   padding: 4px 94px;
   justify-content: center;
   align-items: center;
@@ -6,4 +6,18 @@
 
   border: 1px solid var(--ORANGE);
   background: var(--ORANGE);
+  color: white;
+}
+
+.FilledLongBtnHover{
+  padding: 4px 94px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid var(--DEEPORANGE);
+  background: var(--DEEPORANGE);
+  color: white;
+
+  cursor: pointer;
 }

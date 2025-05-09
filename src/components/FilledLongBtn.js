@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles/FilledLongBtn.module.css";
 
 function FilledLongBtn({ value, onClick }) {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const onMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const onMouseOut = () => {
+    setIsHovering(false);
+  };
+
   return (
-    <button className={styles.body} onClick={onClick}>
+    <div
+      className={
+        isHovering ? styles.FilledLongBtnHover : styles.FilledLongBtnDefault
+      }
+      onClick={onClick}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+    >
       {value}
-    </button>
+    </div>
   );
 }
-
 
 export default FilledLongBtn;

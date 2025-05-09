@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   --ORANGE: #FF3D12;
+  --DEEPORANGE: #BB2200;
   --BLACK: #121212;
   color: #121212;
 }

@@ -6,22 +6,10 @@ import FilledLongBtn from "../components/FilledLongBtn";
 
 function AddInfo() {
   const navigate = useNavigate();
-  const [isHovering, setIsHovering] = useState(false);
   const [name, setName] = useState("");
   const [studentId, setStudentId] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const onMouseOver = () => {
-    setIsHovering(true);
-  };
-
-  const onMouseOut = () => {
-    setIsHovering(false);
-  };
-
-  const onClickGoogleLoginBtn = () => {
-    navigate(`/구글 로그인 페이지`);
-  };
   return (
     <>
       <div className={styles.body}>
@@ -80,7 +68,6 @@ function AddInfo() {
               alert("모든 정보를 입력해주세요.");
               return;
             }
-            // 등록 로직
             console.log({ name, studentId, phoneNumber });
             navigate("/main");
           }}
