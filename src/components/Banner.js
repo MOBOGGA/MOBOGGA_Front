@@ -79,6 +79,7 @@ function Banner() {
 
           <div className={styles.imgContainer}>
             <div className={styles.imgBox}>              
+
               <img src={banner1} alt="banner1"/>
             </div>
             <div className={styles.imgBox}>              
@@ -89,6 +90,7 @@ function Banner() {
             </div>
             <div className={styles.imgBox}>              
               <img src={banner4} alt="banner4"/>
+
             </div>
           </div>
         </div>

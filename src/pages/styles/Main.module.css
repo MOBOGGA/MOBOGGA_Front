@@ -1,0 +1,19 @@
+.main{
+  background: var(--gray-01-background, #FBFBFB);
+  padding: 28px 128px 160px 128px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.categoryText{
+  color: var(--gray-10-typo-color, #121212);
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow:   /* 글씨 더 굵게 보이게  */
+  -0.2px 0 currentColor,
+   0.2px 0 currentColor,
+   0   -0.2px currentColor,
+   0    0.2px currentColor;
+}
