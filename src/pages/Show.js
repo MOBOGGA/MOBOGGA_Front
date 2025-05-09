@@ -14,12 +14,6 @@ function Show() {
     navigate(-1); // 이전 페이지로 이동
   };
 
-  // const Plus = () => {
-  //   if (show && count < show.maxTickets) {
-  //     setCount(count + 1);
-  //   }
-  // };
-
   // clubs.js
   // const clubs = [
   //   {
@@ -121,6 +115,17 @@ function Show() {
     // 첫 번째 쇼를 기본으로 설정
     setShow(shows[0]);
   }, [shows]);
+
+  const Minus = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+  const Plus = () => {
+    if (show && count < show.maxTickets) {
+      setCount(count + 1);
+    }
+  };
 
   return (
     <div className={styles.wrap}>
@@ -229,6 +234,15 @@ function Show() {
           </div>
           <div className={styles.ticket_Box}>
             <div className={styles.section}>구매 매수</div>
+            <div className={styles.ticket_Btns}>
+              <button className={styles.ticket_Btn} onClick={Minus}>
+                -
+              </button>
+              <span>{count}</span>
+              <button className={styles.ticket_Btn} onClick={Plus}>
+                +
+              </button>
+            </div>
           </div>
           <div className={styles.ticket_Box}>
             <div className={styles.section}>총 금액</div>
