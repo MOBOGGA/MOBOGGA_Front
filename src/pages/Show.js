@@ -8,37 +8,32 @@ import { useNavigate } from "react-router-dom";
 
 function Show() {
   const [show, setShow] = useState({});
-  const [count, setCount] = useState({});
+  // const [count, setCount] = useState({});
   const navigate = useNavigate();
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
   };
 
-  useEffect(() => {
-    // 첫 번째 쇼를 기본으로 설정
-    setShow(shows[0]);
-  }, []);
-
-  const Plus = () => {
-    if (show && count < show.maxTickets) {
-      setCount(count + 1);
-    }
-  };
+  // const Plus = () => {
+  //   if (show && count < show.maxTickets) {
+  //     setCount(count + 1);
+  //   }
+  // };
 
   // clubs.js
-  const clubs = [
-    {
-      id: 1,
-      userId: "user01",
-      photo: "club1.jpg",
-      name: "뮤지컬동아리",
-      instaUrl: "https://instagram.com/musical",
-      kakaoUrl: "https://open.kakao.com/musical",
-      youtubeUrl: "https://youtube.com/musical",
-      url: "https://musicalclub.com",
-    },
-  ];
-
+  // const clubs = [
+  //   {
+  //     id: 1,
+  //     userId: "user01",
+  //     photo: "club1.jpg",
+  //     name: "뮤지컬동아리",
+  //     instaUrl: "https://instagram.com/musical",
+  //     kakaoUrl: "https://open.kakao.com/musical",
+  //     youtubeUrl: "https://youtube.com/musical",
+  //     url: "https://musicalclub.com",
+  //   },
+  // ];
+  // eslint-disable-next-line
   const shows = [
     {
       id: 1,
@@ -75,7 +70,7 @@ function Show() {
           time: "14:00",
           cost: 5000,
           maxPeople: 100,
-          applyPeople: 95,
+          applyPeople: 100,
         },
         {
           id: 1,
@@ -122,6 +117,10 @@ function Show() {
   //     setShow(null);
   //   }
   // };
+  useEffect(() => {
+    // 첫 번째 쇼를 기본으로 설정
+    setShow(shows[0]);
+  }, [shows]);
 
   return (
     <div className={styles.wrap}>
@@ -199,19 +198,34 @@ function Show() {
           <div className={styles.ticket_Box}>
             <div className={styles.section}>공연 회차 선택</div>
             {Array.isArray(show.schedules) &&
-              show.schedules.map((sch) => (
-                <label className={styles.sch_Item} key={sch.id}>
-                  <input
-                    type="radio"
-                    value={sch.id}
-                    name={sch.id}
-                    disabled={!sch.applyPeople}
-                    className={styles.ticket_Radio}
-                  />
-                  {sch.order}공: {sch.date} {sch.time} | {sch.cost}원 |{" "}
-                  {sch.applyPeople}/{sch.maxPeople}
-                </label>
-              ))}
+              show.schedules.map((sch) => {
+                const isFull = sch.applyPeople >= sch.maxPeople;
+
+                return (
+                  <label
+                    className={`${styles.sch_Item} ${
+                      isFull ? styles.disabled_Label : ""
+                    }`}
+                    key={sch.id}
+                  >
+                    <input
+                      type="radio"
+                      value={sch.id}
+                      name="schedule"
+                      disabled={isFull}
+                      className={styles.ticket_Radio}
+                    />
+                    {sch.order}공: {sch.date} {sch.time} | {sch.cost}원 |{" "}
+                    {isFull ? (
+                      <span className={styles.disabled_Label}>매진</span>
+                    ) : (
+                      <span className={styles.people_Count}>
+                        {sch.applyPeople}/{sch.maxPeople}
+                      </span>
+                    )}
+                  </label>
+                );
+              })}
           </div>
           <div className={styles.ticket_Box}>
             <div className={styles.section}>구매 매수</div>
