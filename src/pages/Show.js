@@ -246,6 +246,7 @@ function Show() {
           </div>
           <div className={styles.ticket_Box}>
             <div className={styles.section}>총 금액</div>
+            <div className={styles.total}>{sch.cost * count}원</div>
           </div>
         </div>
       </div>
