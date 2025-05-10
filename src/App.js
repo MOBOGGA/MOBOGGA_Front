@@ -9,6 +9,7 @@ import Landing from "./pages/Landing";
 import Show from "./pages/Show";
 import Login from "./pages/Login";
 import AddInfo from "./pages/AddInfo";
+import Mypage from "./pages/Mypage"
 
 import "./App.css";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/show" element={<Show />} />
           <Route path="/login" element={<Login />} />
           <Route path="/add-info" element={<AddInfo />} />
+          <Route path='/mypage' element={<Mypage />} />
         </Routes>
         <Footer />
       </div>
