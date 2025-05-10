@@ -6,18 +6,22 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./styles/Header.module.css";
 import moboggaLogo from "../assets/Logo.svg";
+import profile_btn from "../assets/temp/profile_logo.svg"
 
 function Header() {
   const navigate = useNavigate();
-//  const location = useLocation(); // 현재 페이지 경로 가져오기
-  
+  //  const location = useLocation(); // 현재 페이지 경로 가져오기
 
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img src={moboggaLogo} alt="MoboggaLogo" className="logoImg" onClick={() => navigate("/")}
+        <img
+          src={moboggaLogo}
+          alt="MoboggaLogo"
+          className="logoImg"
+          onClick={() => navigate("/")}
           //onClick={() => {noLoginInfo === true ? navigate("/") : navigate("/hansum")}}
-          />
+        />
       </div>
 
       <div className={styles.right}>
@@ -35,6 +39,9 @@ function Header() {
 
         <div className={styles.login} onClick={() => navigate("/login")}>
           <span>로그인</span>
+        </div>
+        <div className={styles.profile_btn} onClick={() => navigate("/mypage")}>
+          <img src={profile_btn} alt="프로필 버튼" />
         </div>
       </div>
     </header>
