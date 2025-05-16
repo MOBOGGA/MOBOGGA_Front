@@ -21,7 +21,6 @@ function UpdateProfile() {
               <div className={styles.info_head}>이름</div>
               <div className={styles.info_body}>
                 <input
-                  placeholder="이름"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -31,7 +30,6 @@ function UpdateProfile() {
               <div className={styles.info_head}>학번</div>
               <div className={styles.info_body}>
                 <input
-                  placeholder="학번 8자리"
                   value={studentId}
                   onChange={(e) => setStudentId(e.target.value)}
                 />
@@ -44,7 +42,6 @@ function UpdateProfile() {
                   type="tel"
                   name="phone"
                   id="phone"
-                  placeholder="010-0000-0000"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
@@ -52,6 +49,14 @@ function UpdateProfile() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+        <div className={styles.button_box}>
+          <div className={styles.button} id={styles.cancel_button}>
+            <div className={styles.button_text} id={styles.cancel_button_text}>취소</div>
+          </div>
+          <div className={styles.button} id={styles.confirm_button}>
+            <div className={styles.button_text} id={styles.confirm_button_text}>확인</div>
           </div>
         </div>
       </div>
