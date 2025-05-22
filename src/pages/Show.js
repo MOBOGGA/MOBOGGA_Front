@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 function Show() {
   const [show, setShow] = useState({});
-  // const [count, setCount] = useState({});
+  const [count, setCount] = useState(0);
+  const [selectedSch, setSelectedSch] = useState(null);
   const navigate = useNavigate();
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -39,7 +40,7 @@ function Show() {
       noticeLetter:
         "*티켓은 공연 당일, 공연장 앞에서 수령하실 수 있습니다.\n *티켓 환불은 5월 19일 일요일(공연전주 일요일)까지만 가능합니다.\n*뚜껑있는 투명한 생수병을 제외한 모든 음식물은 반입이 금지됩니다.\n*꽃다발 및 음식무은 데스크에 상주해있는 스태프들이 보관해드립니다.\n*공연이 시작되면 출입이 불가합니다.(지연관객 입장 불가)",
       location: "대강당 A",
-      maxTickets: 200,
+      maxTickets: 5,
       account: "123-456-789",
       runtime: 120,
       startDate: "2025-06-01",
@@ -202,35 +203,44 @@ function Show() {
         <div className={styles.show_ticket}>
           <div className={styles.ticket_Box}>
             <div className={styles.section}>공연 회차 선택</div>
-            {Array.isArray(show.schedules) &&
-              show.schedules.map((sch) => {
-                const isFull = sch.applyPeople >= sch.maxPeople;
+            <div
+              className={styles.selectSch}
+              onChange={(e) =>
+                setSelectedSch(
+                  shows?.schedules.find((s) => s.id === Number(e.target.value))
+                )
+              }
+            >
+              {Array.isArray(show.schedules) &&
+                show.schedules.map((sch) => {
+                  const isFull = sch.applyPeople >= sch.maxPeople;
 
-                return (
-                  <label
-                    className={`${styles.sch_Item} ${
-                      isFull ? styles.disabled_Label : ""
-                    }`}
-                    key={sch.id}
-                  >
-                    <input
-                      type="radio"
-                      value={sch.id}
-                      name="schedule"
-                      disabled={isFull}
-                      className={styles.ticket_Radio}
-                    />
-                    {sch.order}공: {sch.date} {sch.time} | {sch.cost}원 |{" "}
-                    {isFull ? (
-                      <span className={styles.disabled_Label}>매진</span>
-                    ) : (
-                      <span className={styles.people_Count}>
-                        {sch.applyPeople}/{sch.maxPeople}
-                      </span>
-                    )}
-                  </label>
-                );
-              })}
+                  return (
+                    <label
+                      className={`${styles.sch_Item} ${
+                        isFull ? styles.disabled_Label : ""
+                      }`}
+                      key={sch.id}
+                    >
+                      <input
+                        type="radio"
+                        value={sch.id}
+                        name="schedule"
+                        disabled={isFull}
+                        className={styles.ticket_Radio}
+                      />
+                      {sch.order}공: {sch.date} {sch.time} | {sch.cost}원 |{" "}
+                      {isFull ? (
+                        <span className={styles.disabled_Label}>매진</span>
+                      ) : (
+                        <span className={styles.people_Count}>
+                          {sch.applyPeople}/{sch.maxPeople}
+                        </span>
+                      )}
+                    </label>
+                  );
+                })}
+            </div>
           </div>
           <div className={styles.ticket_Box}>
             <div className={styles.section}>구매 매수</div>
@@ -246,7 +256,9 @@ function Show() {
           </div>
           <div className={styles.ticket_Box}>
             <div className={styles.section}>총 금액</div>
-            <div className={styles.total}>{sch.cost * count}원</div>
+            <div className={styles.total}>
+              {(selectedSch?.schedules.cost || 0) * count}원
+            </div>
           </div>
         </div>
       </div>
