@@ -51,3 +51,21 @@
 .login:hover{
   font-weight: 700;
 }
+
+.back{
+  position:relative;
+}
+
+.background{
+  vertical-align: middle;
+}
+
+.nan{
+  display: none;
+}
+
+.fronttext{
+  position:absolute;
+  font-weight: 700;
+  color: var(--gray-01-background, #FBFBFB);
+}

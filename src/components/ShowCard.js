@@ -12,7 +12,7 @@ function ShowCard({ show }) {
     <div className={styles.showCard}>
       <div className={styles.card}>
         <img src={show.img} alt={show.title} className={styles.mainImg}/>
-        <img src={top1} alt="" className={styles.top}/>
+        <img src={top1} alt="" className={styles.top}/> 
         <img src={side1} alt="" className={styles.side}/>
       </div>
       <span className={styles.name}>{show.title}</span>
