@@ -2,35 +2,42 @@ import React from "react";
 //import React, { useState, useEffect} from "react";
 //import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
 
 import styles from "./styles/Header.module.css";
 import moboggaLogo from "../assets/Logo.svg";
+import header1 from "../assets/header/1.svg";
+import header2 from "../assets/header/2.svg";
+import header3 from "../assets/header/3.svg";
 
 function Header() {
+  // 1) 경로이동, 현재 페이지 가져오기 
   const navigate = useNavigate();
-//  const location = useLocation(); // 현재 페이지 경로 가져오기
+  const location = useLocation(); 
   
 
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img src={moboggaLogo} alt="MoboggaLogo" className="logoImg" onClick={() => navigate("/")}
+        <img src={moboggaLogo} alt="MoboggaLogo" onClick={() => navigate("/main")}
           //onClick={() => {noLoginInfo === true ? navigate("/") : navigate("/hansum")}}
           />
       </div>
 
       <div className={styles.right}>
-        <div className={styles.watching}>
-          <span>볼거리</span>
+        <div className={location.pathname === "/main" ? styles.watching : styles.back} onClick={() => navigate("/main")}>
+          <img src={header1} alt ="" className={location.pathname === "/main" ? styles.background : styles.nan}/>
+          <span className={location.pathname === "/main" ? styles.fronttext : ""}>볼거리</span>
         </div>
 
-        <div className={styles.recruiting}>
-          <span>리쿠르팅</span>
+        <div className={location.pathname === "/recruiting" ? styles.recruiting : styles.back} onClick={() => navigate("/recruiting")}>
+          <img src={header2} alt ="" className={location.pathname === "/recruiting" ? styles.background : styles.nan}/>
+          <span className={location.pathname === "/recruiting" ? styles.fronttext : ""}>리크루팅</span>
         </div>
 
-        <div className={styles.club}>
-          <span>동아리</span>
+        <div className={location.pathname === "/clubs" ? styles.club : styles.back} onClick={() => navigate("/clubs")}>
+          <img src={header3} alt ="" className={location.pathname === "/clubs" ? styles.background : styles.nan}/>
+          <span className={location.pathname === "/clubs" ? styles.fronttext : ""}>동아리</span>
         </div>
 
         <div className={styles.login} onClick={() => navigate("/login")}>

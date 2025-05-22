@@ -7,7 +7,10 @@ import Main from "./pages/Main";
 
 import Landing from "./pages/Landing";
 import Show from "./pages/Show";
-import Login from './pages/Login'
+import Login from './pages/Login';
+import Clubs from "./pages/Clubs";
+import Recruiting from "./pages/Recruiting";
+
 
 import "./App.css";
 
@@ -21,6 +24,8 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/show" element={<Show />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/clubs" element={<Clubs />} />
+        <Route path="/Recruiting" element={<Recruiting />} />
       </Routes>
       <Footer />
     </div>
