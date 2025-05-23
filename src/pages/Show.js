@@ -15,84 +15,35 @@ function Show() {
     navigate(-1); // 이전 페이지로 이동
   };
 
-  // clubs.js
-  // const clubs = [
-  //   {
-  //     id: 1,
-  //     userId: "user01",
-  //     photo: "club1.jpg",
-  //     name: "뮤지컬동아리",
-  //     instaUrl: "https://instagram.com/musical",
-  //     kakaoUrl: "https://open.kakao.com/musical",
-  //     youtubeUrl: "https://youtube.com/musical",
-  //     url: "https://musicalclub.com",
-  //   },
-  // ];
   // eslint-disable-next-line
   const shows = [
     {
-      id: 1,
-      clubId: 1,
-      name: "봄날의 뮤지컬",
-      photo: "../assets/bannerTest/1.png",
-      introductionLetter:
-        "🎵우리 집에 왜 왔니 왜 왔니 왜 왔니?~\n웃음꽃을 찾으러 왔단다 왔단다~ 🎵\n코미디 맛집 어메이징 스토리가 돌아왔다!",
-      noticeLetter:
-        "*티켓은 공연 당일, 공연장 앞에서 수령하실 수 있습니다.\n *티켓 환불은 5월 19일 일요일(공연전주 일요일)까지만 가능합니다.\n*뚜껑있는 투명한 생수병을 제외한 모든 음식물은 반입이 금지됩니다.\n*꽃다발 및 음식무은 데스크에 상주해있는 스태프들이 보관해드립니다.\n*공연이 시작되면 출입이 불가합니다.(지연관객 입장 불가)",
-      location: "대강당 A",
-      maxTickets: 5,
-      account: "123-456-789",
-      runtime: 120,
-      startDate: "2025-06-01",
-      endDate: "2025-06-02",
-      postDate: "2025-05-01",
-      schedules: [
+      showId: 0,
+      clubName: "string",
+      showName: "string",
+      photo: "string",
+      introductionLetter: "string",
+      location: "string",
+      startDate: "2025-05-23",
+      endDate: "2025-05-23",
+      runtime: 0,
+      managerInfo: "string",
+      noticeLetter: "string",
+      scheduleList: [
         {
-          id: 1, // 동일 공연 내에서는 아이디 같아야 함, key가 id여서.
-          showId: 1,
-          order: 1,
-          date: "2025-06-01",
-          time: "18:00",
-          cost: 5000,
-          maxPeople: 100,
-          applyPeople: 85,
-        },
-        {
-          id: 1,
-          showId: 1,
-          order: 2,
-          date: "2025-06-02",
-          time: "14:00",
-          cost: 5000,
-          maxPeople: 100,
-          applyPeople: 100,
-        },
-        {
-          id: 1,
-          showId: 2,
-          order: 3,
-          date: "2025-06-10",
-          time: "19:00",
-          cost: 3000,
-          maxPeople: 80,
-          applyPeople: 70,
+          order: 0,
+          date: "2025-05-23",
+          time: {
+            hour: 0,
+            minute: 0,
+            second: 0,
+            nano: 0,
+          },
+          maxPeople: 0,
+          cost: 0,
+          scheduleId: 0,
         },
       ],
-    },
-    {
-      id: 2,
-      clubId: 2,
-      name: "여름 밤의 연극",
-      photo: "show2.jpg",
-      introductionLetter: "여름밤을 배경으로 한 연극",
-      noticeLetter: "공연 중 사진 촬영 금지",
-      location: "소극장 B",
-      maxTickets: 150,
-      account: "987-654-321",
-      runtime: 90,
-      startDate: "2025-06-10",
-      endDate: "2025-06-11",
-      postDate: "2025-05-05",
     },
   ];
 
