@@ -1,12 +1,14 @@
 import React from "react";
-import styles from "./styles/Main.module.css";
+import styles from "./styles/Recruiting.module.css";
+
+import RecruitingList from "../components/RecruitingList";
 
 
 function Recruiting() {
   return (
     <>
       <div className={styles.recruiting}>
-      Recruiting page
+        <RecruitingList />
       </div>
     </>
   );
