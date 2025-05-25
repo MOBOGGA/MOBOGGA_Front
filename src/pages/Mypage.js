@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/Mypage.module.css";
 
 function Mypage() {
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [userName, setUserName] = useState("");
+  const [stdId, setStdId] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+
+  const [formData, setFormData] = useState({
+    userName: "",
+    stdId: "",
+    phoneNum: "",
+  });
+
   const [isHoveringLogoutBtn, setIsHoveringLogoutBtn] = useState(false);
   const [isHoveringUpdateBtn, setIsHoveringUpdateBtn] = useState(false);
 
@@ -31,6 +45,41 @@ function Mypage() {
     navigate(`/mypage/update`);
   };
 
+  // 사용자 정보 조회
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch(
+          `https://jinjigui.info:8080/mypage/update/${userId}`,
+          {
+            credentials: "include",
+          }
+        );
+        if (!response.ok) {
+          throw new Error("사용자 정보를 불러오는데 실패했습니다.");
+        }
+
+        const userData = await response.json();
+        console.log("User Data:", userData); // 이 줄 추가
+
+        // 서버에서 받은 데이터를 폼 데이터 형식에 맞게 변환
+        setFormData({
+          userName: userData.user.userName || "",
+          email: userData.user.email || "",
+          phoneNum: userData.user.phoneNum || "",
+          stdId: userData.user.stdId || "",
+        });
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserProfile();
+  }, [userId]); // 컴포넌트 마운트 시 한 번만 실행
+
   return (
     <>
       <div className={styles.body}>
@@ -39,7 +88,7 @@ function Mypage() {
             <div className={styles.account_title_box}>
               <div className={styles.account_title}>현재 로그인 계정</div>
             </div>
-            <div className={styles.account}>22100159@handong.ac.kr</div>
+            <div className={styles.account}>{formData.email}</div>
             <div
               className={
                 isHoveringLogoutBtn
@@ -60,15 +109,15 @@ function Mypage() {
             <div className={styles.profile_detail_box}>
               <div className={styles.detail_box}>
                 <div className={styles.detail_head}>이름</div>
-                <div className={styles.detail_body}>김한동</div>
+                <div className={styles.detail_body}>{userName}</div>
               </div>
               <div className={styles.detail_box}>
                 <div className={styles.detail_head}>학번</div>
-                <div className={styles.detail_body}>22100159</div>
+                <div className={styles.detail_body}>{stdId}</div>
               </div>
               <div className={styles.detail_box}>
                 <div className={styles.detail_head}>연락처</div>
-                <div className={styles.detail_body}>010-0000-0000</div>
+                <div className={styles.detail_body}>{phoneNum}</div>
               </div>
             </div>
           </div>
