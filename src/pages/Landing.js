@@ -4,7 +4,7 @@ import styles from "./styles/Landing.module.css";
 import GoogleStartBtnDefault from "../assets/GoogleStartBtn-Default.svg";
 import GoogleStartBtnHover from "../assets/GoogleStartBtn-Hover.svg";
 import LandingPageTape from "../assets/LandingPageTape.svg";
-import LandingPageWords from "../assets/landingPageWords.svg";
+import LandingPageWords from "../assets/LandingPageWords.svg";
 
 function Landing() {
   const [isHovering, setIsHovering] = useState(false);
@@ -19,7 +19,7 @@ function Landing() {
   };
 
   const onClickGoogleStartBtn = () => {
-    navigate(`/구글 로그인 페이지`);
+    navigate(`/add-info`);
   };
 
   return (
