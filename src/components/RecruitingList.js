@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React,{useState} from "react";
 import RecruitingCard from "./RecruitingCard";
 import styles from "./styles/RecruitingList.module.css";
