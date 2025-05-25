@@ -41,7 +41,7 @@ function UpdateProfile() {
 
   const onClickConfirmBtn = () => {
     if (window.confirm("정보를 수정하시겠습니까?") === true) {
-      saveProfile();
+      //saveProfile();
     }
   };
 
@@ -85,7 +85,7 @@ function UpdateProfile() {
       [name]: value,
     }));
   };
-
+  // eslint-disable-next-line
   const saveProfile = async (e) => {
     e.preventDefault();
 
