@@ -80,10 +80,23 @@
 
 #cancel_button {
   background-color: var(--WHITE);
+  cursor: pointer;
 }
 
 #confirm_button {
-  background-color: var(--ORANGE);
+  background: var(--ORANGE);
+  cursor: pointer;
+}
+
+#cancel_button_hover {
+  background: var(--Main-04, #ffefec);
+  cursor: pointer;
+}
+
+#confirm_button_hover {
+  border: 1px solid #b20;
+  background: #b20;
+  cursor: pointer;
 }
 
 #cancel_button_text {
