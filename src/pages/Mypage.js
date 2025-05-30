@@ -5,17 +5,12 @@ import styles from "./styles/Mypage.module.css";
 function Mypage() {
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [userName, setUserName] = useState("");
-  const [stdId, setStdId] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
 
   const [formData, setFormData] = useState({
     userName: "",
     stdId: "",
     phoneNum: "",
+    email: "",
   });
 
   const [isHoveringLogoutBtn, setIsHoveringLogoutBtn] = useState(false);
@@ -60,7 +55,7 @@ function Mypage() {
         }
 
         const userData = await response.json();
-        console.log("User Data:", userData); // 이 줄 추가
+        console.log("User Data:", userData);
 
         // 서버에서 받은 데이터를 폼 데이터 형식에 맞게 변환
         setFormData({
@@ -71,14 +66,14 @@ function Mypage() {
         });
       } catch (error) {
         console.error("Error fetching user profile:", error);
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
+      //   setError(error.message);
+      // } finally {
+      //   setIsLoading(false);
       }
     };
 
     fetchUserProfile();
-  }, [userId]); // 컴포넌트 마운트 시 한 번만 실행
+  }, [userId]);
 
   return (
     <>
@@ -109,15 +104,15 @@ function Mypage() {
             <div className={styles.profile_detail_box}>
               <div className={styles.detail_box}>
                 <div className={styles.detail_head}>이름</div>
-                <div className={styles.detail_body}>{userName}</div>
+                <div className={styles.detail_body}>{formData.userName}</div>
               </div>
               <div className={styles.detail_box}>
                 <div className={styles.detail_head}>학번</div>
-                <div className={styles.detail_body}>{stdId}</div>
+                <div className={styles.detail_body}>{formData.stdId}</div>
               </div>
               <div className={styles.detail_box}>
                 <div className={styles.detail_head}>연락처</div>
-                <div className={styles.detail_body}>{phoneNum}</div>
+                <div className={styles.detail_body}>{formData.phoneNum}</div>
               </div>
             </div>
           </div>
