@@ -143,3 +143,12 @@
   accent-color: #121212;
   margin-bottom: 24px;
 }
+
+.ticket_Btns {
+  border: solid 1px #acacac;
+}
+
+.ticket_Btn {
+  border: none;
+  background-color: #fff;
+}

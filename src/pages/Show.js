@@ -19,28 +19,30 @@ function Show() {
   const shows = [
     {
       showId: 0,
-      clubName: "string",
-      showName: "string",
+      clubName: "어메이징 스토리",
+      showName: "우리 집에 왜 왔니?",
       photo: "string",
-      introductionLetter: "string",
-      location: "string",
+      introductionLetter:
+        "🎵우리 집에 왜 왔니 왜 왔니 왜 왔니?~ \n웃음꽃을 찾으러 왔단다 왔단다~ 🎵 \n코미디 맛집 어메이징 스토리가 돌아왔다!",
+      location: "학관 102호",
       startDate: "2025-05-23",
       endDate: "2025-05-23",
       runtime: 0,
-      managerInfo: "string",
-      noticeLetter: "string",
+      managerInfo: "010-1234-5678(김이름)",
+      noticeLetter:
+        "*티켓은 공연 당일, 공연장 앞에서 수령하실 수 있습니다.\n*티켓 환불은 5월 19일 일요일(공연전주 일요일)까지만 가능합니다.\n*뚜껑있는 투명한 생수병을 제외한 모든 음식물은 반입이 금지됩니다.\n*꽃다발 및 음식무은 데스크에 상주해있는 스태프들이 보관해드립니다.\n*공연이 시작되면 출입이 불가합니다.(지연관객 입장 불가)",
       scheduleList: [
         {
-          order: 0,
+          order: 1,
           date: "2025-05-23",
           time: {
-            hour: 0,
+            hour: 19,
             minute: 0,
             second: 0,
             nano: 0,
           },
-          maxPeople: 0,
-          cost: 0,
+          maxPeople: 5,
+          cost: 4500,
           scheduleId: 0,
         },
       ],
@@ -102,8 +104,7 @@ function Show() {
                   우리 집에 왜 왔니?
                 </div>
                 <div className={styles.club}>
-                  {/* {clubs.name || "동아리 정보 없음"} */}
-                  어메이징스토리
+                  {show.clubName || "동아리 정보 없음"}
                 </div>
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
