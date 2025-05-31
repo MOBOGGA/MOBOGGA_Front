@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 function Show() {
   const [show, setShow] = useState({});
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [selectedSch, setSelectedSch] = useState(null);
+  const [reservation, setReservation] = useState();
   const navigate = useNavigate();
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -34,7 +35,7 @@ function Show() {
       scheduleList: [
         {
           order: 1,
-          date: "2025-05-23",
+          date: "2025.05.23",
           time: {
             hour: 19,
             minute: 0,
@@ -45,10 +46,11 @@ function Show() {
           maxPeople: 100,
           cost: 4500,
           scheduleId: 0,
+          maxTickets: 4,
         },
         {
           order: 2,
-          date: "2025-05-23",
+          date: "2025.05.23",
           time: {
             hour: 21,
             minute: 30,
@@ -57,8 +59,9 @@ function Show() {
           },
           applyPeople: 100,
           maxPeople: 100,
-          cost: 4500,
+          cost: 5000,
           scheduleId: 1,
+          maxTickets: 5,
         },
         {
           order: 3,
@@ -71,8 +74,9 @@ function Show() {
           },
           applyPeople: 53,
           maxPeople: 100,
-          cost: 4500,
+          cost: 5000,
           scheduleId: 2,
+          maxTickets: 5,
         },
       ],
     },
@@ -98,7 +102,7 @@ function Show() {
   useEffect(() => {
     // 첫 번째 쇼를 기본으로 설정
     setShow(shows[0]);
-  }, []);
+  }, [shows]);
 
   const Minus = () => {
     if (count > 0) {
@@ -106,7 +110,14 @@ function Show() {
     }
   };
   const Plus = () => {
-    if (show && count < show.maxTickets) {
+    if (
+      selectedSch &&
+      count <
+        Math.min(
+          selectedSch.maxPeople - selectedSch.applyPeople,
+          selectedSch.maxTickets
+        )
+    ) {
       setCount(count + 1);
     }
   };
@@ -207,11 +218,11 @@ function Show() {
                           )
                         }
                       />
-                      {sch.order}공:{" "}
-                      {`${sch.time.hour}:${sch.time.minute
+                      {sch.order}공: {sch.date}{" "}
+                      {`${sch.time.hour}시 ${sch.time.minute
                         .toString()
-                        .padStart(2, "0")}`}
-                      원 |{" "}
+                        .padStart(2, "0")}분`}{" "}
+                      | {sch.cost}원 |{" "}
                       {isFull ? (
                         <span className={styles.disabled_Label}>매진</span>
                       ) : (
