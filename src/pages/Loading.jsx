@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import sendAccessTokenToBackend from "../api/sendAccessTokenToBackend";
-import styled from "styled-components";
-import loginLogo from "../assets/login_logo.svg";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { sessionState } from "../atom/atom";
+import styles from "./styles/Loading.module.css";
 
 const Loading = () => {
   const navigate = useNavigate();
@@ -54,12 +53,12 @@ const Loading = () => {
   return (
     <div id="loading">
       {error ? (
-        <ErrorText>{error}</ErrorText>
+        <div className={styles.error_text}>{error}</div>
       ) : (
-        <LoadingImage>
+        <div className={styles.loading_box}>
           {isLoading ? "" : ""}
-          <img id="loading-logo" src={loginLogo} alt="loading" />
-        </LoadingImage>
+          <div className={styles.loading_text}>로딩 중...</div>
+        </div>
       )}
       <div style={{ color: "white" }}>로딩 중...</div>
     </div>
@@ -68,24 +67,24 @@ const Loading = () => {
 
 export default Loading;
 
-const LoadingImage = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 200px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-content: center;
-  font-size: 30px;
-  color: #fff;
-`;
+// const LoadingImage = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   margin-top: 200px;
+//   width: 100%;
+//   height: 100%;
+//   justify-content: center;
+//   align-content: center;
+//   font-size: 30px;
+//   color: #fff;
+// `;
 
-const ErrorText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  color: #e74c3c;
-  text-align: center;
-  padding: 20px;
-`;
+// const ErrorText = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 24px;
+//   color: #e74c3c;
+//   text-align: center;
+//   padding: 20px;
+// `;
