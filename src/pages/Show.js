@@ -4,16 +4,38 @@ import styles from "./styles/Show.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate } from "react-router-dom";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 // import axios from "axios";
 
 function Show() {
   const [show, setShow] = useState({});
   const [count, setCount] = useState(1);
   const [selectedSch, setSelectedSch] = useState(null);
+  const [isDisable, setIsDisable] = useState(false);
   const [reservation, setReservation] = useState();
   const navigate = useNavigate();
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
+  };
+
+  const handleReser = async () => {
+    console.log("선택된 스케줄 ID: ", selectedSch.scheduleId);
+    const requestData = {
+      scheduleId: selectedSch.scheduleId,
+      wishToPurchaseTickets: count,
+    };
+  };
+
+  const reservationData = async (responseData) => {
+    try {
+      if (responseData.availible === true) {
+        setIsDisable(true);
+      } else {
+        console.log("예매 실패!");
+      }
+    } catch (error) {
+      console.error("가져오기 ERROR:", error);
+    }
   };
 
   // eslint-disable-next-line
@@ -252,6 +274,15 @@ function Show() {
             <div className={styles.total}>
               {(selectedSch?.cost || 0) * count}원
             </div>
+          </div>
+          <div className={styles.ticket_Reser}>
+            <button
+              className={styles.Reser_Btn}
+              onClick={handleReser}
+              disabled={isDisable}
+            >
+              예매하기
+            </button>
           </div>
         </div>
       </div>
