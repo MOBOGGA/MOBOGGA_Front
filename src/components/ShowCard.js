@@ -11,15 +11,17 @@ function ShowCard({ show }) {
   return (
     <div className={styles.showCard}>
       <div className={styles.card}>
-        <img src={show.img} alt={show.title} className={styles.mainImg}/>
+        <img src={show.photo} alt={show.name} className={styles.mainImg}/>
         <img src={top1} alt="" className={styles.top}/> 
         <img src={side1} alt="" className={styles.side}/>
       </div>
-      <span className={styles.name}>{show.title}</span>
+      <span className={styles.name}>{show.name}</span>
       <div className={styles.clubDate}>
-        <span className={styles.club}>{show.club}</span>
+        <span className={styles.club}>{show.clubID}</span>
         <span>|</span>
-        <span className={styles.date}>{show.date}</span>
+        <span className={styles.date}>{show.startDate}</span>
+        <span >{" - "}</span>
+        <span className={styles.date1}>{show.endDate}</span>
       </div>
     </div>
   );
