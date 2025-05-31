@@ -14,6 +14,7 @@ import Recruiting from "./pages/Recruiting";
 import AddInfo from "./pages/AddInfo";
 import Mypage from "./pages/Mypage"
 import UpdateProfile from "./pages/UpdateProfile";
+import RecruitingDetail from "./pages/RecruitingDetail";
 
 
 import "./App.css";
@@ -30,7 +31,8 @@ function App() {
         <Route path="/show" element={<Show />} />
         <Route path="/login" element={<Login />} />
         <Route path="/clubs" element={<Clubs />} />
-        <Route path="/Recruiting" element={<Recruiting />} />
+        <Route path="/recruiting" element={<Recruiting />} />
+        <Route path="/recruiting/:recruitingId" element={<RecruitingDetail />} />
         <Route path="/add-info" element={<AddInfo />} />
         <Route path='/mypage' element={<Mypage />} />
         <Route path="/mypage/update" element={<UpdateProfile />} />
