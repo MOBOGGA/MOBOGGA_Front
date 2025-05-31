@@ -53,7 +53,7 @@ function Header() {
           <span>로그인</span>
         </div>
         <div className={styles.profile_btn} onClick={() => navigate("/mypage")}>
-          <img src={profile_btn} alt="프로필 버튼" />
+          {/* <img src={profile_btn} alt="프로필 버튼" /> */}
         </div>
       </div>
     </header>

@@ -1,6 +1,8 @@
 .column{
   display: flex;
   flex-direction: column;
+
+  width:100%;
 }
 
 .showlist {
@@ -61,3 +63,7 @@
   letter-spacing: 0.16px;
 }
 
+.showCard{
+  display: flex;
+  
+}
