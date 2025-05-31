@@ -10,7 +10,7 @@ function Main() {
       <Banner />
       <div className={styles.main}>
         <span className={styles.categoryText}>카테고리</span>
-        <ShowList className={styles.showlist}/>
+        <ShowList/>
       </div>
     </>
   );

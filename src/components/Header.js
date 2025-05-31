@@ -11,7 +11,7 @@ import header1 from "../assets/header/1.svg";
 import header2 from "../assets/header/2.svg";
 import header3 from "../assets/header/3.svg";
 
-import profile_btn from "../assets/temp/profile_logo.svg"
+//import profile_btn from "../assets/temp/profile_logo.svg"
 
 
 function Header() {
