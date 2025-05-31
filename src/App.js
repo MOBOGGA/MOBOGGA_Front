@@ -14,7 +14,7 @@ import Recruiting from "./pages/Recruiting";
 import AddInfo from "./pages/AddInfo";
 import Mypage from "./pages/Mypage"
 import UpdateProfile from "./pages/UpdateProfile";
-
+import Loading from "./pages/Loading";
 
 import "./App.css";
 
@@ -34,6 +34,7 @@ function App() {
         <Route path="/add-info" element={<AddInfo />} />
         <Route path='/mypage' element={<Mypage />} />
         <Route path="/mypage/update" element={<UpdateProfile />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
       <Footer />
     </div>
