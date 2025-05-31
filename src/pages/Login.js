@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import styles from "./styles/Login.module.css";
 import LoginLogo from "../assets/LoginLogo.svg";
 import GoogleLoginBtnDefault from "../assets/GoogleLoginBtn-Default.svg";
@@ -7,7 +7,7 @@ import GoogleLoginBtnHover from "../assets/GoogleLoginBtn-Hover.svg";
 
 function Login() {
   const [isHovering, setIsHovering] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onMouseOver = () => {
     setIsHovering(true);
