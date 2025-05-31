@@ -144,4 +144,64 @@
   height: 205px;
   border: 1px solid black;
   margin-bottom: 32px;
+  display: flex;
+}
+
+.card_img_box {
+  width: 145px;
+  height: 205px;
+}
+
+.card_img {
+  width: 145px;
+  height: 205px;
+}
+
+.card_text_box {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_title {
+  font-family: "IBM Plex Sans KR";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 48px; /* 150% */
+  letter-spacing: 0.96px;
+}
+
+.card_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_info_header {
+  margin-right: 5px;
+}
+
+.ticket_info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.ticket_num {
+  grid-column: 1;
+  grid-row: 1;
+  border-right: 1px solid black;
+}
+
+.ticket_price {
+  grid-column: 2;
+  grid-row: 1;
+  border-right: 1px solid black;
+}
+
+.deposit_status {
+  grid-column: 3;
+  grid-row: 1;
 }
