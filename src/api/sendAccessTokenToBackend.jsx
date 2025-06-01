@@ -8,7 +8,7 @@ const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
     //   });
 
     const serverResponse = await axios.post(
-      `http://jinjigui.info:8080/api/auth/google/session`,
+      `http://jinjigui.info/api/oauth/google/session`,
       {},
       {
         params: {
@@ -42,7 +42,10 @@ const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
     // sessionStorage에 값 저장
     sessionStorage.setItem("jwt", serverResponse.data.token);
     // sessionStorage.setItem("serverResponse", serverResponse.data.id);
-    sessionStorage.setItem("serverResponse:Authority", serverResponse.data.authority);
+    sessionStorage.setItem(
+      "serverResponse:Authority",
+      serverResponse.data.authority
+    );
     // sessionStorage.setItem("serverResponse:UserName", serverResponse.data.userName);
     // sessionStorage.setItem("serverResponse:StdId", serverResponse.data.stdId);
     // sessionStorage.setItem("serverResponse:PhoneNum", serverResponse.data.phoneNum);
