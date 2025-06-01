@@ -26,19 +26,21 @@ const Loading = () => {
         console.log("받은 idToken:", idToken);
 
         // 서버에 토큰을 보내고 응답을 받음
-        const response = await sendAccessTokenToBackend(idToken);
-
-        if (!response || !response.status) {
-          throw new Error("서버 응답이 올바르지 않습니다.");
+        const response = await sendAccessTokenToBackend(idToken, navigate);
+        
+        if (!response.token || !response.id) {
+          console.error("서버 응답에 사용자 정보가 없습니다.");
+          throw new Error("서버에서 사용자 정보를 받지 못했습니다.");
         }
+        
 
         console.log("서버 응답:", response);
 
         // 세션 상태 업데이트
-        setSessionState(response.user || true);
+        // setSessionState(response.user || true);
 
         // `isFirst` 값이 true이면 추가 정보 입력 페이지로, false이면 메인으로
-        navigate(response.isFirst ? "/add-info" : "/");
+        // navigate(response.isFirst ? "/add-info" : "/");
       } catch (error) {
         console.error("에러 발생:", error);
         setError(error.message);
@@ -54,15 +56,12 @@ const Loading = () => {
     <div id="loading">
       {error ? (
         <div className={styles.error_text}>{error}</div>
-      ) : (
-        <div className={styles.loading_box}>
-          {isLoading ? "" : ""}
-          <div className={styles.loading_text}>로딩 중...</div>
-        </div>
-      )}
-      <div style={{ color: "white" }}>로딩 중...</div>
+      ) : isLoading ? (
+        <div className={styles.loading_text}>로딩 중...</div>
+      ) : null}
     </div>
   );
+  
 };
 
 export default Loading;

@@ -1,20 +1,23 @@
 import axios from "axios";
 
 const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
-  console.log(idToken);
+  console.log("🔥 sendAccessTokenToBackend 호출됨");
   try {
     //   axios.post("https://jinjigui.info/api/auth/google/session", null, {
     //     params: { credential: idToken },
     //   });
 
     const serverResponse = await axios.post(
-      `https://jinjigui.info/api/auth/google/session`,
+      `http://jinjigui.info:8080/api/auth/google/session`,
       {},
       {
         params: {
           credential: idToken,
         },
         withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
 
@@ -34,17 +37,22 @@ const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
 
     // 서버로부터의 응답 처리
     console.log("Login successful with server response:", serverResponse);
+    console.log("📦 응답:", serverResponse.data);
 
-    // memberId를 sessionStorage에 저장
-    sessionStorage.setItem("serverResponse", serverResponse.data.id);
-    sessionStorage.setItem(
-      "serverResponse:Authority",
-      serverResponse.data.authority
-    );
-
+    // sessionStorage에 값 저장
+    sessionStorage.setItem("jwt", serverResponse.data.token);
+    // sessionStorage.setItem("serverResponse", serverResponse.data.id);
+    sessionStorage.setItem("serverResponse:Authority", serverResponse.data.authority);
+    // sessionStorage.setItem("serverResponse:UserName", serverResponse.data.userName);
+    // sessionStorage.setItem("serverResponse:StdId", serverResponse.data.stdId);
+    // sessionStorage.setItem("serverResponse:PhoneNum", serverResponse.data.phoneNum);
+    // sessionStorage.setItem("serverResponse:Email", serverResponse.data.email);
+    setLoginCheck(false);
+    navigate("/"); // 혹은 "/main" 등 원하는 화면으로 이동
     return serverResponse.data;
   } catch (error) {
     console.error("Login failed with error:", error);
+    setLoginCheck(true);
     throw error;
   }
 };
