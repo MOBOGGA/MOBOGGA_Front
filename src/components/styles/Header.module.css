@@ -52,8 +52,8 @@
   font-weight: 700;
 }
 
-.back{
-  position:relative;
+.back {
+  position: relative;
 }
 
 .background{
@@ -68,4 +68,8 @@
   position:absolute;
   font-weight: 700;
   color: var(--gray-01-background, #FBFBFB);
+}
+
+.selectPadding{
+  padding: 0 !important;
 }

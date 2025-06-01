@@ -15,6 +15,8 @@ import AddInfo from "./pages/AddInfo";
 import Mypage from "./pages/Mypage"
 import UpdateProfile from "./pages/UpdateProfile";
 
+import ClubDetail from "./pages/ClubDetail";
+
 
 import "./App.css";
 
@@ -34,6 +36,7 @@ function App() {
         <Route path="/add-info" element={<AddInfo />} />
         <Route path='/mypage' element={<Mypage />} />
         <Route path="/mypage/update" element={<UpdateProfile />} />
+        <Route path="/clubs/1" element={<ClubDetail />} />
       </Routes>
       <Footer />
     </div>

@@ -1,6 +1,8 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import ClubCard from "./ClubCard";
 import styles from "./styles/ClubList.module.css";
+import axios from "axios";
+
 
 function ClubList() {
   //1) 카테고리 별 분류
@@ -68,8 +70,28 @@ function ClubList() {
     { id: 47, name: "GHOST", category: "전산" },
     ];
 
+    // 1) club 데이터 가져오기 
+      const [club, setClub] = useState([]);
+      const getClub = async () => {
+        try {
+          const res = await axios.get(`http://jinjigui.info:8080/club/list`);
+          console.log("club 데이터 가져오기 성공");
+          console.log(res.data);
+          setClub(res.data.clubList);
+        } catch (err) {
+          console.error(err);
+        }
+      }; 
+    // 2) 페이지 로드되면 club값 불러옴
+    
+    useEffect(() => {
+      getClub();
+    }, []);   
+    
+    //3) 가져온 데이터별 카테고리 별로 필터링
+    const filteredList = club.filter((item) => item.category === selectedCategory);
 
-    const filteredList = clubList.filter((item) => item.category === selectedCategory);
+    // const filteredList = clubList.filter((item) => item.category === selectedCategory);
 
   
   return (
