@@ -29,3 +29,30 @@
   /* Shadow 02 */
   box-shadow: 8px 8px 20px 0px rgba(0, 0, 0, 0.25);
 }
+
+.clubDeatilContainer{
+  border:2px solid var(--gray-10-typo-color, #121212);
+  display: flex;
+  flex-direction: row;
+
+  width:100%;
+}
+
+.clubDeatilLeft{
+  border:2px solid var(--gray-10-typo-color, #db9191);
+  width:500px;
+  height:600px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.clubDeatilText1{
+  display: flex;
+  flex-direction: row;
+}
+
+.clubDeatilRight{
+  border:2px solid var(--gray-10-typo-color, #dbd691);
+  width:510px;
+}

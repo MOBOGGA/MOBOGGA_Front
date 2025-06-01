@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./styles/ClubDetail.module.css";
 
+import clubimg from "../assets/recruitingTest/img10.png";
+
 
 
 function ClubDetail() {
@@ -10,8 +12,16 @@ function ClubDetail() {
         <span className={styles.titleName}> 동아리 정보 </span>
         <div className={styles.clubDeatilContainer}>
           <div className={styles.clubDeatilLeft}>
+            <img src={clubimg} alt ="" className={styles.ClubImg}/>
+            <div className={styles.clubDeatilText1}>
+              <span className={styles.clubDeatiltitle}>필수학기</span>
+              <span className={styles.clubDeatiltext}>연속 4학기</span>
+            </div>
+            <div className={styles.clubDeatilText2}>
+
+            </div>
           </div>
-          <div className={styles.clubDeatilLeft}>
+          <div className={styles.clubDeatilRight}>
 
           </div>
         </div>

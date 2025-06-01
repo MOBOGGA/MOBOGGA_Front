@@ -125,7 +125,7 @@ useEffect(() => {
       setCurrentIndex((prev) => (prev + 1) % show.length);
       setFade(true);
     }, 1000);
-  }, 5000);
+  }, 10000);
 
   return () => clearInterval(interval);
 }, [show]);
