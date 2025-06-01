@@ -3,32 +3,76 @@ import { useState, useEffect } from "react";
 import styles from "./styles/Show.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
-import { useNavigate } from "react-router-dom";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
-// import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 function Show() {
+  const { showId } = useParams();
   const [show, setShow] = useState({});
   const [count, setCount] = useState(1);
+  const [cost, setCost] = useState(0);
   const [selectedSch, setSelectedSch] = useState(null);
   const [isDisable, setIsDisable] = useState(false);
   const [reservation, setReservation] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
   };
 
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://jinjigui.info:8080/show/detail/${showId}`
+  //     );
+  //     console.log("API 응답 데이터:", response.data);
+  //     if (response.data) {
+  //       setShow(response.data);
+  //     } else {
+  //       console.error("API에 show 데이더가 없습니다.");
+  //       setShow(null);
+  //     }
+  //   } catch (error) {
+  //     console.error("Fetch Error: ", error);
+  //     setShow(null);
+  //   }
+  // };
+
+  //예매 버튼 API 연결
   const handleReser = async () => {
     console.log("선택된 스케줄 ID: ", selectedSch.scheduleId);
+    if (!selectedSch) {
+      alert("공연 회차를 선택해주세요.");
+      return;
+    }
     const requestData = {
       scheduleId: selectedSch.scheduleId,
       wishToPurchaseTickets: count,
     };
+
+    try {
+      console.log(requestData);
+      const response = await axios.post(
+        `http://jinjigui.info:8080/show/detail/reservation`,
+        requestData
+      );
+      console.log("예매 데이터 보내기 성공: ", response.data);
+      reservationData(response.data);
+    } catch (error) {
+      console.log("예매 데이터 보내기 실패: ", error);
+
+      if (error.response) {
+        console.error("서버 응답 데이터: ", error.response.data);
+      } else {
+        console.log("서버 응답이 없습니다. 네트워크를 확인해주세요. ");
+      }
+    }
   };
 
   const reservationData = async (responseData) => {
     try {
-      if (responseData.availible === true) {
+      if (responseData.available === true) {
         setIsDisable(true);
       } else {
         console.log("예매 실패!");
@@ -36,6 +80,10 @@ function Show() {
     } catch (error) {
       console.error("가져오기 ERROR:", error);
     }
+  };
+
+  const formatPrice = (price) => {
+    return price.toLocaleString("ko-KR");
   };
 
   // eslint-disable-next-line
@@ -104,45 +152,60 @@ function Show() {
     },
   ];
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get(``);
-  //     console.log("API 응답 데이터:", response.data);
-  //     if (response.data && response.data.show) {
-  //       setShow(response.data.show);
-  //       console.log("API 전체", show);
-  //     } else {
-  //       console.error("API에 show 데이더가 없습니다.");
-  //       setShow(null);
-  //     }
-  //   } catch (error) {
-  //     console.error("Fetch Error: ", error);
-  //     setShow(null);
-  //   }
-  // };
+  //id 기본 세팅
+  // useEffect(() => {
+  //   fetchData();
+  // }, [showId]);
+
   // eslint-disable-next-line
   useEffect(() => {
     // 첫 번째 쇼를 기본으로 설정
     setShow(shows[0]);
-  }, [shows]);
+  }, []);
+
+  useEffect(() => {
+    setCount(1);
+  }, [selectedSch]);
 
   const Minus = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   };
   const Plus = () => {
-    if (
-      selectedSch &&
-      count <
-        Math.min(
-          selectedSch.maxPeople - selectedSch.applyPeople,
-          selectedSch.maxTickets
-        )
-    ) {
-      setCount(count + 1);
+    if (selectedSch) {
+      const maxAvailable = Math.min(
+        selectedSch.maxPeople - selectedSch.applyPeople,
+        selectedSch.maxTickets
+      );
+      if (count < maxAvailable) {
+        setCount(count + 1);
+      }
     }
   };
+
+  // 로딩 상태
+  if (loading) {
+    return (
+      <div className={styles.wrap}>
+        <div>로딩 중...</div>
+      </div>
+    );
+  }
+
+  // 에러 상태
+  if (error && Object.keys(show).length === 0) {
+    return (
+      <div className={styles.wrap}>
+        <div className={styles.back_Div}>
+          <button className={styles.back_Btn} onClick={navigateToPrepage}>
+            <img src={BACK} className={styles.move_Back} alt="back" />
+          </button>
+        </div>
+        <div>오류: {error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.wrap}>
@@ -163,7 +226,7 @@ function Show() {
               />
               <div className={styles.show_Info}>
                 <div className={styles.title}>
-                  {show.name || "타이틀 정보 없음"}
+                  {show.showName || "타이틀 정보 없음"}
                 </div>
                 <div className={styles.club}>
                   {show.clubName || "동아리 정보 없음"}
@@ -244,7 +307,7 @@ function Show() {
                       {`${sch.time.hour}시 ${sch.time.minute
                         .toString()
                         .padStart(2, "0")}분`}{" "}
-                      | {sch.cost}원 |{" "}
+                      | {formatPrice(sch.cost)}원 |{" "}
                       {isFull ? (
                         <span className={styles.disabled_Label}>매진</span>
                       ) : (
@@ -263,7 +326,7 @@ function Show() {
               <button className={styles.ticket_Btn} onClick={Minus}>
                 -
               </button>
-              <span>{count}</span>
+              <span className={styles.ticket_Count}>{count}</span>
               <button className={styles.ticket_Btn} onClick={Plus}>
                 +
               </button>
@@ -272,17 +335,19 @@ function Show() {
           <div className={styles.ticket_Box}>
             <div className={styles.section}>총 금액</div>
             <div className={styles.total}>
-              {(selectedSch?.cost || 0) * count}원
+              {formatPrice((selectedSch?.cost || 0) * count)}원
             </div>
-          </div>
-          <div className={styles.ticket_Reser}>
-            <button
-              className={styles.Reser_Btn}
-              onClick={handleReser}
-              disabled={isDisable}
-            >
-              예매하기
-            </button>
+            <div className={styles.ticket_Reser}>
+              <button
+                className={`${
+                  selectedSch ? styles.Reser_Btn : styles.Reser_Btn_dis
+                }`}
+                onClick={handleReser}
+                disabled={isDisable}
+              >
+                예매하기
+              </button>
+            </div>
           </div>
         </div>
       </div>
