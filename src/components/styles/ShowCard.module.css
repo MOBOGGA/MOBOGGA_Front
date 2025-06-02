@@ -34,11 +34,7 @@
 
   font-size: 22px;
   font-weight: 700;
-  text-shadow:   /* 글씨 더 굵게 보이게  */
-  -0.2px 0 currentColor,
-   0.2px 0 currentColor,
-   0   -0.2px currentColor,
-   0    0.2px currentColor;
+
   line-height: 40px; /* 166.667% */
   letter-spacing: 0.72px;
 }
@@ -71,4 +67,15 @@
   letter-spacing: 0.16px;
 
   margin-left: 16px;
+  margin-right: 6px;
+}
+
+.date1{
+  color: var(--Gray-08, #3E3E3E);
+  font-size: 14px;
+
+  line-height: 27px; /* 168.75% */
+  letter-spacing: 0.16px;
+
+  margin-left: 6px;
 }
