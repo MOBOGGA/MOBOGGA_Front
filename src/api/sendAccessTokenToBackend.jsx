@@ -16,6 +16,7 @@ const sendAccessTokenToBackend = async (idToken, navigate) => {
     console.log("📦 응답:", serverResponse.data);
 
     // sessionStorage에 JWT 저장
+  
     sessionStorage.setItem("jwt", serverResponse.data.token);
     sessionStorage.setItem("serverResponse:Authority", serverResponse.data.authority);
 
