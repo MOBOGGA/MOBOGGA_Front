@@ -17,7 +17,7 @@
    0   -0.1px currentColor,
    0    0.1px currentColor;
   line-height: 40px; /* 166.667% */
-  letter-spacing: 0.72px;
+  letter-spacing: 2px;
 }
 
 .ClubImg{
@@ -34,13 +34,14 @@
   border:2px solid var(--gray-10-typo-color, #121212);
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 
   width:100%;
 }
 
 .clubDeatilLeft{
   border:2px solid var(--gray-10-typo-color, #db9191);
-  width:500px;
+  width:420px;
   height:600px;
 
   display: flex;
@@ -48,11 +49,57 @@
 }
 
 .clubDeatilText1{
-  display: flex;
+  display: flex;  
   flex-direction: row;
+
+  margin-top: 20px;
 }
+
+.clubDeatiltitleDiv{
+  width:60px;
+  flex-shrink: 0;
+
+  margin-right: 20px;
+}
+
+.clubDeatiltitle{
+  color: var(--Gray-08, #3E3E3E);
+  display: inline-block; 
+  width: 100%;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+}
+
 
 .clubDeatilRight{
   border:2px solid var(--gray-10-typo-color, #dbd691);
-  width:510px;
+  width:100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-left: 140px;
+}
+
+.clubDeatiltextDiv{
+  /* width: 80px; */
+  text-align: left
+}
+
+.clubDeatiltext{
+  display: inline-block; 
+  width: 100%;
+
+  text-align: left;
+}
+
+.EventCardContainer{
+  width:100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 24px; 
+  justify-items: center;
 }
