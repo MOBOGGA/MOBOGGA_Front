@@ -42,11 +42,17 @@ function Mypage() {
     navigate(`/mypage/update`);
   };
 
+  const token = sessionStorage.getItem("jwt");
+
   const fetchUserProfile = async () => {
     try {
       const response = await fetch(
-        `https://jinjigui.info:8080/mypage/update/${userId}`,
+        `${process.envREACT_APP_API_URL}/mypage/student/profile`,
         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
           credentials: "include",
         }
       );
@@ -59,10 +65,10 @@ function Mypage() {
 
       // 서버에서 받은 데이터를 폼 데이터 형식에 맞게 변환
       setFormData({
-        userName: userData.user.userName || "",
-        email: userData.user.email || "",
-        phoneNum: userData.user.phoneNum || "",
-        stdId: userData.user.stdId || "",
+        userName: userData.name || "",
+        email: userData.email || "",
+        phoneNum: userData.phoneNumber || "",
+        stdId: userData.studentId || "",
       });
     } catch (error) {
       console.error("Error fetching user profile:", error);
@@ -79,14 +85,18 @@ function Mypage() {
   const getMyReservCards = async () => {
     console.log("getMyReservCards 함수 시작");
     try {
-      const userId = sessionStorage.getItem("serverResponse");
       console.log("로딩 상태 설정: true");
       setIsLoading(true);
       setError(null);
 
       console.log("API 요청 시작");
       const response = await fetch(
-        `https://jinjigui.info:8080/mypage/reservation/${userId}`
+        `http://jinjigui.info:8080/mypage/student/reservation`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("API 응답 수신:", response.status);
 
@@ -103,8 +113,12 @@ function Mypage() {
       //   throw new Error('예매 내역 데이터 형식이 올바르지 않습니다.');
       // }
 
-      console.log("예매 내역 데이터 설정:", json.user_reservation_list);
-      setMyReservCards(json.user_reservation_list);
+      console.log("예매 내역 데이터 설정:", json.performanceList);
+      setMyReservCards(json.performanceList); // Update to set the correct data
+
+      if (json.performanceList.length === 0) {
+        console.warn("예매 내역이 없습니다.");
+      }
     } catch (err) {
       console.error("에러 발생:", err);
       setError(err.message);
@@ -201,38 +215,39 @@ function Mypage() {
         <div className={styles.container}>
           <div className={styles.reservlist_title}>공연 예매 내역</div>
           <div className={styles.reservlist_content}>
-            {isLoading && <div className="loading">로딩중...</div>}
-            {/* {error && (
-              <div className="error-message">
-                에러: {error}
-                <button onClick={getMyReservCards} className="retry-button">
-                  다시 시도
-                </button>
-              </div>
-            )} */}
-            {/* {myReservCards && myReservCards.length === 0 ? (
-              <div className={styles.no_reserv}>예매 내역이 없습니다.</div>
-            ) : (
-              myReservCards.map((myReservCard) => {
-                console.log("예매 카드 렌더링:", myReservCard.ticketNumber);
-                console.log(myReservCard);
-                return (
-                  <div
-                    key={myReservCard.ticketNumber}
-                    className="myreservlist-page-content"
-                  >
-                    <MyReservCard show={myReservCard.show.id} />
-                  </div>
-                );
-              })
-            )} */}
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-
+            <div className={styles.reservlist_content}>
+              {isLoading && <div className="loading">로딩중...</div>}
+              {error && (
+                <div className="error-message">
+                  에러: {error}
+                  <button onClick={getMyReservCards} className="retry-button">
+                    다시 시도
+                  </button>
+                </div>
+              )}
+              {!isLoading && !error && myReservCards.length === 0 && (
+                <div className={styles.no_reserv}>예매 내역이 없습니다.</div>
+              )}
+              {!isLoading &&
+                !error &&
+                myReservCards.map((myReservCard) => {
+                  if (
+                    !myReservCard ||
+                    !myReservCard.ticketCount ||
+                    !myReservCard.show?.id
+                  ) {
+                    return null;
+                  }
+                  return (
+                    <div
+                      key={myReservCard.ticketCount}
+                      className="myreservcard"
+                    >
+                      <MyReservCard scheduleId={myReservCard.scheduleId} />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>

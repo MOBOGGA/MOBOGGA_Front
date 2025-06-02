@@ -6,7 +6,7 @@ import UpdateProfileWord from "../assets/UpdateProfileWord.svg";
 function UpdateProfile() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const userId = localStorage.getItem("userId");
+  const userId = sessionStorage.getItem("userId");
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -41,7 +41,7 @@ function UpdateProfile() {
 
   const onClickConfirmBtn = () => {
     if (window.confirm("정보를 수정하시겠습니까?") === true) {
-      //saveProfile();
+      saveProfile();
     }
   };
 
@@ -85,10 +85,8 @@ function UpdateProfile() {
       [name]: value,
     }));
   };
-  // eslint-disable-next-line
-  const saveProfile = async (e) => {
-    e.preventDefault();
 
+  const saveProfile = async () => {
     // 데이터 유효성 검사
     if (!formData.userName?.toString()) {
       alert("이름을 입력해주세요.");
@@ -107,7 +105,7 @@ function UpdateProfile() {
 
     try {
       const response = await fetch(
-        `https://jinjigui.info:8080/mypage/save/${userId}`,
+        `${process.envREACT_APP_API_URL}/mypage/student/profile/`,
         {
           method: "PUT",
           headers: {
@@ -130,11 +128,11 @@ function UpdateProfile() {
         throw new Error(errorData.message || "저장에 실패했습니다.");
       }
 
-      await alert("정보 수정이 완료되었습니다.");
-      window.location.reload();
+      alert("정보 수정이 완료되었습니다.");
+      navigate("/mypage"); // reload 대신 페이지 이동이 더 자연스럽습니다.
     } catch (error) {
       console.error("Error saving profile:", error);
-      alert(error.response.data.message || "저장에 실패했습니다");
+      alert(error.message || "저장에 실패했습니다.");
     }
   };
 
@@ -159,13 +157,21 @@ function UpdateProfile() {
             <div className={styles.info} id={styles.user_name_box}>
               <div className={styles.info_head}>이름</div>
               <div className={styles.info_body}>
-                <input value={formData.userName} onChange={handleInputChange} />
+                <input
+                  value={formData.userName}
+                  name="userName"
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
             <div className={styles.info} id={styles.std_num_box}>
               <div className={styles.info_head}>학번</div>
               <div className={styles.info_body}>
-                <input value={formData.stdId} onChange={handleInputChange} />
+                <input
+                  value={formData.stdId}
+                  name="stdId"
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
             <div className={styles.info} id={styles.phone_num_box}>
@@ -173,7 +179,7 @@ function UpdateProfile() {
               <div className={styles.info_body}>
                 <input
                   type="tel"
-                  name="phone"
+                  name="phoneNum"
                   id="phone"
                   value={formData.phoneNum}
                   onChange={handleInputChange}
