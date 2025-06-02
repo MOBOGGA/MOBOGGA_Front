@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // src/api/sendAccessTokenToBackend.js
 import axios from "axios";
 
@@ -20,6 +21,8 @@ const sendAccessTokenToBackend = async (idToken, navigate) => {
   } catch (error) {
     console.error("Login failed with error: ", error);
 =======
+=======
+>>>>>>> Stashed changes
 import axios from "axios";
 
 const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
@@ -78,6 +81,9 @@ const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
   } catch (error) {
     console.error("Login failed with error:", error);
     setLoginCheck(true);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     throw error;
   }
