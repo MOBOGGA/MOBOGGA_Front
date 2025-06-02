@@ -3,11 +3,16 @@ import { useState, useEffect } from "react";
 import styles from "./styles/RecruitingDetail.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
+import INSTA from "../assets/recruitingDetail/instagram.svg";
+import YOUTUBE from "../assets/recruitingDetail/youtube.svg";
+import KAKAO from "../assets/recruitingDetail/kakao.svg";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
 function RecruitingDetail() {
-  const [recruiting, setRecruiting] = useState({});
+  const { id } = useParams();
+
+  // const [recruiting, setRecruiting] = useState({});
   const navigate = useNavigate();
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -17,7 +22,7 @@ function RecruitingDetail() {
     clubName: "MIC",
     recruitingId: 1,
     recruitingTitle: "MIC 31ST 남자 추가 리쿠르팅",
-    potho:
+    photo:
       "https://postfiles.pstatic.net/MjAyMTA4MjFfMjU0/MDAxNjI5NTU3MTUwNDk0.NxjYFKCSiQyGqThwfLaKT8kTPABtS6U3K0Db4utl4LEg.oxYqflMZpVpQKxvwD-JpBaUGNQcs6y-GRWDbfbWVL3kg.JPEG.chooddingg/PHOTO_0092.JPG?type=w773",
     startDate: "2025.03.23(일)",
     endDate: "03.26(수)",
@@ -34,22 +39,24 @@ function RecruitingDetail() {
       "안녕하세요 25학번 세워가는 세대 '뚝딱이' 여러분들! 한동대 학우 여러분! 춤으로 하나님께 영광 올려드리는 사역 단체이자 힙합 기반의 춤 동아리 MIC입니다!🕺 2025년 신입기수로 저희와 함께할 MIC31기를 모집합니다! \n\n*새내기가 아닌 타 학번 또한 지원 가능합니다!\n*모든 면접은 오프라인으로 진행되며 자세한 사항은 인스타 혹은 카카오 채팅을 통해 문의 바랍니다.",
   };
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get(``);
-  //     console.log("API 응답 데이터:", response.data);
-  //     if (response.data && response.data.show) {
-  //       setShow(response.data.show);
-  //       console.log("API 전체", show);
-  //     } else {
-  //       console.error("API에 show 데이더가 없습니다.");
-  //       setShow(null);
-  //     }
-  //   } catch (error) {
-  //     console.error("Fetch Error: ", error);
-  //     setShow(null);
-  //   }
-  // };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `http://jinjigui.info:8080/recruiting/detail/${id}`
+      );
+      console.log("API 응답 데이터:", response.data);
+      if (response.data && response.data.show) {
+        setShow(response.data.show);
+        console.log("API 전체", show);
+      } else {
+        console.error("API에 show 데이더가 없습니다.");
+        setShow(null);
+      }
+    } catch (error) {
+      console.error("Fetch Error: ", error);
+      setShow(null);
+    }
+  };
 
   return (
     <div className={styles.wrap}>
@@ -63,11 +70,32 @@ function RecruitingDetail() {
           <div className={styles.intro_Info}>
             <div className={styles.recruite_Top}>리크루팅 정보</div>
             <div className={styles.intro_con}>
-              <img
-                src={recruite.pos}
-                className={styles.recruite_Pic}
-                alt="recruite_IMG"
-              />
+              <div className={styles.intro_con_left}>
+                <img
+                  src={recruite.photo}
+                  className={styles.recruite_Pic}
+                  alt="recruite_IMG"
+                />
+                <div className={styles.sns_icons}>
+                  <img
+                    className={styles.sns_icon}
+                    src={INSTA}
+                    alt="sns_icon"
+                  ></img>
+                  <img
+                    className={styles.sns_icon}
+                    src={YOUTUBE}
+                    alt="sns_icon"
+                  ></img>
+                  <img
+                    className={styles.sns_icon}
+                    src={KAKAO}
+                    alt="sns_icon"
+                  ></img>
+                </div>
+                <div className={styles.rectuite_con}>{recruite.content}</div>
+              </div>
+
               <div className={styles.recruite_Info}>
                 <div className={styles.club}>
                   {recruite.clubName || "동아리 정보 없음"}
