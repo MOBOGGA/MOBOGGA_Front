@@ -1,22 +1,27 @@
-/* eslint-disable */ 
+/* eslint-disable */
 import React from "react";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./styles/RecruitingDetail.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
 import INSTA from "../assets/recruitingDetail/instagram.svg";
 import YOUTUBE from "../assets/recruitingDetail/youtube.svg";
 import KAKAO from "../assets/recruitingDetail/kakao.svg";
-import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 function RecruitingDetail() {
-  const { id } = useParams();
+  const { recruitingId } = useParams();
 
-  // const [recruiting, setRecruiting] = useState({});
+  const [recruiting, setRecruiting] = useState({});
   const navigate = useNavigate();
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
+  };
+  const navigateToAppypage = () => {
+    navigate(recruiting.applicationUrl);
   };
 
   const recruite = {
@@ -43,21 +48,25 @@ function RecruitingDetail() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://jinjigui.info:8080/recruiting/detail/${id}`
+        `http://jinjigui.info:8080/recruiting/detail/${recruitingId}`
       );
       console.log("API 응답 데이터:", response.data);
-      if (response.data && response.data.show) {
-        setShow(response.data.show);
-        console.log("API 전체", show);
+      if (response.data) {
+        setRecruiting(response.data);
+        console.log("API 전체", recruiting);
       } else {
-        console.error("API에 show 데이더가 없습니다.");
-        setShow(null);
+        console.error("API에 recruiting 데이더가 없습니다.");
+        setRecruiting(null);
       }
     } catch (error) {
       console.error("Fetch Error: ", error);
-      setShow(null);
+      setRecruiting(null);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.wrap}>
@@ -73,50 +82,56 @@ function RecruitingDetail() {
             <div className={styles.intro_con}>
               <div className={styles.intro_con_left}>
                 <img
-                  src={recruite.photo}
+                  src={recruiting.poster}
                   className={styles.recruite_Pic}
                   alt="recruite_IMG"
                 />
                 <div className={styles.sns_icons}>
-                  <img
-                    className={styles.sns_icon}
-                    src={INSTA}
-                    alt="sns_icon"
-                  ></img>
-                  <img
-                    className={styles.sns_icon}
-                    src={YOUTUBE}
-                    alt="sns_icon"
-                  ></img>
-                  <img
-                    className={styles.sns_icon}
-                    src={KAKAO}
-                    alt="sns_icon"
-                  ></img>
+                  <a href={recruiting.instaUrl}>
+                    <img
+                      className={styles.sns_icon}
+                      src={INSTA}
+                      alt="sns_icon"
+                    ></img>
+                  </a>
+                  <a href={recruiting.youtubeUrl}>
+                    <img
+                      className={styles.sns_icon}
+                      src={YOUTUBE}
+                      alt="sns_icon"
+                    ></img>
+                  </a>
+                  <a href={recruiting.kakaoUrl}>
+                    <img
+                      className={styles.sns_icon}
+                      src={KAKAO}
+                      alt="sns_icon"
+                    ></img>
+                  </a>
                 </div>
-                <div className={styles.rectuite_con}>{recruite.content}</div>
+                <div className={styles.rectuite_con}>{recruiting?.content}</div>
               </div>
 
               <div className={styles.recruite_Info}>
                 <div className={styles.club}>
-                  {recruite.clubName || "동아리 정보 없음"}
+                  {recruiting?.clubName || "동아리 정보 없음"}
                 </div>
                 <div className={styles.title}>
-                  {recruite.recruitingTitle || "타이틀 정보 없음"}
+                  {recruiting?.recruitingTitle || "타이틀 정보 없음"}
                 </div>
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>모집기간</span>
                     <span className={styles.variable_Info}>
-                      {recruite.startDate || "시작 날짜 정보 없음"} ~{" "}
-                      {recruite.endDate || "끝 날짜 정보 없음"}
+                      {recruiting?.startDate || "시작 날짜 정보 없음"} ~{" "}
+                      {recruiting?.endDate || "끝 날짜 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>필수학기</span>
                     <span className={styles.variable_Info}>
-                      {recruite.mandatorySemesters
-                        ? `${recruite.mandatorySemesters}학기`
+                      {recruiting?.mandatorySemesters
+                        ? `${recruiting?.mandatorySemesters}학기`
                         : "필수학기 정보 없음"}
                     </span>
                   </div>
@@ -127,23 +142,28 @@ function RecruitingDetail() {
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>면접날짜</span>
                     <span className={styles.variable_Info}>
-                      {recruite.interviewDate || "인터뷰 날짜 정보 없음"}
+                      {recruiting?.interviewDate || "인터뷰 날짜 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>면접안내</span>
                     <span className={styles.variable_Info}>
-                      {recruite.notice || "안내 정보 없음"}
+                      {recruiting?.notice || "안내 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>문의</span>
                     <span className={styles.variable_Info}>
-                      {"문의 정보 없음"}
+                      {recruiting?.managerInfo || "문의 정보 없음"}
                     </span>
                   </div>
                 </div>
               </div>
+            </div>
+            <div className={styles.recruite_apply}>
+              <button className={styles.apply_Btn} onClick={navigateToAppypage}>
+                지원하러 가기
+              </button>
             </div>
           </div>
         </div>
