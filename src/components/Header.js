@@ -11,7 +11,7 @@ import header1 from "../assets/header/1.svg";
 import header2 from "../assets/header/2.svg";
 import header3 from "../assets/header/3.svg";
 
-import profile_btn from "../assets/temp/profile_logo.svg"
+//import profile_btn from "../assets/temp/profile_logo.svg"
 
 
 function Header() {
@@ -53,7 +53,7 @@ function Header() {
           <span>로그인</span>
         </div>
         <div className={styles.profile_btn} onClick={() => navigate("/mypage")}>
-          <img src={profile_btn} alt="프로필 버튼" />
+          {/* <img src={profile_btn} alt="프로필 버튼" /> */}
         </div>
       </div>
     </header>

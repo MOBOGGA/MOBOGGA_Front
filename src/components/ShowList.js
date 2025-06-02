@@ -18,95 +18,96 @@ function ShowList() {
   const showList = [
     {
       id: 1,
-      title: "Long Play For You",
-      club: "즉흥적새벽두시",
-      date: "2024.11.10 - 11.11",
-      tag1: "공연",
-      tag2: "음악",
+      name: "Long Play For You",
+      clubID: "즉흥적새벽두시",
+      startDate: "2024.11.10",
+      endDate: "11.11",
+      tag: "음악",
       category: "공연",
-      img: image1,
+      photo: image1,
     },
     {
       id: 2,
-      title: "VAM Studio 2024",
-      club: "VAM",
-      date: "20xx.xx.xx - xx.xx",
-      tag1: "졸업작품",
-      tag2: "체험",
-      category: "공연 외",
-      img: image2,
+      name: "VAM Studio 2024",
+      clubID: "VAM",
+      startDate: "20xx.xx.xx",
+      endDate: "xx.xx",
+      tag: "체험",
+      category: "즐길거리",
+      photo: image2,
     },
     {
       id: 3,
-      title: "우리 집에 왜 왔니?",
-      club: "어메이징스토리",
-      date: "2024.05.23 - 05.25",
-      tag1: "공연",
-      tag2: "연극",
+      name: "우리 집에 왜 왔니?",
+      clubID: "어메이징스토리",
+      startDate: "2024.05.23",
+      endDate: "05.25",
+      tag: "공연",
       category: "공연",
-      img: image3,
+      photo: image3,
     },
     {
       id: 4,
-      title: "THE GOSPEL: Who we are",
-      club: "피치파이브",
-      date: "2024.11.23",
-      tag1: "공연",
-      tag2: "음악",
+      name: "THE GOSPEL: Who we are",
+      clubID: "피치파이브",
+      startDate: "2024.11.23",
+      endDate: "",
+      tag: "공연",
       category: "공연",
-      img: image4,
+      photo: image4,
     },
     {
       id: 5,
-      title: "NEO Poem",
-      club: "NEO",
-      date: "20xx.xx.xx - xx.xx",
-      tag1: "공연",
-      tag2: "음악",
+      name: "NEO Poem",
+      clubID: "NEO",
+      startDate: "20xx.xx.xx",
+      endDate: "xx.xx",
+      tag: "공연",
       category: "공연",
-      img: image5,
+      photo: image5,
     },
     {
       id: 6,
-      title: "2025 MIC 스트릿 공연",
-      club: "MIC",
-      date: "20xx.xx.xx - xx.xx",
-      tag1: "졸업작품",
-      tag2: "스트릿공연",
-      category: "공연 외",
-      img: image6,
+      name: "2025 MIC 스트릿 공연",
+      clubID: "MIC",
+      startDate: "20xx.xx.xx",
+      endDate: "xx.xx",
+      tag: "졸업작품",
+      category: "즐길거리",
+      photo: image6,
     },
     {
       id: 7,
-      title: "화양연화",
-      club: "한풍",
-      date: "2024.11.17",
-      tag1: "공연",
-      tag2: "음악",
+      name: "화양연화",
+      clubID: "한풍",
+      startDate: "2024.11.17",
+      endDate: "",
+      tag: "공연",
       category: "공연",
-      img: image7,
+      photo: image7,
     },
     {
       id: 8,
-      title: "청춘",
-      club: "ZIZZY",
-      date: "2024.11.15 - 11.16",
-      tag1: "공연",
-      tag2: "춤",
+      name: "청춘",
+      clubID: "ZIZZY",
+      startDate: "2024.11.15",
+      endDate: "11.16",
+      tag: "공연",
       category: "공연",
-      img: image8,
+      photo: image8,
     },
     {
       id: 9,
-      title: "OVER-FLOW",
-      club: "리퀴드",
-      date: "2024.11.20 - 11.21",
-      tag1: "공연",
-      tag2: "음악",
+      name: "OVER-FLOW",
+      clubID: "리퀴드",
+      startDate: "2024.11.20",
+      endDate: "11.21",
+      tag: "공연",
       category: "공연",
-      img: image9,
+      photo: image9,
     },
   ];
+  
   
     
     const filteredList =
@@ -118,7 +119,7 @@ function ShowList() {
     return (
       <div className={styles.column}>
         <div className={styles.category}>
-          {["전체", "공연", "공연 외"].map((category, idx) => (
+          {["전체", "공연", "즐길거리"].map((category, idx) => (
             <div
               key={idx}
               className={
@@ -135,7 +136,7 @@ function ShowList() {
 
         <div className={styles.showlist}>
           {filteredList.map((item) => (
-            <ShowCard key={item.id} show={item} />
+            <ShowCard key={item.id} show={item} className={styles.showCard}/>
           ))}
         </div>
       </div>

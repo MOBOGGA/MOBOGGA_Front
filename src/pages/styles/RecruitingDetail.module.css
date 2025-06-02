@@ -14,7 +14,7 @@
   border: none;
   cursor: pointer;
 }
-.show_Intro {
+.recruite_Intro {
   display: flex;
   padding-left: 20px;
 }
@@ -35,7 +35,7 @@
   gap: 40px;
 }
 
-.show_Pic {
+.recruite_Pic {
   width: 457px;
   height: 646px;
   object-fit: contain;
@@ -47,7 +47,7 @@
   flex-direction: row;
 }
 
-.show_Top {
+.recruite_Top {
   width: 100vw;
   font-size: 24px;
   font-weight: bold;
@@ -56,7 +56,7 @@
   text-align: left;
 }
 
-.show_Info {
+.recruite_Info {
   width: 550px;
   margin-left: 64px;
   text-align: left;
