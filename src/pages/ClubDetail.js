@@ -1,6 +1,9 @@
 import React,{useState, useEffect} from "react";
 import styles from "./styles/ClubDetail.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 
 import insta from "../assets/icons/snsicons.svg";
@@ -14,6 +17,8 @@ import LastRecruitingCard from "../components/ClubDetail/LastRecruitingCard";
 import LastEventCard from "../components/ClubDetail/LastEventCard";
 
 function ClubDetail() {
+  const navigate = useNavigate();
+  const { id } = useParams(); // 경로에서 :id 부분 가져옴
 
 
 
@@ -25,7 +30,7 @@ function ClubDetail() {
 
       const getClub = async () => {
         try {
-          const res = await axios.get(`/club/detail/1`);
+          const res = await axios.get(`/club/detail/${id}`);
           console.log("club 데이터 가져오기 성공");
           console.log(res.data);
           setClub(res.data);
@@ -77,6 +82,7 @@ function ClubDetail() {
     
     useEffect(() => {
       getClub();
+
     }, []);   
 
 
@@ -141,7 +147,7 @@ function ClubDetail() {
         <span className={styles.titleName}> 진행 중인 이벤트 </span>
         <div className={styles.EventCardContainer}>
           {progressingEventList.map((item, index) => (
-            <EventCard key={index} show={item} />
+            <EventCard key={index} show={item} onClick={()=>navigate(`/show/${item.id}`)}/>
           ))}
         </div>
 
@@ -149,14 +155,14 @@ function ClubDetail() {
         <span className={styles.titleName}> 지난 리크루팅 </span>
         <div className={styles.LastRecruitingCardContainer}>
           {lastRecruitingList.map((item, index) => (
-            <LastRecruitingCard key={index} show={item} />
+            <LastRecruitingCard key={index} show={item} onClick={()=>navigate(`/recruiting/${item.recruitingId}`)}/>
           ))}
         </div>
 
         <span className={styles.titleName}> 지난 볼거리 </span>
         <div className={styles.LastRecruitingCardContainer}>
           {lastEventList.map((item, index) => (
-            <LastEventCard key={index} show={item} />
+            <LastEventCard key={index} show={item} onClick={()=>navigate(`/show/${item.id}`)}/>
           ))}
         </div>
 
