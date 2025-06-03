@@ -3,9 +3,9 @@ import styles from "./styles/ClubCard.module.css";
 
 
 
-function ClubCard({ show }) {
+function ClubCard({ show , onClick }) {
   return (
-    <div className={styles.clubCard}>
+    <div className={styles.clubCard} onClick={onClick}>
       <div className={styles.clubImg}>
         <img src={show.poster} alt={show.clubName} className={styles.mainImg} />
       </div>

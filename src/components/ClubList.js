@@ -2,9 +2,13 @@ import React,{useState, useEffect} from "react";
 import ClubCard from "./ClubCard";
 import styles from "./styles/ClubList.module.css";
 import axios from "axios";
+import { useNavigate} from "react-router-dom";
+
 
 
 function ClubList() {
+  const navigate = useNavigate();
+  
   //1) 카테고리 별 분류
   const [selectedCategory, setSelectedCategory] = useState("공연");
 
@@ -12,7 +16,7 @@ function ClubList() {
       const [club, setClub] = useState([]);
       const getClub = async () => {
         try {
-          const res = await axios.get(`${process.env.REACT_APP_DB_URL}club/list`);
+          const res = await axios.get(`/club/list`);
           console.log("club 데이터 가져오기 성공");
           console.log(res.data);
           setClub(res.data.clubList);
@@ -52,7 +56,7 @@ function ClubList() {
 
         <div className={styles.showlist}>
           {filteredList.map((item) => (
-            <ClubCard key={item.id} show={item} className={styles.showCard}/>
+            <ClubCard key={item.id} show={item} className={styles.showCard} onClick={()=>navigate(`/clubs/${item.clubId}`)}/>
           ))}
         </div>
       </div>
