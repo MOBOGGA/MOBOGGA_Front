@@ -38,7 +38,7 @@ function App() {
         <Route path="/add-info" element={<AddInfo />} />
         <Route path='/mypage' element={<Mypage />} />
         <Route path="/mypage/update" element={<UpdateProfile />} />
-        <Route path="/clubs/1" element={<ClubDetail />} />
+        <Route path="/clubs/:id" element={<ClubDetail />} />
          <Route path="/loading" element={<Loading />} />
       </Routes>
       <Footer />
