@@ -14,7 +14,7 @@
   border: none;
   cursor: pointer;
 }
-.show_Intro {
+.recruite_Intro {
   display: flex;
   padding-left: 20px;
 }
@@ -29,13 +29,13 @@
   width: 100vw - 24px;
 }
 
-.show_Intro {
+.recruite_Intro {
   display: flex;
   max-width: 1200px;
   gap: 40px;
 }
 
-.show_Pic {
+.recruite_Pic {
   width: 457px;
   height: 646px;
   object-fit: contain;
@@ -47,7 +47,7 @@
   flex-direction: row;
 }
 
-.show_Top {
+.recruite_Top {
   width: 100vw;
   font-size: 24px;
   font-weight: bold;
@@ -56,7 +56,7 @@
   text-align: left;
 }
 
-.show_Info {
+.recruite_Info {
   width: 550px;
   margin-left: 64px;
   text-align: left;
@@ -99,22 +99,8 @@
   white-space: pre-line;
 }
 
-/* 공연 회차 선택 등 */
-.show_ticket {
-  margin-top: 40px;
-  margin-bottom: 100px;
-  width: 100%;
-  display: flex;
-  text-align: left;
-  gap: 84px;
-}
-
 .disabled_Label {
   color: #acacac !important;
-}
-
-.people_Count {
-  color: #ff3d12;
 }
 
 .ticket_Box {
@@ -133,50 +119,13 @@
   color: #8e3dff;
 }
 
-.show_ticket {
-}
-
-.sch_Item {
+.recruite_apply {
   display: flex;
-  width: 100%;
-}
-
-.ticket_Radio {
-  accent-color: #121212;
-  margin-bottom: 24px;
-  letter-spacing: 0.01rem;
-}
-
-.ticket_Btns {
-  display: flex;
-  width: 5.25rem;
-  height: 2.25rem;
-  border: solid 1px #acacac;
-  align-items: center;
   justify-content: center;
-  gap: 7px;
+  align-items: center;
 }
 
-.ticket_Count {
-  font-size: 1rem;
-  font-style: normal;
-}
-
-.ticket_Btn {
-  border: none;
-  background-color: #fff;
-  font-size: 1.2rem;
-}
-
-.total {
-  font-family: "IBM Plex Sans KR";
-  font-weight: bold;
-  font-size: 56px;
-  letter-spacing: 0.105rem;
-  margin-bottom: 1.94rem;
-}
-
-.Reser_Btn {
+.apply_Btn {
   width: 260px;
   height: 41px;
   background: #ff3d12;
@@ -190,16 +139,15 @@
   letter-spacing: 0.0125rem;
 }
 
-.Reser_Btn_dis {
-  width: 260px;
-  height: 41px;
-  color: #7f7f7f;
-  background: #acacac;
-  border: none;
-  font-family: "IBM Plex Sans KR";
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 2.0625rem; /* 165% */
-  letter-spacing: 0.0125rem;
+.sns_icons {
+  display: flex;
+  justify-content: left;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.sns_icon {
+  height: 1.5rem;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
 }

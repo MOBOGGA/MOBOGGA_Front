@@ -50,7 +50,7 @@ function UpdateProfile() {
     const fetchUserProfile = async () => {
       try {
         const response = await fetch(
-          `https://jinjigui.info:8080/mypage/update/${userId}`,
+          `${process.env.REACT_APP_API_URL}/mypage/update/${userId}`,
           {
             credentials: "include",
           }

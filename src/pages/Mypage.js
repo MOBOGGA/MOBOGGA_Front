@@ -1,12 +1,12 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/Mypage.module.css";
-
-import poster from "../assets/mainTest/3.png";
+import MyReservCard from "../components/MyReservCard";
 
 function Mypage() {
   const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
+  const userId = sessionStorage.getItem("userId");
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -42,40 +42,107 @@ function Mypage() {
     navigate(`/mypage/update`);
   };
 
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch(
+        `https://jinjigui.info:8080/mypage/update/${userId}`,
+        {
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("사용자 정보를 불러오는데 실패했습니다.");
+      }
+
+      const userData = await response.json();
+      console.log("User Data:", userData);
+
+      // 서버에서 받은 데이터를 폼 데이터 형식에 맞게 변환
+      setFormData({
+        userName: userData.user.userName || "",
+        email: userData.user.email || "",
+        phoneNum: userData.user.phoneNum || "",
+        stdId: userData.user.stdId || "",
+      });
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      //   setError(error.message);
+      // } finally {
+      //   setIsLoading(false);
+    }
+  };
+
+  const [myReservCards, setMyReservCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const getMyReservCards = async () => {
+    console.log("getMyReservCards 함수 시작");
+    try {
+      const userId = sessionStorage.getItem("serverResponse");
+      console.log("로딩 상태 설정: true");
+      setIsLoading(true);
+      setError(null);
+
+      console.log("API 요청 시작");
+      const response = await fetch(
+        `https://jinjigui.info:8080/mypage/reservation/${userId}`
+      );
+      console.log("API 응답 수신:", response.status);
+
+      // if (!response.ok) {
+      //   throw new Error('예매 내역을 불러오는데 실패했습니다.');
+      // }
+
+      console.log("응답 데이터 파싱 시작");
+      const json = await response.json();
+      console.log("파싱된 데이터:", json);
+
+      // 데이터 검증 추가
+      // if (!json || !json.user_reservation_list) {
+      //   throw new Error('예매 내역 데이터 형식이 올바르지 않습니다.');
+      // }
+
+      console.log("예매 내역 데이터 설정:", json.user_reservation_list);
+      setMyReservCards(json.user_reservation_list);
+    } catch (err) {
+      console.error("에러 발생:", err);
+      setError(err.message);
+      setMyReservCards([]); // 오류 시 빈 배열로 설정
+    } finally {
+      console.log("로딩 상태 설정: false");
+      setIsLoading(false);
+    }
+  };
+
   // 사용자 정보 조회
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const response = await fetch(
-          `https://jinjigui.info:8080/mypage/update/${userId}`,
-          {
-            credentials: "include",
-          }
-        );
-        if (!response.ok) {
-          throw new Error("사용자 정보를 불러오는데 실패했습니다.");
-        }
-
-        const userData = await response.json();
-        console.log("User Data:", userData);
-
-        // 서버에서 받은 데이터를 폼 데이터 형식에 맞게 변환
-        setFormData({
-          userName: userData.user.userName || "",
-          email: userData.user.email || "",
-          phoneNum: userData.user.phoneNum || "",
-          stdId: userData.user.stdId || "",
-        });
-      } catch (error) {
-        console.error("Error fetching user profile:", error);
-        //   setError(error.message);
-        // } finally {
-        //   setIsLoading(false);
-      }
-    };
-
     fetchUserProfile();
+    getMyReservCards();
   }, [userId]);
+
+  if (isLoading) {
+    console.log("로딩 중 화면 렌더링");
+    return (
+      <>
+        <div className={styles.loading}>로딩중...</div>
+      </>
+    );
+  }
+
+  // if (error) {
+  //   console.log("에러 화면 렌더링:", error);
+  //   return (
+  //     <>
+  //       <div className={styles.error_message}>
+  //         error: {error}
+  //         <button onClick={getMyReservCards} className={styles.retry_button}>
+  //           다시 시도
+  //         </button>
+  //       </div>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
@@ -133,42 +200,40 @@ function Mypage() {
         </div>
         <div className={styles.container}>
           <div className={styles.reservlist_title}>공연 예매 내역</div>
-          <div className={styles.card}>
-            <div className={styles.card_img_box}>
-              <img className={styles.card_img} src={poster} alt="공연 이미지" />
-            </div>
-            <div className={styles.card_text_box}>
-              <div className={styles.card_title}>우리 집에 왜 왔니?</div>
-              <div className={styles.card_info_box}>
-                <div className={styles.card_content}>
-                  <div className={styles.card_info_header}>1공: </div>
-                  <div className={styles.card_date}>2025.05.23(금) 19시 00분</div>
-                </div>
-                <div className={styles.card_content}>
-                  <div className={styles.card_info_header}>장소: </div>
-                  <div className={styles.card_place}>학관 102호</div>
-                </div>
-                <div className={styles.card_content}>
-                  <div className={styles.card_info_header}>담당자: </div>
-                  <div className={styles.card_manager}>010-1234-5678(김이름)</div>
-                </div>
-                <div className={styles.card_content}>
-                  <div className={styles.card_info_header}>계좌번호: </div>
-                  <div className={styles.card_account}>
-                    ㅇㅇ은행 0000-0000-0000-00
-                  </div>
-                </div>
-                <div className={styles.ticket_info}>
-                  <div className={styles.ticket_num}>4매</div>
-                  <div className={styles.ticket_price}>18000원</div>
-                  <div className={styles.deposit_status}>미입금</div>
-                </div>
+          <div className={styles.reservlist_content}>
+            {isLoading && <div className="loading">로딩중...</div>}
+            {/* {error && (
+              <div className="error-message">
+                에러: {error}
+                <button onClick={getMyReservCards} className="retry-button">
+                  다시 시도
+                </button>
               </div>
-            </div>
+            )} */}
+            {/* {myReservCards && myReservCards.length === 0 ? (
+              <div className={styles.no_reserv}>예매 내역이 없습니다.</div>
+            ) : (
+              myReservCards.map((myReservCard) => {
+                console.log("예매 카드 렌더링:", myReservCard.ticketNumber);
+                console.log(myReservCard);
+                return (
+                  <div
+                    key={myReservCard.ticketNumber}
+                    className="myreservlist-page-content"
+                  >
+                    <MyReservCard show={myReservCard.show.id} />
+                  </div>
+                );
+              })
+            )} */}
+            <MyReservCard />
+            <MyReservCard />
+            <MyReservCard />
+            <MyReservCard />
+            <MyReservCard />
+            <MyReservCard />
+
           </div>
-          <div className={styles.card}></div>
-          <div className={styles.card}></div>
-          <div className={styles.card}></div>
         </div>
       </div>
     </>
