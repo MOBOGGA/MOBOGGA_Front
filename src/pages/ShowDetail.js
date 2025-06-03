@@ -293,4 +293,4 @@ function Show() {
   );
 }
 
-export default ShowDetail;
+export default Show;
