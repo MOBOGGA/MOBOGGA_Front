@@ -147,7 +147,16 @@ function ClubDetail() {
         <span className={styles.titleName}> 진행 중인 이벤트 </span>
         <div className={styles.EventCardContainer}>
           {progressingEventList.map((item, index) => (
-            <EventCard key={index} show={item} onClick={()=>navigate(`/show/${item.id}`)}/>
+            <EventCard key={index} show={item} onClick={() => {
+              const category = item.categoryOfEvent;
+              const id = item.id;
+            
+              if (category === "공연") {
+                navigate(`/show/${id}`);
+              } else if (category === "즐길거리") {
+                navigate(`/entertain/${id}`);
+              } 
+            }}/>
           ))}
         </div>
 
@@ -162,7 +171,16 @@ function ClubDetail() {
         <span className={styles.titleName}> 지난 볼거리 </span>
         <div className={styles.LastRecruitingCardContainer}>
           {lastEventList.map((item, index) => (
-            <LastEventCard key={index} show={item} onClick={()=>navigate(`/show/${item.id}`)}/>
+            <LastEventCard key={index} show={item} onClick={() => {
+              const category = item.showOrEntertain;
+              const id = item.id;
+            
+              if (category === "공연") {
+                navigate(`/show/${id}`);
+              } else if (category === "즐길거리") {
+                navigate(`/entertain/${id}`);
+              } 
+            }}/>
           ))}
         </div>
 

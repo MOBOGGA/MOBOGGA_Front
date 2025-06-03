@@ -87,7 +87,17 @@ useEffect(() => {
 
         <div className={styles.showlist}>
           {filteredList.map((item, index) => (
-            <ShowCard key={`${item.title}-${item.clubID}-${index}`} show={item} className={styles.showCard} onClick={()=>navigate(`/show/${item.id}`)}/>
+            <ShowCard key={`${item.title}-${item.clubID}-${index}`} show={item} className={styles.showCard} onClick={() => {
+              const category = item.category;
+              const id = item.id;
+            
+              if (category === "공연") {
+                navigate(`/show/${id}`);
+              } else if (category === "즐길거리") {
+                navigate(`/entertain/${id}`);
+              } 
+            }}
+            />
           ))}
         </div>
       </div>
