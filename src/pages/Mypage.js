@@ -45,7 +45,7 @@ function Mypage() {
   const fetchUserProfile = async () => {
     try {
       const response = await fetch(
-        `https://jinjigui.info:8080/mypage/update/${userId}`,
+        `${process.env.REACT_APP_API_URL}/mypage/update/${userId}`,
         {
           credentials: "include",
         }
@@ -86,7 +86,7 @@ function Mypage() {
 
       console.log("API 요청 시작");
       const response = await fetch(
-        `https://jinjigui.info:8080/mypage/reservation/${userId}`
+        `${process.env.REACT_APP_API_URL}/mypage/reservation/${userId}`
       );
       console.log("API 응답 수신:", response.status);
 
