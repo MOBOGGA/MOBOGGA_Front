@@ -14,7 +14,7 @@ const [fade, setFade] = useState(true);
 useEffect(() => {
   const getShow = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_DB_URL}/attraction/list`);
+      const res = await axios.get(`${process.env.REACT_APP_DB_URL}attraction/list`);
       console.log("rotatingPerformances 데이터 가져오기 성공");
       console.log(res.data.rotatingPerformances);
       console.log(res.data.rotatingPerformances[1]);

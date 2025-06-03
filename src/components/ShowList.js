@@ -24,8 +24,8 @@ function ShowList() {
   // }; 
   const getShow = async () => {
     try {
-      const res = await axios.get("http://jinjigui.info:8080/attraction/list");
-      console.log("show 데이터 가져오기 성공");
+      const res = await axios.get(`${process.env.REACT_APP_DB_URL}attraction/list`);
+      console.log("showlist 데이터 가져오기 성공");
       console.log(res.data.entireList);
   
       const converted = res.data.entireList.map((item) => {
@@ -45,6 +45,7 @@ function ShowList() {
   
       setShow(converted);
     } catch (err) {
+      console.log("showlist 데이터 가져오기 실패");
       console.error(err);
     }
   };

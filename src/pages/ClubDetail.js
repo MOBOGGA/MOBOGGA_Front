@@ -25,7 +25,7 @@ function ClubDetail() {
 
       const getClub = async () => {
         try {
-          const res = await axios.get(`${process.env.REACT_APP_DB_URL}/club/detail/1`);
+          const res = await axios.get(`${process.env.REACT_APP_DB_URL}club/detail/1`);
           console.log("club 데이터 가져오기 성공");
           console.log(res.data);
           setClub(res.data);

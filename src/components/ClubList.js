@@ -12,7 +12,7 @@ function ClubList() {
       const [club, setClub] = useState([]);
       const getClub = async () => {
         try {
-          const res = await axios.get(`${process.env.REACT_APP_DB_URL}/club/list`);
+          const res = await axios.get(`${process.env.REACT_APP_DB_URL}club/list`);
           console.log("club 데이터 가져오기 성공");
           console.log(res.data);
           setClub(res.data.clubList);
