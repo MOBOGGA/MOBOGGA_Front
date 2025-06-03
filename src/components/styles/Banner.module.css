@@ -42,6 +42,12 @@
   width: 322px;
   height: 436px;
   flex-shrink: 0;
+
+  border: 4px solid var(--gray-01-background, #FBFBFB);
+  background: lightgray 50% / cover no-repeat;
+
+  /* Shadow 02 */
+  box-shadow: 8px 8px 20px 0px rgba(0, 0, 0, 0.25);
 }
 
 .leftImg img{
@@ -112,6 +118,12 @@
   height: 118px;
 
   margin-left: 36px;
+
+  border: 4px solid var(--gray-01-background, #FBFBFB);
+  background: lightgray 50% / cover no-repeat;
+
+  /* Shadow 02 */
+  box-shadow: 8px 8px 20px 0px rgba(0, 0, 0, 0.25);
 }
 
 .imgBox img{

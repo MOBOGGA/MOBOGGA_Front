@@ -15,34 +15,34 @@ import RecruitingDetail from "./pages/RecruitingDetail";
 import AddInfo from "./pages/AddInfo";
 import Mypage from "./pages/Mypage";
 import UpdateProfile from "./pages/UpdateProfile";
+import ClubDetail from "./pages/ClubDetail";
 import Loading from "./pages/Loading";
 
 import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/show" element={<Show />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/clubs" element={<Clubs />} />
-          <Route path="/recruiting" element={<Recruiting />} />
-          <Route
-            path="/recruiting/:recruitingId"
-            element={<RecruitingDetail />}
-          />
-          <Route path="/add-info" element={<AddInfo />} />
-          <Route path="/mypage" element={<Mypage />} />
-          <Route path="/mypage/update" element={<UpdateProfile />} />
-          <Route path="/loading" element={<Loading />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+  <BrowserRouter>
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/show:id" element={<Show />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/clubs" element={<Clubs />} />
+        <Route path="/Recruiting" element={<Recruiting />} />
+        <Route path="/recruiting/:recruitingId" element={<RecruitingDetail />} />
+        <Route path="/add-info" element={<AddInfo />} />
+        <Route path='/mypage' element={<Mypage />} />
+        <Route path="/mypage/update" element={<UpdateProfile />} />
+        <Route path="/clubs/:id" element={<ClubDetail />} />
+         <Route path="/loading" element={<Loading />} />
+      </Routes>
+      <Footer />
+    </div>
+  </BrowserRouter>
+
   );
 }
 
