@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Main from "./pages/Main";
 
 import Landing from "./pages/Landing";
-import Show from "./pages/ShowDetail";
+import ShowDetail from "./pages/ShowDetail";
 
 import Login from "./pages/Login";
 import Clubs from "./pages/Clubs";
@@ -22,27 +22,29 @@ import "./App.css";
 
 function App() {
   return (
-  <BrowserRouter>
-    <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/show:id" element={<Show />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/clubs" element={<Clubs />} />
-        <Route path="/Recruiting" element={<Recruiting />} />
-        <Route path="/recruiting/:recruitingId" element={<RecruitingDetail />} />
-        <Route path="/add-info" element={<AddInfo />} />
-        <Route path='/mypage' element={<Mypage />} />
-        <Route path="/mypage/update" element={<UpdateProfile />} />
-        <Route path="/clubs/:id" element={<ClubDetail />} />
-         <Route path="/loading" element={<Loading />} />
-      </Routes>
-      <Footer />
-    </div>
-  </BrowserRouter>
-
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/show/:showId" element={<ShowDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/clubs" element={<Clubs />} />
+          <Route path="/Recruiting" element={<Recruiting />} />
+          <Route
+            path="/recruiting/:recruitingId"
+            element={<RecruitingDetail />}
+          />
+          <Route path="/add-info" element={<AddInfo />} />
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/mypage/update" element={<UpdateProfile />} />
+          <Route path="/clubs/:id" element={<ClubDetail />} />
+          <Route path="/loading" element={<Loading />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -7,8 +7,8 @@ import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function Show() {
-  const { id } = useParams();
+function ShowDetail() {
+  const { showId } = useParams();
   const [show, setShow] = useState({});
   const [count, setCount] = useState(1);
   const [cost, setCost] = useState(0);
@@ -24,10 +24,12 @@ function Show() {
   };
 
   const fetchData = async () => {
-    console.log("받은 showId:", id, typeof id); // 디버깅용
+    console.log("받은 showId:", showId, typeof showId); // 디버깅용
 
     try {
-      const response = await axios.get(`https://jinjigui.info:443/show/${id}`);
+      const response = await axios.get(
+        `https://jinjigui.info:443/show/${showId}`
+      );
       console.log("API 응답 데이터:", response.data);
       if (response.data && response.data.show) {
         setShow(response.data.show);
@@ -48,7 +50,7 @@ function Show() {
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line
-  }, [id]);
+  }, [showId]);
 
   //예매 버튼 API 연결
   const handleReser = async () => {
@@ -291,4 +293,4 @@ function Show() {
   );
 }
 
-export default Show;
+export default ShowDetail;
