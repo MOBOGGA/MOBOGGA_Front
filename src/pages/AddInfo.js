@@ -26,7 +26,7 @@ function AddInfo() {
     const fetchUserProfile = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URI}/mypage/update/${userId}`,
+          `${process.env.REACT_APP_API_URL}/mypage/update/${userId}`,
           {
             credentials: "include",
           }
