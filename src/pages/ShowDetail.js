@@ -6,6 +6,7 @@ import styles from "./styles/ShowDetail.module.css";
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Modal from "../components/Modal";
 
 function ShowDetail() {
   const { showId } = useParams();
@@ -301,6 +302,17 @@ function ShowDetail() {
               >
                 예매하기
               </button>
+              <Modal isOpen={open} onClose={() => SetOpen(false)}>
+                <div>
+                  <p>예매를 진행하시겠어요?</p>
+                </div>
+                <div>
+                  {selectedSch.order}공 {selectedSch.date} {selectedSch.time}{" "}
+                  {count}매가 맞는지 다시 확인해주세요.
+                </div>
+                <button onClick={() => SetOpen(false)}>취소</button>
+                <button>예매하기</button>
+              </Modal>
             </div>
           </div>
         </div>
