@@ -15,7 +15,7 @@ const sendAccessTokenToBackend = async (idToken, navigate) => {
     );
     const jwt = response.data.token;
     localStorage.setItem("jwt", jwt); // 저장 후 라우팅
-    navigate("/loading");
+    navigate("/main");
   } catch (error) {
     console.error("Login failed with error: ", error);
     throw error;
