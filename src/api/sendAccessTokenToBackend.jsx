@@ -15,6 +15,7 @@ const sendAccessTokenToBackend = async (idToken, navigate) => {
     );
     const jwt = response.data.token;
     sessionStorage.setItem("jwt", jwt); // 저장 후 라우팅
+    sessionStorage.removeItem("oauth_state");
     navigate("/main");
   } catch (error) {
     console.error("Login failed with error: ", error);
