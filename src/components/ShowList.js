@@ -2,12 +2,13 @@ import React,{useState, useEffect} from "react";
 import ShowCard from "./ShowCard";
 import styles from "./styles/ShowList.module.css";
 import axios from "axios";
-
+import { useNavigate} from "react-router-dom";
 
 import image1 from "../assets/mainTest/1.png";
 
 function ShowList() {
-//1) 카테고리 별 분류
+  const navigate = useNavigate();
+
   const [selectedCategory, setSelectedCategory] = useState("전체");
 
 // 1) show 데이터 가져오기 
@@ -24,7 +25,7 @@ function ShowList() {
   // }; 
   const getShow = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_DB_URL}attraction/list`);
+      const res = await axios.get(`/attraction/list`);
       console.log("showlist 데이터 가져오기 성공");
       console.log(res.data.entireList);
   
@@ -86,7 +87,17 @@ useEffect(() => {
 
         <div className={styles.showlist}>
           {filteredList.map((item, index) => (
-            <ShowCard key={`${item.title}-${item.clubID}-${index}`} show={item} className={styles.showCard}/>
+            <ShowCard key={`${item.title}-${item.clubID}-${index}`} show={item} className={styles.showCard} onClick={() => {
+              const category = item.category;
+              const id = item.id;
+            
+              if (category === "공연") {
+                navigate(`/show/${id}`);
+              } else if (category === "즐길거리") {
+                navigate(`/entertain/${id}`);
+              } 
+            }}
+            />
           ))}
         </div>
       </div>

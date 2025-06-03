@@ -1,4 +1,8 @@
 .showCard{
+  cursor: pointer;
+}
+
+.showCard{
   display: flex;
   flex-direction: column;
   align-items: center;

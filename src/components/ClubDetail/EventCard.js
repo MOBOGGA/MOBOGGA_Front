@@ -3,9 +3,9 @@ import styles from "../styles/ShowCard.module.css";
 
 
 
-function EventCard({ show }) {
+function EventCard({ show ,onClick }) {
   return (
-    <div className={styles.showCard}>
+    <div className={styles.showCard}  onClick={onClick}>
       <div className={styles.card}>
         <img src={show.photo} alt={show.name} className={`${styles.mainImg} ${styles.imgdetail}`} />
       </div>
