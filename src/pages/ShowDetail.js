@@ -7,7 +7,7 @@ import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function Show() {
+function ShowDetail() {
   const { showId } = useParams();
   const [show, setShow] = useState({});
   const [count, setCount] = useState(1);
@@ -293,4 +293,4 @@ function Show() {
   );
 }
 
-export default Show;
+export default ShowDetail;
