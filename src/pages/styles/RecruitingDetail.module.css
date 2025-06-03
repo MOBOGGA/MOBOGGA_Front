@@ -36,10 +36,12 @@
 }
 
 .recruite_Pic {
-  width: 457px;
-  height: 646px;
-  object-fit: contain;
-  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+  width: 22.48175rem;
+  height: 31.75rem;
+  flex-shrink: 0;
+  aspect-ratio: 359.71/508;
+  border: 8px solid var(--gray-01-background, #fbfbfb);
+  box-shadow: 8px 8px 20px 0px rgba(0, 0, 0, 0.25);
 }
 
 .intro_con {
