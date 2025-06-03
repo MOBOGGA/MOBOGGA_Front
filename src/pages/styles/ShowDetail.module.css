@@ -36,10 +36,13 @@
 }
 
 .show_Pic {
-  width: 457px;
-  height: 646px;
+  width: 28.5625rem;
+  height: 40.375rem;
+  flex-shrink: 0;
   object-fit: contain;
   box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+
+  border: 8px solid var(--Gradient-01, #fbfbfb);
 }
 
 .intro_con {

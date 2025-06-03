@@ -22,15 +22,13 @@ import "./App.css";
 
 function App() {
   return (
-
-
   <BrowserRouter>
     <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/main" element={<Main />} />
-        <Route path="/show" element={<Show />} />
+        <Route path="/show:id" element={<Show />} />
         <Route path="/login" element={<Login />} />
         <Route path="/clubs" element={<Clubs />} />
         <Route path="/Recruiting" element={<Recruiting />} />
@@ -44,8 +42,6 @@ function App() {
       <Footer />
     </div>
   </BrowserRouter>
-
-
 
   );
 }
