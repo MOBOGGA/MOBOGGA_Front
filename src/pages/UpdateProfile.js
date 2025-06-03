@@ -107,7 +107,7 @@ function UpdateProfile() {
 
     try {
       const response = await fetch(
-        `https://jinjigui.info:8080/mypage/save/${userId}`,
+        `${process.env.REACT_APP_API_URL}/mypage/save/${userId}`,
         {
           method: "PUT",
           headers: {
