@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Show() {
-  const { showId } = useParams();
+  const { id } = useParams();
   const [show, setShow] = useState({});
   const [count, setCount] = useState(1);
   const [cost, setCost] = useState(0);
@@ -24,12 +24,10 @@ function Show() {
   };
 
   const fetchData = async () => {
-    console.log("받은 showId:", showId, typeof showId); // 디버깅용
+    console.log("받은 showId:", id, typeof id); // 디버깅용
 
     try {
-      const response = await axios.get(
-        `https://jinjigui.info:443/show/${showId}`
-      );
+      const response = await axios.get(`https://jinjigui.info:443/show/${id}`);
       console.log("API 응답 데이터:", response.data);
       if (response.data && response.data.show) {
         setShow(response.data.show);
@@ -50,7 +48,7 @@ function Show() {
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line
-  }, [showId]);
+  }, [id]);
 
   //예매 버튼 API 연결
   const handleReser = async () => {
@@ -67,7 +65,7 @@ function Show() {
     try {
       console.log(requestData);
       const response = await axios.post(
-        `http://jinjigui.info:8080/show/detail/reservation`,
+        `http://jinjigui.info:443/show/detail/reservation`,
         requestData
       );
       console.log("예매 데이터 보내기 성공: ", response.data);
