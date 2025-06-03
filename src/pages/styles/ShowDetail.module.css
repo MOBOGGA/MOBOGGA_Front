@@ -50,6 +50,21 @@
   flex-direction: row;
 }
 
+.intro_con_left {
+  width: 22.5625rem;
+  flex-shrink: 0;
+}
+
+.recruite_left_cont {
+  width: 22.5625rem !important;
+  max-width: 500px !important;
+  flex-shrink: 0;
+}
+
+.recruiting_info_content {
+  max-width: 500px;
+}
+
 .show_Top {
   width: 100vw - 20px;
   font-size: 24px;
