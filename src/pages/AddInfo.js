@@ -26,7 +26,7 @@ function AddInfo() {
     const fetchUserProfile = async () => {
       try {
         const response = await fetch(
-          `https://jinjigui.info:443/mypage/update/${userId}`,
+          `${process.env.REACT_APP_API_URI}/mypage/update/${userId}`,
           {
             credentials: "include",
           }
@@ -96,7 +96,7 @@ function AddInfo() {
 
     try {
       const response = await fetch(
-        `https://jinjigui.info:8080/mypage/save/${userId}`,
+        `${process.env.REACT_APP_API_URI}/mypage/save/${userId}`,
         {
           method: "PUT",
           headers: {
