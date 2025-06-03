@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./styles/Show.module.css";
@@ -55,7 +55,7 @@ function Show() {
     try {
       console.log(requestData);
       const response = await axios.post(
-        `http://jinjigui.info:8080/show/detail/reservation`,
+        `https://jinjigui.info:443/show/detail/reservation`,
         requestData
       );
       console.log("예매 데이터 보내기 성공: ", response.data);

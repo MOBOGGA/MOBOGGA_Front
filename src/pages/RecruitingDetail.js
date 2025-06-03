@@ -48,7 +48,7 @@ function RecruitingDetail() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://jinjigui.info:8080/recruiting/detail/${recruitingId}`
+        `https://jinjigui.info:443/recruiting/detail/${recruitingId}`
       );
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
@@ -82,7 +82,7 @@ function RecruitingDetail() {
             <div className={styles.intro_con}>
               <div className={styles.intro_con_left}>
                 <img
-                  src={recruiting.poster}
+                  src={recruiting.photo}
                   className={styles.recruite_Pic}
                   alt="recruite_IMG"
                 />
