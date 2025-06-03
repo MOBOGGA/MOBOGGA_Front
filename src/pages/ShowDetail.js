@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import { useState, useEffect } from "react";
-import styles from "./styles/Show.module.css";
+import styles from "./styles/ShowDetail.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
@@ -293,4 +293,4 @@ function Show() {
   );
 }
 
-export default Show;
+export default ShowDetail;

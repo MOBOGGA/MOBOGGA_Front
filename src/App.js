@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Main from "./pages/Main";
 
 import Landing from "./pages/Landing";
-import Show from "./pages/ShowDetail";
+import ShowDetail from "./pages/ShowDetail";
 
 import Login from "./pages/Login";
 import Clubs from "./pages/Clubs";
@@ -28,7 +28,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/main" element={<Main />} />
           <Route path="/show" element={<Show />} />
-          <Route path="/show/:showId" element={<Show />} />
+          <Route path="/show/:showId" element={<ShowDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/recruiting" element={<Recruiting />} />
