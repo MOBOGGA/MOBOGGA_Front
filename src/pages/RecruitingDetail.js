@@ -82,7 +82,7 @@ function RecruitingDetail() {
             <div className={styles.intro_con}>
               <div className={styles.intro_con_left}>
                 <img
-                  src={recruiting.photo}
+                  src={recruiting.poster}
                   className={styles.recruite_Pic}
                   alt="recruite_IMG"
                 />
