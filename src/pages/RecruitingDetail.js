@@ -55,11 +55,18 @@ function RecruitingDetail() {
         setRecruiting(response.data);
         console.log("API 전체", recruiting);
       } else {
-        console.error("API에 recruiting 데이더가 없습니다.");
+        console.error("API에 recruiting 데이터가 없습니다.");
         setRecruiting(null);
       }
     } catch (error) {
-      console.error("Fetch Error: ", error);
+      console.error("Fetch Error:");
+      if (error.response) {
+        console.error("Response error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error message:", error.message);
+      }
       setRecruiting(null);
     }
   };
@@ -81,33 +88,41 @@ function RecruitingDetail() {
             <div className={styles.recruite_Top}>리크루팅 정보</div>
             <div className={styles.intro_con}>
               <div className={styles.intro_con_left}>
-                <img
-                  src={recruiting.poster}
-                  className={styles.recruite_Pic}
-                  alt="recruite_IMG"
-                />
+                {recruiting && (
+                  <img
+                    src={recruiting.poster}
+                    className={styles.recruite_Pic}
+                    alt="recruite_IMG"
+                  />
+                )}
                 <div className={styles.sns_icons}>
-                  <a href={recruiting.instaUrl}>
-                    <img
-                      className={styles.sns_icon}
-                      src={INSTA}
-                      alt="sns_icon"
-                    ></img>
-                  </a>
-                  <a href={recruiting.youtubeUrl}>
-                    <img
-                      className={styles.sns_icon}
-                      src={YOUTUBE}
-                      alt="sns_icon"
-                    ></img>
-                  </a>
-                  <a href={recruiting.kakaoUrl}>
-                    <img
-                      className={styles.sns_icon}
-                      src={KAKAO}
-                      alt="sns_icon"
-                    ></img>
-                  </a>
+                  {recruiting && (
+                    <a href={recruiting.instaUrl}>
+                      <img
+                        className={styles.sns_icon}
+                        src={INSTA}
+                        alt="sns_icon"
+                      ></img>
+                    </a>
+                  )}
+                  {recruiting && (
+                    <a href={recruiting.youtubeUrl}>
+                      <img
+                        className={styles.sns_icon}
+                        src={YOUTUBE}
+                        alt="sns_icon"
+                      ></img>
+                    </a>
+                  )}
+                  {recruiting && (
+                    <a href={recruiting.kakaoUrl}>
+                      <img
+                        className={styles.sns_icon}
+                        src={KAKAO}
+                        alt="sns_icon"
+                      ></img>
+                    </a>
+                  )}
                 </div>
                 <div className={styles.rectuite_con}>{recruiting?.content}</div>
               </div>

@@ -67,7 +67,7 @@ function ShowDetail() {
     try {
       console.log(requestData);
       const response = await axios.post(
-        `http://jinjigui.info:443/show/detail/reservation`,
+        `https://jinjigui.info:443/show/detail/reservation`,
         requestData
       );
       console.log("예매 데이터 보내기 성공: ", response.data);
