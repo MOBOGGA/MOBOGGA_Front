@@ -4,7 +4,7 @@ import axios from "axios";
 const sendAccessTokenToBackend = async (idToken, navigate) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_DB_URL}/api/oauth/google/session`,
+      `${process.env.REACT_APP_API_URL}/api/oauth/google/session`,
       { credential: idToken },
       {
         headers: {
