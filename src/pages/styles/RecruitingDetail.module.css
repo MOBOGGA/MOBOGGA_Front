@@ -31,7 +31,7 @@
 
 .recruite_Intro {
   display: flex;
-  max-width: 1200px;
+  max-width: 100vw;
   gap: 40px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .recruite_Top {
-  width: 100vw;
+  width: 100vw - 20px;
   font-size: 24px;
   font-weight: bold;
   color: #121212;
