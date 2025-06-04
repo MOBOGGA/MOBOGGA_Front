@@ -28,19 +28,78 @@
 
 .top{
   position: absolute;
-  transform: translate(-220%, -10%);
+  transform: translate(-220%, -20%);
+  z-index: 100;
+}
+
+.top1{
+  position: absolute;
+  transform: translate(-200%, -20%);
   z-index: 100;
 }
 
 .side{
   position: absolute;
-  transform: translate(-100%, 870%);
+  transform: translate(-80%, 925%);
   z-index: 2;
+}
+
+.side1{
+  position: absolute;
+  transform: translate(-80%, 925%);
+  z-index: 2;
+}
+
+
+
+.category{
+  color: var(--gray-01-background, #FBFBFB);
+
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow:   /* 글씨 더 굵게 보이게  */
+  -0.1px 0 currentColor,
+   0.1px 0 currentColor,
+   0   -0.1px currentColor,
+   0    0.1px currentColor;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 0.14px;
+
+  position: absolute;
+  transform: translate(-665%, -10%);
+  z-index: 200;
+}
+
+.category1{
+  transform: translate(-365%, -5%);
+}
+
+.tag{
+  color: var(--gray-01-background, #FBFBFB);
+
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow:   /* 글씨 더 굵게 보이게  */
+  -0.1px 0 currentColor,
+   0.1px 0 currentColor,
+   0   -0.1px currentColor,
+   0    0.1px currentColor;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 0.14px;
+
+  position: absolute;
+  transform: translate(-200%, 1780%);
+  z-index: 200;
+}
+
+.tag1{
+  transform: translate(-160%, 1780%) !important;
 }
 
 .name{
   color: var(--Gray-09, #292929);
   text-align: center;
+  width: 316.11px;
 
   font-size: 22px;
   font-weight: 700;
@@ -53,6 +112,9 @@
   letter-spacing: 1.3px;
 
   margin-top: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
 }
 
 .clubDate{
@@ -94,4 +156,8 @@
   letter-spacing: 0.16px;
 
   margin-left: 6px;
+}
+
+.hide{
+  display: none;
 }

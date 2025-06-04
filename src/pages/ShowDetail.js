@@ -6,7 +6,7 @@ import styles from "./styles/ShowDetail.module.css";
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Modal from "../components/Modal";
+// import Modal from "../components/Modal";
 
 function ShowDetail() {
   const { showId } = useParams();
@@ -164,11 +164,13 @@ function ShowDetail() {
           <div className={styles.intro_Info}>
             <div className={styles.show_Top}>공연정보</div>
             <div className={styles.intro_con}>
-              <img
-                src={show.photo}
-                className={styles.show_Pic}
-                alt="show_IMG"
-              />
+              {show && (
+                <img
+                  src={show.poster}
+                  className={styles.show_Pic}
+                  alt="show_IMG"
+                />
+              )}
               <div className={styles.show_Info}>
                 <div className={styles.title}>
                   {show?.showName || "타이틀 정보 없음"}
