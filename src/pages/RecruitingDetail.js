@@ -124,7 +124,19 @@ function RecruitingDetail() {
                     </a>
                   )}
                 </div>
-                <div className={styles.rectuite_con}>{recruiting?.content}</div>
+                <div className={styles.recruite_left_cont}>
+                  {
+                    <span className={styles.clubDeatiltext}>
+                      {/* {recruiting.eligibility.split("\n").map((line, index) => (
+                        <React.Fragment key={index}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))} */}
+                      {recruiting.content}
+                    </span>
+                  }
+                </div>
               </div>
 
               <div className={styles.recruite_Info}>
@@ -138,8 +150,7 @@ function RecruitingDetail() {
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>모집기간</span>
                     <span className={styles.variable_Info}>
-                      {recruiting?.startDate || "시작 날짜 정보 없음"} ~{" "}
-                      {recruiting?.endDate || "끝 날짜 정보 없음"}
+                      {recruiting?.dates || "날짜 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
