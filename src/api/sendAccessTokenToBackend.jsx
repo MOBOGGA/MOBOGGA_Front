@@ -13,8 +13,10 @@ const sendAccessTokenToBackend = async (idToken, navigate) => {
         withCredentials: true, // 쿠키 필요시
       }
     );
+    console.log("Response from backend:", response.data);
     const jwt = response.data.token;
-    sessionStorage.setItem("jwt", jwt); // 저장 후 라우팅
+    localStorage.setItem("jwt", jwt); // 저장 후 라우팅
+    console.log("Login successful, JWT stored:", jwt);
     navigate("/main");
   } catch (error) {
     console.error("Login failed with error: ", error);

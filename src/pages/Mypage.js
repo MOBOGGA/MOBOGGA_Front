@@ -6,7 +6,6 @@ import MyReservCard from "../components/MyReservCard";
 
 function Mypage() {
   const navigate = useNavigate();
-  const userId = sessionStorage.getItem("userId");
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -42,18 +41,17 @@ function Mypage() {
     navigate(`/mypage/update`);
   };
 
-  const token = sessionStorage.getItem("jwt");
+  const token = localStorage.getItem("jwt");
 
   const fetchUserProfile = async () => {
     try {
       const response = await fetch(
-        `${process.envREACT_APP_API_URL}/mypage/student/profile`,
+        `${process.env.REACT_APP_API_URL}/mypage/student/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-          credentials: "include",
         }
       );
       if (!response.ok) {
@@ -89,34 +87,36 @@ function Mypage() {
       setIsLoading(true);
       setError(null);
 
-      console.log("API 요청 시작");
+      console.log("API 요청 시작222");
       const response = await fetch(
-        `http://jinjigui.info:8080/mypage/student/reservation`,
+        `${process.env.REACT_APP_API_URL}/mypage/student/reservation`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         }
       );
       console.log("API 응답 수신:", response.status);
 
-      // if (!response.ok) {
-      //   throw new Error('예매 내역을 불러오는데 실패했습니다.');
-      // }
+      if (!response.ok) {
+        throw new Error("예매 내역을 불러오는데 실패했습니다.");
+      }
 
       console.log("응답 데이터 파싱 시작");
-      const json = await response.json();
-      console.log("파싱된 데이터:", json);
+      const myreserv = await response.json();
+      console.log("파싱된 데이터:", myreserv);
 
       // 데이터 검증 추가
-      // if (!json || !json.user_reservation_list) {
-      //   throw new Error('예매 내역 데이터 형식이 올바르지 않습니다.');
-      // }
+      if (!myreserv || !myreserv.performanceList) {
+        throw new Error("예매 내역 데이터 형식이 올바르지 않습니다.");
+      }
 
-      console.log("예매 내역 데이터 설정:", json.performanceList);
-      setMyReservCards(json.performanceList); // Update to set the correct data
+      console.log("예매 내역 데이터 설정:", myreserv.performanceList);
+      setMyReservCards(myreserv.performanceList); // Update to set the correct data
+      console.log(myReservCards);
 
-      if (json.performanceList.length === 0) {
+      if (myreserv.performanceList.length === 0) {
         console.warn("예매 내역이 없습니다.");
       }
     } catch (err) {
@@ -133,7 +133,7 @@ function Mypage() {
   useEffect(() => {
     fetchUserProfile();
     getMyReservCards();
-  }, [userId]);
+  }, []);
 
   if (isLoading) {
     console.log("로딩 중 화면 렌더링");
@@ -230,23 +230,11 @@ function Mypage() {
               )}
               {!isLoading &&
                 !error &&
-                myReservCards.map((myReservCard) => {
-                  if (
-                    !myReservCard ||
-                    !myReservCard.ticketCount ||
-                    !myReservCard.show?.id
-                  ) {
-                    return null;
-                  }
-                  return (
-                    <div
-                      key={myReservCard.ticketCount}
-                      className="myreservcard"
-                    >
-                      <MyReservCard scheduleId={myReservCard.scheduleId} />
-                    </div>
-                  );
-                })}
+                myReservCards.map((myReservCard) => (
+                  <div key={myReservCard.scheduleId} className="myreservcard">
+                    <MyReservCard data={myReservCard} />
+                  </div>
+                ))}
             </div>
           </div>
         </div>

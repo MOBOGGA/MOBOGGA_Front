@@ -1,54 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./styles/MyReservCard.module.css";
-import poster from "../assets/mainTest/3.png";
 
-function MyReservCard({ scheduleId }) {
-  const [show, setShow] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+function MyReservCard({ data }) {
+  if (!data) return null;
 
-  useEffect(() => {
-    const fetchShowDetails = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          `http://jinjigui.info:8080/show/detail/${scheduleId}` // ← 실제 API 경로로 수정 필요
-        );
-        if (!response.ok) {
-          throw new Error("공연 정보를 불러오지 못했습니다.");
-        }
-        const data = await response.json();
-        setShow(data);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (scheduleId) {
-      fetchShowDetails();
-    }
-  }, [scheduleId]);
-
-  if (!scheduleId) return null;
-  if (loading) return <div className={styles.card}>로딩중...</div>;
-  if (error) return <div className={styles.card}>에러: {error}</div>;
-  if (!show) return null;
-
-  const { title, date, place, manager, account, price, scheduleInfo } = show;
-  const { ticketCount = 1, depositStatus = "미입금" } = show;
-
-  const formattedDate = new Date(date).toLocaleString("ko-KR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    weekday: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
+  const {
+    poster,
+    title,
+    scheduleInfo,
+    location,
+    managerPhone,
+    accountInfo,
+    ticketCount,
+    price,
+    paid,
+  } = data;
 
   return (
     <div className={styles.card}>
@@ -62,37 +28,48 @@ function MyReservCard({ scheduleId }) {
             <div className={styles.card_info_header} id={styles.order_box}>
               {scheduleInfo}
             </div>
-            <div className={styles.card_date}>{formattedDate}</div>
           </div>
           <div className={styles.card_content}>
             <div className={styles.card_info_header}>장소: </div>
-            <div className={styles.card_place}>{place || "장소 정보 없음"}</div>
+            <div className={styles.card_place}>
+              {location || "장소 정보 없음"}
+            </div>
           </div>
           <div className={styles.card_content}>
             <div className={styles.card_info_header}>담당자: </div>
             <div className={styles.card_manager}>
-              {manager?.phone || ""} ({manager?.name || "이름 없음"})
+              {managerPhone || "정보 없음"}
             </div>
           </div>
-          <div className={styles.card_content}>
+          <div
+            className={
+              paid === false
+                ? styles.card_content
+                : styles.card_content_hidden
+            }
+            id={styles.account_info}
+          >
             <div className={styles.card_info_header} id={styles.account_box}>
-              계좌번호:{" "}
+              계좌번호:
             </div>
-            <div className={styles.card_account}>
-              {account || "계좌 정보 없음"}
-            </div>
+            <div className={styles.card_account}>{accountInfo}</div>
           </div>
           <div className={styles.ticket_info}>
             <div className={styles.ticket_num}>{ticketCount}매</div>
             <div className={styles.ticket_price}>
               {price?.toLocaleString()}원
             </div>
-            <div className={styles.deposit_status}>{depositStatus}</div>
+            <div className={styles.deposit_status}>
+              {paid ? (
+                <span style={{ color: "#1AAE00" }}>입금완료</span>
+              ) : (
+                <span style={{ color: "var(--ORANGE)" }}>미입금</span>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 export default MyReservCard;
