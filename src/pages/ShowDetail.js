@@ -19,6 +19,8 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
+  const [completedModalOpen, setCompletedModalOpen] = useState(false);
+
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
   const navigateToPrepage = () => {
