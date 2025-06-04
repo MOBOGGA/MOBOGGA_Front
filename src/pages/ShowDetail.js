@@ -19,8 +19,7 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyMjEwMDEzMEBoYW5kb25nLmFjLmtyIiwiZXhwIjoxNzQ4OTg4NDY1LCJyb2xlIjoiUk9MRV9VU0VSIn0.eSbSxTakRmQZgaI6JaD5I3LSydUwIAk5LRIakMiKzQWKgv8Gt1ftRSSh5FOcJptqsok98THUyw2gNMiubqy1dg";
+  const token = localStorage.getItem("token");
 
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -31,7 +30,7 @@ function ShowDetail() {
 
     try {
       const response = await axios.get(
-        `https://jinjigui.info:443/show/detail/${showId}`
+        `http://jinjigui.info:8080/show/detail/${showId}`
       );
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
@@ -68,7 +67,7 @@ function ShowDetail() {
     try {
       console.log(requestData);
       const response = await axios.post(
-        `https://jinjigui.info:443/show/detail/reservation`,
+        `http://jinjigui.info:8080/show/detail/reservation`,
         requestData,
         {
           headers: {
@@ -166,7 +165,7 @@ function ShowDetail() {
             <div className={styles.intro_con}>
               {show && (
                 <img
-                  src={show.poster}
+                  src={show.photo}
                   className={styles.show_Pic}
                   alt="show_IMG"
                 />
@@ -304,7 +303,7 @@ function ShowDetail() {
               >
                 예매하기
               </button>
-              <Modal isOpen={open} onClose={() => SetOpen(false)}>
+              {/* <Modal isOpen={open} onClose={() => SetOpen(false)}>
                 <div>
                   <p>예매를 진행하시겠어요?</p>
                 </div>
@@ -314,7 +313,7 @@ function ShowDetail() {
                 </div>
                 <button onClick={() => SetOpen(false)}>취소</button>
                 <button>예매하기</button>
-              </Modal>
+              </Modal> */}
             </div>
           </div>
         </div>

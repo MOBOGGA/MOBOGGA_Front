@@ -48,7 +48,7 @@ function RecruitingDetail() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://jinjigui.info:443/recruiting/detail/${recruitingId}`
+        `http://jinjigui.info:8080/recruiting/detail/${recruitingId}`
       );
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
