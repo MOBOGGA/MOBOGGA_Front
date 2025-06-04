@@ -102,7 +102,7 @@
 .info_Box {
   display: flex;
   gap: 10px;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -218,8 +218,6 @@
 }
 
 .Reser_Btn_dis {
-  width: 260px;
-  height: 41px;
   color: #7f7f7f;
   background: #acacac;
   border: none;
@@ -229,6 +227,12 @@
   font-weight: 400;
   line-height: 2.0625rem; /* 165% */
   letter-spacing: 0.0125rem;
+
+  display: inline-flex;
+  padding: 0.25rem 5.35rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
 }
 
 .modal_strong {

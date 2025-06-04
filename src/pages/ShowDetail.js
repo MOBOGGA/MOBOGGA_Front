@@ -28,6 +28,10 @@ function ShowDetail() {
     navigate(-1); // 이전 페이지로 이동
   };
 
+  const navigateToClubDetail = (clubid) => {
+    navigate(`/clubs/${clubid}`);
+  };
+
   const fetchData = async () => {
     console.log("받은 showId:", showId, typeof showId); // 디버깅용
 
@@ -130,8 +134,10 @@ function ShowDetail() {
       );
       if (count < maxAvailable) {
         setCount(count + 1);
+      } else if (count == selectedSch.maxTickets) {
+        alert(`인당 최대 ${selectedSch.maxTickets}매까지 예매가능합니다.`);
       } else {
-        alert("버튼을 누를 수 없습니다. ");
+        alert(`현재 ${count}매를 예매할 수 있습니다.`);
       }
     }
   };
@@ -207,7 +213,13 @@ function ShowDetail() {
                   {show?.showName || "타이틀 정보 없음"}
                 </div>
                 <div className={styles.club}>
-                  {show?.clubName ? `${show?.clubName}>` : "동아리 정보 없음"}
+                  <span
+                    onClick={() => {
+                      navigateToClubDetail(show.className);
+                    }}
+                  >
+                    {show?.clubName ? `${show?.clubName}>` : "동아리 정보 없음"}
+                  </span>
                 </div>
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
@@ -334,6 +346,9 @@ function ShowDetail() {
                   selectedSch ? styles.Reser_Btn : styles.Reser_Btn_dis
                 }`}
                 onClick={() => {
+                  if (isDisable) {
+                    return;
+                  } // 클릭 무시
                   setOpen(true);
                 }}
                 disabled={isDisable}
