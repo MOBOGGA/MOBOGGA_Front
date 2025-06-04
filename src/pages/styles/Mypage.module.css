@@ -131,12 +131,30 @@
   padding-top: 32px;
 }
 
+.container_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
 .reservlist_title {
   padding-bottom: 17px;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.72px;
+}
+
+.reload_icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 /* 모달 CSS */
