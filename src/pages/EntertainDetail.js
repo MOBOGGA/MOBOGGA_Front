@@ -112,8 +112,8 @@ function EntertainDetail() {
                 <div className={styles.title}>
                   {entertainList?.entertainName || "타이틀 정보 없음"}
                 </div>
-                <div className={styles.club}>
-                  {entertainList?.clubName || "동아리 정보 없음"}
+                <div className={styles.club} onClick={() => navigate("/clubs/1")}>
+                  {entertainList?.clubName ? `${entertainList?.clubName} >` : "동아리 정보 없음"}
                 </div>
 
                 <div className={styles.infos}>
