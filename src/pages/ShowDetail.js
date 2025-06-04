@@ -19,13 +19,8 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [completedModalOpen, setCompletedModalOpen] = useState(false);
-
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
-
-  const navigate = useNavigate();
-  const JWT_TOKEN = process.env.REACT_APP_JWT_TOKEN;
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
   };
@@ -87,7 +82,6 @@ function ShowDetail() {
       alert("예매완료되었습니다!");
       setOpen(false); // 모달 닫기
       window.location.reload();
-
     } catch (error) {
       console.log("예매 데이터 보내기 실패: ", error);
       alert("예매 실패되었습니다");
@@ -374,6 +368,8 @@ function ShowDetail() {
                     </button>
                   </div>
                 </div>
+                <button onClick={() => SetOpen(false)}>취소</button>
+                <button>예매하기</button>
               </Modal>
             </div>
           </div>

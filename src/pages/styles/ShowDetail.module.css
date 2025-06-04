@@ -222,6 +222,7 @@
   letter-spacing: 0.0125rem;
 }
 
+<<<<<<< HEAD
 .modal {
   display: flex;
   align-items: center;
@@ -254,6 +255,8 @@
   justify-content: center;
 }
 
+=======
+>>>>>>> 6e34255 (modal 구현)
 .modal_strong {
   color: var(--main-02, #ff3d12);
   /* Body 03 _ SB */
@@ -265,10 +268,37 @@
   letter-spacing: 0.01rem;
 }
 
+<<<<<<< HEAD
 .modal_Btns {
   display: flex;
   gap: 32px;
   padding-top: 32px;
+=======
+.modal {
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_Btns {
+  display: flex;
+  padding-top: 32px;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+>>>>>>> 6e34255 (modal 구현)
 }
 
 .modal_close_Btn {
@@ -280,7 +310,10 @@
   gap: 0.625rem;
   border: 1px solid var(--main-02, #ff3d12);
   background: var(--gray-01-background, #fbfbfb);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6e34255 (modal 구현)
   color: var(--main-02, #ff3d12);
   /* Body 04 _ R */
   font-family: "IBM Plex Sans KR";
@@ -301,7 +334,10 @@
   background: var(--main-02, #ff3d12);
 
   color: var(--gray-01-background, #fbfbfb);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6e34255 (modal 구현)
   /* Body 04 _ R */
   font-family: "IBM Plex Sans KR";
   font-size: 0.875rem;

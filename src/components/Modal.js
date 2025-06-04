@@ -5,7 +5,10 @@ const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6e34255 (modal 구현)
     <div onClick={onClose} className={styles.modal_overlay}>
       <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
         {children}
