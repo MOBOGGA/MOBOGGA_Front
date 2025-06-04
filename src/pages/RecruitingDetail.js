@@ -87,7 +87,7 @@ function RecruitingDetail() {
           <div className={styles.intro_Info} >
             <div className={styles.recruite_Top}>리크루팅 정보</div>
             <div className={styles.intro_con}>
-              <div className={styles.intro_con_left} style={{width: "600px"}}>
+              <div className={styles.intro_con_left}>
                 {recruiting && (
                   <img
                     src={recruiting.poster}
@@ -95,7 +95,7 @@ function RecruitingDetail() {
                     alt="recruite_IMG"
                   />
                 )}
-                <div className={styles.sns_icons} style={{marginBottom: "20px"}}>
+                <div className={styles.sns_icons}>
                   {recruiting && (
                     <a href={recruiting.instaUrl}>
                       <img
@@ -124,9 +124,9 @@ function RecruitingDetail() {
                     </a>
                   )}
                 </div>
-                <div className={styles.recruite_left_cont} style={{marginBottom: "20px"}}>
+                <div className={styles.recruite_left_cont}>
                   {
-                    <span className={styles.clubDeatiltext}>
+                    <span className={styles.clubDetailText}>
                       {/* {recruiting.eligibility.split("\n").map((line, index) => (
                         <React.Fragment key={index}>
                           {line}
@@ -187,7 +187,7 @@ function RecruitingDetail() {
               </div>
             </div>
             <div className={styles.recruite_apply}>
-              <button className={styles.apply_Btn} onClick={navigateToAppypage} style={{marginBottom: "20px"}}>
+              <button className={styles.apply_Btn} onClick={navigateToAppypage}>
                 지원하러 가기
               </button>
             </div>
