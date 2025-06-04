@@ -8,7 +8,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     <div onClick={onClose} className="modal-overlay">
       <div onClick={(e) => e.stopPropagation()} className="modal">
         <button onClick={onClose} className="modal-close">
-          // <IoClose />
+          {/* <IoClose /> */}
         </button>
         {children}
       </div>
