@@ -106,15 +106,8 @@ function Mypage() {
         throw new Error("예매 내역 데이터 형식이 올바르지 않습니다.");
       }
   
-      // ✅ 공연일자 기준 최신순 정렬
-      const sortedList = [...data.performanceList].sort((a, b) => {
-        // 날짜 문자열을 Date 객체로 변환
-        const dateA = new Date(a.scheduleInfo.match(/\d{4}\.\d{2}\.\d{2}/)?.[0]);
-        const dateB = new Date(b.scheduleInfo.match(/\d{4}\.\d{2}\.\d{2}/)?.[0]);
-        return dateB - dateA;
-      });
-  
-      setMyReservCards(sortedList);
+      setMyReservCards(data.performanceList || []);
+      console.log("예매 내역 데이터:", data.performanceList);
     } catch (err) {
       console.error("에러 발생:", err);
       setError(err.message);
@@ -209,7 +202,7 @@ function Mypage() {
           </div>
         </div>
         <div className={styles.container}>
-          <div className={styles.reservlist_title}>공연 예매 내역 (최신순)</div>
+          <div className={styles.reservlist_title}>공연 예매 내역 <span style={{color: "gray", fontSize: "20px"}}>(최신순)</span></div>
           <div className={styles.reservlist_content}>
             <div className={styles.reservlist_content}>
               {isLoading && <div className="loading">로딩중...</div>}
