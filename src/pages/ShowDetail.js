@@ -28,16 +28,16 @@ function ShowDetail() {
     navigate(-1); // 이전 페이지로 이동
   };
 
-//   const navigateToClubDetail = (clubid) => {
-//     navigate(`/clubs/${clubid}`);
-//   };
+  //   const navigateToClubDetail = (clubid) => {
+  //     navigate(`/clubs/${clubid}`);
+  //   };
 
   const fetchData = async () => {
     console.log("받은 showId:", showId, typeof showId); // 디버깅용
 
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/show/detail/${showId}`
+        `http://jinjigui.info:8080/show/detail/${showId}`
       );
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
@@ -75,7 +75,7 @@ function ShowDetail() {
       console.log(requestData);
       console.log("JWT_TOKEN: ", token);
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/show/detail/reservation`,
+        `http://jinjigui.info:8080/show/detail/reservation`,
         requestData,
         {
           headers: {
@@ -213,7 +213,10 @@ function ShowDetail() {
                   {show?.showName || "타이틀 정보 없음"}
                 </div>
 
-                <div className={styles.club} onClick={() => navigate("/clubs/1")}>
+                <div
+                  className={styles.club}
+                  onClick={() => navigate("/clubs/1")}
+                >
                   {show?.clubName ? `${show?.clubName} >` : "동아리 정보 없음"}
                 </div>
                 <div className={styles.infos}>
@@ -394,7 +397,7 @@ function ShowDetail() {
                   <p>예매가 완료되었습니다.</p>
                 </div>
                 <div className={styles.modal_con}>
-                  <img src={show.qrImage} alt="QR 코드"></img>
+                  {show && <img src={show.qrImage} alt="QR 코드"></img>}
                   <div className={styles.modal_con}>
                     <span className={styles.modal_strong}>여기에 계좌</span>
                   </div>
