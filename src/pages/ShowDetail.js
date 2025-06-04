@@ -6,7 +6,7 @@ import styles from "./styles/ShowDetail.module.css";
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-// import Modal from "../components/Modal";
+import Modal from "../components/Modal";
 
 function ShowDetail() {
   const { showId } = useParams();
@@ -18,10 +18,11 @@ function ShowDetail() {
   const [reservation, setReservation] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const token =
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyMjEwMDEzMEBoYW5kb25nLmFjLmtyIiwiZXhwIjoxNzQ4OTg4NDY1LCJyb2xlIjoiUk9MRV9VU0VSIn0.eSbSxTakRmQZgaI6JaD5I3LSydUwIAk5LRIakMiKzQWKgv8Gt1ftRSSh5FOcJptqsok98THUyw2gNMiubqy1dg";
+  const [open, setOpen] = useState(false);
+  const [completedModalOpen, setCompletedModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+  const JWT_TOKEN = process.env.REACT_APP_JWT_TOKEN;
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
   };
@@ -31,7 +32,7 @@ function ShowDetail() {
 
     try {
       const response = await axios.get(
-        `https://jinjigui.info:443/show/detail/${showId}`
+        `http://jinjigui.info:8080/show/detail/${showId}`
       );
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
@@ -67,19 +68,27 @@ function ShowDetail() {
 
     try {
       console.log(requestData);
+      console.log("JWT_TOKEN: ", JWT_TOKEN);
       const response = await axios.post(
-        `https://jinjigui.info:443/show/detail/reservation`,
+        `http://jinjigui.info:8080/show/detail/reservation`,
         requestData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${JWT_TOKEN}`,
           },
         }
       );
       console.log("예매 데이터 보내기 성공: ", response.data);
       reservationData(response.data);
+
+      alert("예매완료되었습니다!");
+      setOpen(false); // 모달 닫기
+      window.location.reload();
     } catch (error) {
       console.log("예매 데이터 보내기 실패: ", error);
+      alert("예매 실패되었습니다");
+      setOpen(false);
+      window.location.reload();
 
       if (error.response) {
         console.error("서버 응답 데이터: ", error.response.data);
@@ -129,6 +138,18 @@ function ShowDetail() {
     }
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return dateString;
+
+    if (dateString.includes("-")) {
+      const dateParts = dateString.split("-");
+      if (dateParts.length >= 2) {
+        return `${dateParts[1]}월${dateParts[2]}일`;
+      }
+    }
+    return timeString;
+  };
+
   // 로딩 상태
   if (loading) {
     return (
@@ -164,13 +185,11 @@ function ShowDetail() {
           <div className={styles.intro_Info}>
             <div className={styles.show_Top}>공연정보</div>
             <div className={styles.intro_con}>
-              {show && (
-                <img
-                  src={show.poster}
-                  className={styles.show_Pic}
-                  alt="show_IMG"
-                />
-              )}
+              <img
+                src={show.photo}
+                className={styles.show_Pic}
+                alt="show_IMG"
+              />
               <div className={styles.show_Info}>
                 <div className={styles.title}>
                   {show?.showName || "타이틀 정보 없음"}
@@ -239,42 +258,45 @@ function ShowDetail() {
             <div className={styles.selectSch}>
               {show &&
                 Array.isArray(show.scheduleList) &&
-                show.scheduleList.map((sch) => {
-                  const isFull = sch.applyPeople >= sch.maxPeople;
+                show.scheduleList
+                  .filter((sch) => sch != null) // null/undefined 제거
+                  .map((sch) => {
+                    const isFull = sch.applyPeople >= sch.maxPeople;
 
-                  return (
-                    <label
-                      className={`${styles.sch_Item} ${
-                        isFull ? styles.disabled_Label : ""
-                      }`}
-                      key={sch.scheduleId}
-                    >
-                      <input
-                        type="radio"
-                        value={sch.scheduleId}
-                        name="schedule"
-                        disabled={isFull}
-                        className={styles.ticket_Radio}
-                        onChange={(e) =>
-                          setSelectedSch(
-                            show?.scheduleList.find(
-                              (s) => s.scheduleId === Number(e.target.value)
+                    return (
+                      <label
+                        className={`${styles.sch_Item} ${
+                          isFull ? styles.disabled_Label : ""
+                        }`}
+                        key={sch.scheduleId}
+                      >
+                        <input
+                          type="radio"
+                          value={sch.scheduleId}
+                          name="schedule"
+                          disabled={isFull}
+                          className={styles.ticket_Radio}
+                          onChange={(e) =>
+                            setSelectedSch(
+                              show.scheduleList.find(
+                                (s) => s?.scheduleId === Number(e.target.value)
+                              )
                             )
-                          )
-                        }
-                      />
-                      {sch.order}공: {sch.date} {sch?.time || "시간 정보 없음"}|{" "}
-                      {formatPrice(sch.cost)}원 |{" "}
-                      {isFull ? (
-                        <span className={styles.disabled_Label}>매진</span>
-                      ) : (
-                        <span className={styles.people_Count}>
-                          {sch.applyPeople}/{sch.maxPeople}
-                        </span>
-                      )}
-                    </label>
-                  );
-                })}
+                          }
+                        />
+                        {sch.order}공: {sch.date}{" "}
+                        {sch?.time || "시간 정보 없음"} |{" "}
+                        {formatPrice(sch.cost)}원 |{" "}
+                        {isFull ? (
+                          <span className={styles.disabled_Label}>매진</span>
+                        ) : (
+                          <span className={styles.people_Count}>
+                            {sch.applyPeople}/{sch.maxPeople}
+                          </span>
+                        )}
+                      </label>
+                    );
+                  })}
             </div>
           </div>
           <div className={styles.ticket_Box}>
@@ -299,21 +321,53 @@ function ShowDetail() {
                 className={`${
                   selectedSch ? styles.Reser_Btn : styles.Reser_Btn_dis
                 }`}
-                onClick={handleReser}
+                onClick={() => {
+                  setOpen(true);
+                }}
                 disabled={isDisable}
               >
                 예매하기
               </button>
-              <Modal isOpen={open} onClose={() => SetOpen(false)}>
-                <div>
-                  <p>예매를 진행하시겠어요?</p>
+              <Modal
+                shouldCloseOnOverlayClick={false} // 오버레이 클릭 비활성화
+                onRequestClose={() => setOpen(false)}
+                className={styles.modal}
+                isOpen={open}
+                onClose={() => setOpen(false)}
+              >
+                <div className={styles.modal_}>
+                  <div className={styles.modal_top}>
+                    <p>예매를 진행하시겠어요?</p>
+                  </div>
+                  <div>
+                    {selectedSch && (
+                      <div className={styles.modal_con}>
+                        <div>
+                          <span className={styles.modal_strong}>
+                            {selectedSch.order}공 {formatDate(selectedSch.date)}{" "}
+                            {count}매
+                          </span>
+                          가 맞는지{""}
+                        </div>
+                        <div>{"\n"}다시 확인해주세요.</div>
+                      </div>
+                    )}
+                  </div>
+                  <div className={styles.modal_Btns}>
+                    <button
+                      className={styles.modal_close_Btn}
+                      onClick={() => setOpen(false)}
+                    >
+                      취소
+                    </button>
+                    <button
+                      className={styles.modal_reserv_Btn}
+                      onClick={handleReser}
+                    >
+                      예매하기
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  {selectedSch.order}공 {selectedSch.date} {selectedSch.time}{" "}
-                  {count}매가 맞는지 다시 확인해주세요.
-                </div>
-                <button onClick={() => SetOpen(false)}>취소</button>
-                <button>예매하기</button>
               </Modal>
             </div>
           </div>
