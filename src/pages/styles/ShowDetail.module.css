@@ -75,7 +75,7 @@
 }
 
 .show_Info {
-  width: 550px;
+  width: 650px;
   margin-left: 64px;
   text-align: left;
 }
@@ -107,7 +107,7 @@
 .info_Box {
   display: flex;
   gap: 10px;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -133,10 +133,13 @@
   margin-bottom: 100px;
   justify-content: space-between;
   align-items: flex-start;
-  width: 100%;
   display: flex;
   text-align: left;
   gap: 20px;
+  width: 79.9375rem;
+  max-width: 1200px;
+  height: 24.375rem;
+  flex-shrink: 0;
 }
 
 .disabled_Label {
@@ -193,15 +196,15 @@
 
 .total {
   font-family: "IBM Plex Sans KR";
-  font-weight: bold;
-  font-size: 56px;
+  font-size: 3.5rem;
+  font-style: normal;
+  font-weight: 700;
+  font-weight: bolder;
+  line-height: 5.25rem; /* 150% */
   letter-spacing: 0.105rem;
-  margin-bottom: 1.94rem;
 }
 
 .Reser_Btn {
-  width: 260px;
-  height: 41px;
   background: #ff3d12;
   color: #fbfbfb;
   border: none;
@@ -211,11 +214,15 @@
   font-weight: 400;
   line-height: 2.0625rem; /* 165% */
   letter-spacing: 0.0125rem;
+
+  display: inline-flex;
+  padding: 0.25rem 5.35rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
 }
 
 .Reser_Btn_dis {
-  width: 260px;
-  height: 41px;
   color: #7f7f7f;
   background: #acacac;
   border: none;
@@ -225,6 +232,12 @@
   font-weight: 400;
   line-height: 2.0625rem; /* 165% */
   letter-spacing: 0.0125rem;
+
+  display: inline-flex;
+  padding: 0.25rem 5.35rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
 }
 
 .modal_strong {
