@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./styles/MyReservCard.module.css";
 
 function MyReservCard({ data }) {
+  const navigate = useNavigate();
   if (!data) return null;
 
   const {
+    scheduleId,
     poster,
     title,
     scheduleInfo,
@@ -16,10 +19,18 @@ function MyReservCard({ data }) {
     paid,
   } = data;
 
+  const handleImageClick = () => {
+    if (scheduleId < 5) {
+      navigate(`/show/1`);
+    } else {
+      navigate(`/show/${Math.floor(scheduleId / 5) + 1}`);
+    }
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.card_img_box}>
-        <img className={styles.card_img} src={poster} alt="공연 이미지" />
+        <img className={styles.card_img} src={poster} alt="공연 이미지" onClick={handleImageClick} />
       </div>
       <div className={styles.card_text_box}>
         <div className={styles.card_title}>{title || "공연 제목 없음"}</div>
