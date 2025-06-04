@@ -22,6 +22,9 @@ function ShowDetail() {
   const [completedModalOpen, setCompletedModalOpen] = useState(false);
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("jwt");
+
+  const navigate = useNavigate();
   const JWT_TOKEN = process.env.REACT_APP_JWT_TOKEN;
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -84,6 +87,7 @@ function ShowDetail() {
       alert("예매완료되었습니다!");
       setOpen(false); // 모달 닫기
       window.location.reload();
+
     } catch (error) {
       console.log("예매 데이터 보내기 실패: ", error);
       alert("예매 실패되었습니다");
@@ -185,11 +189,13 @@ function ShowDetail() {
           <div className={styles.intro_Info}>
             <div className={styles.show_Top}>공연정보</div>
             <div className={styles.intro_con}>
-              <img
-                src={show.photo}
-                className={styles.show_Pic}
-                alt="show_IMG"
-              />
+              {show && (
+                <img
+                  src={show.photo}
+                  className={styles.show_Pic}
+                  alt="show_IMG"
+                />
+              )}
               <div className={styles.show_Info}>
                 <div className={styles.title}>
                   {show?.showName || "타이틀 정보 없음"}
