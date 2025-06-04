@@ -1,5 +1,5 @@
 {
-  "proxy": "http://jinjigui.info:8080",
+
   "name": "mobogga_front",
   "version": "0.1.0",
   "private": true,
