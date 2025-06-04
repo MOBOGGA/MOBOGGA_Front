@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./styles/Landing.module.css";
 import GoogleStartBtnDefault from "../assets/GoogleStartBtn-Default.svg";
 import GoogleStartBtnHover from "../assets/GoogleStartBtn-Hover.svg";
@@ -8,7 +7,6 @@ import LandingPageWords from "../assets/LandingPageWords.svg";
 
 function Landing() {
   const [isHovering, setIsHovering] = useState(false);
-  const navigate = useNavigate();
 
   const onMouseOver = () => {
     setIsHovering(true);
