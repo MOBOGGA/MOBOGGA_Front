@@ -17,6 +17,8 @@
 .show_Intro {
   display: flex;
   padding-left: 20px;
+
+  margin-bottom: 200px;;
 }
 
 .intro_Info {

@@ -76,7 +76,7 @@ function EntertainDetail() {
             <div className={styles.show_Top}>즐길거리 정보</div>
             <div className={styles.intro_con}>
               <img
-                src="../assets/bannerTest/1.png"
+                src={entertainList?.photo || "https://via.placeholder.com/150"}
                 className={styles.show_Pic}
                 alt="show_IMG"
               />
@@ -133,7 +133,9 @@ function EntertainDetail() {
                   </div>
 
                   <div className={styles.info_Box}>
-                    <span className={styles.fixed_Info}>기타정보</span>
+                  <div className={styles.textBox}>
+                    <span className={styles.fixed_Info1}>기타정보</span>
+                    </div>
                     <span className={styles.variable_Info}>
                       {entertainList?.etcInfo || "공지 정보 없음"}
                     </span>
