@@ -6,6 +6,7 @@ import styles from "./styles/ShowDetail.module.css";
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import Modal from "../components/Modal";
 
 function ShowDetail() {
   const { showId } = useParams();
@@ -18,6 +19,8 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const token =
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyMjEwMDEzMEBoYW5kb25nLmFjLmtyIiwiZXhwIjoxNzQ4OTg4NDY1LCJyb2xlIjoiUk9MRV9VU0VSIn0.eSbSxTakRmQZgaI6JaD5I3LSydUwIAk5LRIakMiKzQWKgv8Gt1ftRSSh5FOcJptqsok98THUyw2gNMiubqy1dg";
 
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
@@ -28,14 +31,12 @@ function ShowDetail() {
 
     try {
       const response = await axios.get(
-        `https://jinjigui.info:443/show/${showId}`
+        `https://jinjigui.info:443/show/detail/${showId}`
       );
       console.log("API 응답 데이터:", response.data);
-      if (response.data && response.data.show) {
-        setShow(response.data.show);
+      if (response.data) {
+        setShow(response.data);
         setError(null);
-      } else {
-        setError("공연 정보를 찾을 수 없습니다.");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -68,7 +69,12 @@ function ShowDetail() {
       console.log(requestData);
       const response = await axios.post(
         `https://jinjigui.info:443/show/detail/reservation`,
-        requestData
+        requestData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("예매 데이터 보내기 성공: ", response.data);
       reservationData(response.data);
@@ -117,6 +123,8 @@ function ShowDetail() {
       );
       if (count < maxAvailable) {
         setCount(count + 1);
+      } else {
+        alert("버튼을 누를 수 없습니다. ");
       }
     }
   };
@@ -157,7 +165,7 @@ function ShowDetail() {
             <div className={styles.show_Top}>공연정보</div>
             <div className={styles.intro_con}>
               <img
-                src="../assets/bannerTest/1.png"
+                src={show.photo}
                 className={styles.show_Pic}
                 alt="show_IMG"
               />
@@ -166,42 +174,54 @@ function ShowDetail() {
                   {show?.showName || "타이틀 정보 없음"}
                 </div>
                 <div className={styles.club}>
-                  {show?.clubName || "동아리 정보 없음"}
+                  {show?.clubName ? `${show?.clubName}>` : "동아리 정보 없음"}
                 </div>
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
-                    <span className={styles.fixed_Info}>소개글</span>
+                    <span className={styles.fixed_Info}>
+                      <span className={styles.info_txt}>소개글</span>
+                    </span>
                     <span className={styles.variable_Info}>
                       {show?.introductionLetter || "소개글 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
-                    <span className={styles.fixed_Info}>장소</span>
+                    <span className={styles.fixed_Info}>
+                      <span className={styles.info_txt}>장소</span>
+                    </span>
                     <span className={styles.variable_Info}>
                       {show?.location || "장소 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
-                    <span className={styles.fixed_Info}>날짜</span>
+                    <span className={styles.fixed_Info}>
+                      <span className={styles.info_txt}>날짜</span>
+                    </span>
                     <span className={styles.variable_Info}>
                       {show?.startDate || "시작 날짜 정보 없음"} -
                       {show?.endDate || "끝 날짜 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
-                    <span className={styles.fixed_Info}>러닝타임</span>
+                    <span className={styles.fixed_Info}>
+                      <span className={styles.info_txt}>러닝타임</span>
+                    </span>
                     <span className={styles.variable_Info}>
                       {show?.runtime || "러닝타임 정보 없음"}분
                     </span>
                   </div>
                   <div className={styles.info_Box}>
-                    <span className={styles.fixed_Info}>담당자</span>
+                    <span className={styles.fixed_Info}>
+                      <span className={styles.info_txt}>담당자</span>
+                    </span>
                     <span className={styles.variable_Info}>
                       {show?.managerInfo || "담당자 정보 없음"}
                     </span>
                   </div>
                   <div className={styles.info_Box}>
-                    <span className={styles.fixed_Info}>공지</span>
+                    <span className={styles.fixed_Info}>
+                      <span className={styles.info_txt}>공지</span>
+                    </span>
                     <span className={styles.variable_Info}>
                       {show?.noticeLetter || "공지 정보 없음"}
                     </span>
@@ -241,11 +261,8 @@ function ShowDetail() {
                           )
                         }
                       />
-                      {sch.order}공: {sch.date}{" "}
-                      {`${sch.time.hour}시 ${sch.time.minute
-                        .toString()
-                        .padStart(2, "0")}분`}{" "}
-                      | {formatPrice(sch.cost)}원 |{" "}
+                      {sch.order}공: {sch.date} {sch?.time || "시간 정보 없음"}|{" "}
+                      {formatPrice(sch.cost)}원 |{" "}
                       {isFull ? (
                         <span className={styles.disabled_Label}>매진</span>
                       ) : (
@@ -285,6 +302,17 @@ function ShowDetail() {
               >
                 예매하기
               </button>
+              <Modal isOpen={open} onClose={() => SetOpen(false)}>
+                <div>
+                  <p>예매를 진행하시겠어요?</p>
+                </div>
+                <div>
+                  {selectedSch.order}공 {selectedSch.date} {selectedSch.time}{" "}
+                  {count}매가 맞는지 다시 확인해주세요.
+                </div>
+                <button onClick={() => SetOpen(false)}>취소</button>
+                <button>예매하기</button>
+              </Modal>
             </div>
           </div>
         </div>
