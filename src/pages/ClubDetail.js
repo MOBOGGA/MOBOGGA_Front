@@ -30,7 +30,8 @@ function ClubDetail() {
 
       const getClub = async () => {
         try {
-          const res = await axios.get(`${process.env.REACT_APP_API_URL}/club/detail/${id}`);
+          const res = await axios.get(`http://jinjigui.info:8080/club/detail/${id}`);
+
           console.log("club 데이터 가져오기 성공");
           console.log(res.data);
           setClub(res.data);

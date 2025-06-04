@@ -20,7 +20,8 @@ function EntertainDetail() {
   useEffect(() => {
     const fetchShow = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/entertain/detail/${id}`);
+        const res = await axios.get(`http://jinjigui.info:8080/entertain/detail/${id}`);
+
         console.log(res.data);
 
         setShow(res.data);
