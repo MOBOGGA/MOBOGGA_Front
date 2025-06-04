@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./styles/ShowDetail.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
-import { useNavigate, useParams } from "react-router-dom";
+import { redirect, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Modal from "../components/Modal";
 
@@ -19,7 +19,7 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [completedModalOpen, setCompletedModalOpen] = useState(false);
+  // const [completedModalOpen, setCompletedModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
@@ -364,7 +364,10 @@ function ShowDetail() {
                     </button>
                     <button
                       className={styles.modal_reserv_Btn}
-                      onClick={handleReser}
+                      onClick={() => {
+                        handleReser;
+                        window.location.reload();
+                      }}
                     >
                       예매하기
                     </button>
