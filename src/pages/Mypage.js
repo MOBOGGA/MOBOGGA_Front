@@ -6,7 +6,6 @@ import MyReservCard from "../components/MyReservCard";
 
 function Mypage() {
   const navigate = useNavigate();
-  const userId = sessionStorage.getItem("userId");
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -42,12 +41,17 @@ function Mypage() {
     navigate(`/mypage/update`);
   };
 
+  const token = localStorage.getItem("jwt");
+
   const fetchUserProfile = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/mypage/update/${userId}`,
+        `${process.env.REACT_APP_API_URL}/mypage/student/profile`,
         {
-          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {
@@ -59,10 +63,10 @@ function Mypage() {
 
       // 서버에서 받은 데이터를 폼 데이터 형식에 맞게 변환
       setFormData({
-        userName: userData.user.userName || "",
-        email: userData.user.email || "",
-        phoneNum: userData.user.phoneNum || "",
-        stdId: userData.user.stdId || "",
+        userName: userData.name || "",
+        email: userData.email || "",
+        phoneNum: userData.phoneNumber || "",
+        stdId: userData.studentId || "",
       });
     } catch (error) {
       console.error("Error fetching user profile:", error);
@@ -79,32 +83,42 @@ function Mypage() {
   const getMyReservCards = async () => {
     console.log("getMyReservCards 함수 시작");
     try {
-      const userId = sessionStorage.getItem("serverResponse");
       console.log("로딩 상태 설정: true");
       setIsLoading(true);
       setError(null);
 
-      console.log("API 요청 시작");
+      console.log("API 요청 시작222");
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/mypage/reservation/${userId}`
+        `${process.env.REACT_APP_API_URL}/mypage/student/reservation`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       console.log("API 응답 수신:", response.status);
 
-      // if (!response.ok) {
-      //   throw new Error('예매 내역을 불러오는데 실패했습니다.');
-      // }
+      if (!response.ok) {
+        throw new Error("예매 내역을 불러오는데 실패했습니다.");
+      }
 
       console.log("응답 데이터 파싱 시작");
-      const json = await response.json();
-      console.log("파싱된 데이터:", json);
+      const myreserv = await response.json();
+      console.log("파싱된 데이터:", myreserv);
 
       // 데이터 검증 추가
-      // if (!json || !json.user_reservation_list) {
-      //   throw new Error('예매 내역 데이터 형식이 올바르지 않습니다.');
-      // }
+      if (!myreserv || !myreserv.performanceList) {
+        throw new Error("예매 내역 데이터 형식이 올바르지 않습니다.");
+      }
 
-      console.log("예매 내역 데이터 설정:", json.user_reservation_list);
-      setMyReservCards(json.user_reservation_list);
+      console.log("예매 내역 데이터 설정:", myreserv.performanceList);
+      setMyReservCards(myreserv.performanceList); // Update to set the correct data
+      console.log(myReservCards);
+
+      if (myreserv.performanceList.length === 0) {
+        console.warn("예매 내역이 없습니다.");
+      }
     } catch (err) {
       console.error("에러 발생:", err);
       setError(err.message);
@@ -119,7 +133,7 @@ function Mypage() {
   useEffect(() => {
     fetchUserProfile();
     getMyReservCards();
-  }, [userId]);
+  }, []);
 
   if (isLoading) {
     console.log("로딩 중 화면 렌더링");
@@ -201,38 +215,27 @@ function Mypage() {
         <div className={styles.container}>
           <div className={styles.reservlist_title}>공연 예매 내역</div>
           <div className={styles.reservlist_content}>
-            {isLoading && <div className="loading">로딩중...</div>}
-            {/* {error && (
-              <div className="error-message">
-                에러: {error}
-                <button onClick={getMyReservCards} className="retry-button">
-                  다시 시도
-                </button>
-              </div>
-            )} */}
-            {/* {myReservCards && myReservCards.length === 0 ? (
-              <div className={styles.no_reserv}>예매 내역이 없습니다.</div>
-            ) : (
-              myReservCards.map((myReservCard) => {
-                console.log("예매 카드 렌더링:", myReservCard.ticketNumber);
-                console.log(myReservCard);
-                return (
-                  <div
-                    key={myReservCard.ticketNumber}
-                    className="myreservlist-page-content"
-                  >
-                    <MyReservCard show={myReservCard.show.id} />
+            <div className={styles.reservlist_content}>
+              {isLoading && <div className="loading">로딩중...</div>}
+              {error && (
+                <div className="error-message">
+                  에러: {error}
+                  <button onClick={getMyReservCards} className="retry-button">
+                    다시 시도
+                  </button>
+                </div>
+              )}
+              {!isLoading && !error && myReservCards.length === 0 && (
+                <div className={styles.no_reserv}>예매 내역이 없습니다.</div>
+              )}
+              {!isLoading &&
+                !error &&
+                myReservCards.map((myReservCard) => (
+                  <div key={myReservCard.scheduleId} className="myreservcard">
+                    <MyReservCard data={myReservCard} />
                   </div>
-                );
-              })
-            )} */}
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-            <MyReservCard />
-
+                ))}
+            </div>
           </div>
         </div>
       </div>

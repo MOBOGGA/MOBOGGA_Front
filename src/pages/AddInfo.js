@@ -26,7 +26,7 @@ function AddInfo() {
     const fetchUserProfile = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/mypage/update/${userId}`,
+          `${process.env.REACT_APP_API_URL}/mypage/profile`,
           {
             credentials: "include",
           }
@@ -64,7 +64,8 @@ function AddInfo() {
       ...prev,
       [name]: value,
     }));
-    // 상태 업데이트
+
+    // 상태 업데이트 (별도로 state를 유지할 필요는 없지만 유지하려면 아래처럼)
     if (name === "userName") {
       setName(value);
     } else if (name === "stdId") {
@@ -96,7 +97,7 @@ function AddInfo() {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/mypage/save/${userId}`,
+        `${process.env.REACT_APP_API_URL}/mypage/profile`,
         {
           method: "PUT",
           headers: {
@@ -162,9 +163,10 @@ function AddInfo() {
               <div className={styles.info_head}>이름</div>
               <div className={styles.info_body}>
                 <input
+                  name="userName"
                   placeholder="이름"
                   value={formData.userName}
-                  onChange={(e) => handleInputChange({ userName: e.target.value })}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -172,9 +174,10 @@ function AddInfo() {
               <div className={styles.info_head}>학번</div>
               <div className={styles.info_body}>
                 <input
+                  name="stdId"
                   placeholder="학번 8자리"
                   value={formData.stdId}
-                  onChange={(e) => handleInputChange({ stdId: e.target.value })}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -183,11 +186,11 @@ function AddInfo() {
               <div className={styles.info_body}>
                 <input
                   type="tel"
-                  name="phone"
+                  name="phoneNum"
                   id="phone"
                   placeholder="010-0000-0000"
                   value={formData.phoneNum}
-                  onChange={(e) => handleInputChange({ phoneNum: e.target.value })}
+                  onChange={handleInputChange}
                   pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
                   maxLength="13"
                 />
@@ -202,8 +205,9 @@ function AddInfo() {
               alert("모든 정보를 입력해주세요.");
               return;
             }
-            console.log({ name, studentId, phoneNum });
-            navigate("/main");
+            console.log({ userName: formData.userName, stdId: formData.stdId, phoneNum: formData.phoneNum });
+            saveProfile();
+            // navigate("/main");
           }}
         />
         <div className={styles.caution}>
