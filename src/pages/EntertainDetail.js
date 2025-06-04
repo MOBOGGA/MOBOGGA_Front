@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import { useState, useEffect } from "react";
-import styles from "./styles/Entertain.module.css"; 
+import styles from "./styles/Entertain.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,8 +20,10 @@ function EntertainDetail() {
   useEffect(() => {
     const fetchShow = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/entertain/detail/${id}`);
-        
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/entertain/detail/${id}`
+        );
+
         console.log(res.data);
 
         setShow(res.data);
@@ -33,14 +35,15 @@ function EntertainDetail() {
     fetchShow();
   }, [id]);
 
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchShow = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/entertain/detail/${id}`);
-        
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/entertain/detail/${id}`
+        );
+
         console.log(res.data);
 
         setShow(res.data);
@@ -58,7 +61,7 @@ function EntertainDetail() {
     return <div>Loading...</div>;
   }
 
-  // const entertainList = 
+  // const entertainList =
   //   {
   //     entertainId: 1,
   //     entertainName: "MIC WORKSHOP",
@@ -75,20 +78,19 @@ function EntertainDetail() {
   // 장소: 학관 지하 대형 연습실
   // 신청마감: 3/10(월) 자정
   // 🎵1차 노래: Trip - Ella Mai
-  
+
   // <2차>
   // 일시: 3월 13일 목요일(주차: 목요일)
   // 시간: 19:00-20:30
   // 장소: 학관 지하 대형 연습실
   // 🎵2차 노래: Light Show - Matt Corman
-  
+
   // 인스타 프로필 하단 링크트리에서도 확인하실 수 있습니다!`,
   //     instaUrl: "https://www.instagram.com/", // 실제 인스타 URL로 교체
   //     url: "https://your-linktree-url.com"    // 실제 링크트리나 기타 URL로 교체
   //   }
   // ;
-  
-  
+
   return (
     <div className={styles.wrap}>
       <div className={styles.back_Div}>
@@ -108,12 +110,16 @@ function EntertainDetail() {
               />
 
               <div className={styles.show_Info}>
-
                 <div className={styles.title}>
                   {entertainList?.entertainName || "타이틀 정보 없음"}
                 </div>
-                <div className={styles.club} onClick={() => navigate("/clubs/1")}>
-                  {entertainList?.clubName ? `${entertainList?.clubName} >` : "동아리 정보 없음"}
+                <div
+                  className={styles.club}
+                  onClick={() => navigate("/clubs/1")}
+                >
+                  {entertainList?.clubName
+                    ? `${entertainList?.clubName} >`
+                    : "동아리 정보 없음"}
                 </div>
 
                 <div className={styles.infos}>
@@ -159,8 +165,8 @@ function EntertainDetail() {
                   </div>
 
                   <div className={styles.info_Box}>
-                  <div className={styles.textBox}>
-                    <span className={styles.fixed_Info1}>기타정보</span>
+                    <div className={styles.textBox}>
+                      <span className={styles.fixed_Info1}>기타정보</span>
                     </div>
                     <div className={styles.inner}>
                       <span className={styles.variable_Info}>
@@ -169,7 +175,6 @@ function EntertainDetail() {
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
