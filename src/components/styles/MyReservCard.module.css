@@ -13,6 +13,9 @@
 .card_img {
   width: 145px;
   height: 205px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .card_text_box {
@@ -31,6 +34,9 @@
   letter-spacing: 0.96px;
   margin-bottom: 5px;
   text-overflow: ellipsis;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .card_content {

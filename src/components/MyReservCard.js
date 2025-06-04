@@ -19,7 +19,7 @@ function MyReservCard({ data }) {
     paid,
   } = data;
 
-  const handleImageClick = () => {
+  const handleShowDetail = () => {
     if (scheduleId < 5) {
       navigate(`/show/1`);
     } else {
@@ -30,10 +30,10 @@ function MyReservCard({ data }) {
   return (
     <div className={styles.card}>
       <div className={styles.card_img_box}>
-        <img className={styles.card_img} src={poster} alt="공연 이미지" onClick={handleImageClick} />
+        <img className={styles.card_img} src={poster} alt="공연 이미지" onClick={handleShowDetail} />
       </div>
       <div className={styles.card_text_box}>
-        <div className={styles.card_title}>{title || "공연 제목 없음"}</div>
+        <div className={styles.card_title} onClick={handleShowDetail}>{title || "공연 제목 없음"}</div>
         <div className={styles.card_info_box}>
           <div className={styles.card_content}>
             <div className={styles.card_info_header} id={styles.order_box}>
