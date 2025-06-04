@@ -1,7 +1,7 @@
 .card {
-  width: 700px;
-  height: 300px;
-  margin-bottom: 32px;
+  width: 600px;
+  height: 230px;
+  margin-bottom: 20px;
   display: flex;
 }
 
@@ -30,6 +30,7 @@
   line-height: 48px; /* 150% */
   letter-spacing: 0.96px;
   margin-bottom: 5px;
+  text-overflow: ellipsis;
 }
 
 .card_content {
@@ -40,6 +41,8 @@
 
 .card_content_hidden {
   visibility: hidden;
+  height: 24px;
+  overflow: hidden;
 }
 
 #account_info {
