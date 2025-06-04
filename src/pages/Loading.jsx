@@ -22,6 +22,10 @@ const Loading = () => {
           throw new Error("CSRF 방지를 위한 상태 값이 일치하지 않습니다.");
         }
 
+        if (!state || !savedState || state !== savedState) {
+          throw new Error("CSRF 방지를 위한 상태 값이 유효하지 않습니다.");
+        }
+
         if (!idToken) {
           throw new Error("세션이 만료되었습니다. 로그인을 다시 해주세요.");
         }
@@ -43,11 +47,14 @@ const Loading = () => {
 
   return (
     <div id="loading">
-      {error ? (
-        <div className={styles.error_text}>{error}</div>
-      ) : isLoading ? (
-        <div className={styles.loading_text}>로딩 중...</div>
-      ) : null}
+      {isLoading && <div className={styles.loading_text}>로딩 중...</div>}
+      {!isLoading && error && (
+        <div className={styles.error_text}>
+          {error}
+          <br />
+          <button onClick={() => navigate("/login")}>로그인 페이지로 이동</button>
+        </div>
+      )}
     </div>
   );
 };

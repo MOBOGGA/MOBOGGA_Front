@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./styles/RecruitingCard.module.css";
 
-function RecruitingCard({ show }) {
+function RecruitingCard({ show, onClick  }) {
   return (
-    <div className={styles.showCard}>
+    <div className={styles.showCard} onClick={onClick}>
       <div className={styles.card}>
         <img src={show.poster} alt={show.club} className={styles.mainImg}/>
       </div>

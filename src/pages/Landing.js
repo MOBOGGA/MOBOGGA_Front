@@ -19,7 +19,7 @@ function Landing() {
   };
 
   const onClickGoogleStartBtn = () => {
-    navigate(`/add-info`);
+    navigate(`/login`);
   };
 
   return (

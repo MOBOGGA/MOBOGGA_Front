@@ -9,6 +9,7 @@ import Landing from "./pages/Landing";
 import ShowDetail from "./pages/ShowDetail";
 
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import Clubs from "./pages/Clubs";
 import Recruiting from "./pages/Recruiting";
 import RecruitingDetail from "./pages/RecruitingDetail";
@@ -17,6 +18,7 @@ import Mypage from "./pages/Mypage";
 import UpdateProfile from "./pages/UpdateProfile";
 import ClubDetail from "./pages/ClubDetail";
 import Loading from "./pages/Loading";
+import EntertainDetail from "./pages/EntertainDetail";
 
 import "./App.css";
 
@@ -30,6 +32,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/show/:showId" element={<ShowDetail />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/Recruiting" element={<Recruiting />} />
           <Route
@@ -41,6 +44,8 @@ function App() {
           <Route path="/mypage/update" element={<UpdateProfile />} />
           <Route path="/clubs/:id" element={<ClubDetail />} />
           <Route path="/loading" element={<Loading />} />
+          <Route path="/entertain/:id" element={<EntertainDetail />} />
+
         </Routes>
         <Footer />
       </div>

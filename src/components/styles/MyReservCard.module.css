@@ -1,6 +1,6 @@
 .card {
-  width: 463px;
-  height: 205px;
+  width: 700px;
+  height: 300px;
   margin-bottom: 32px;
   display: flex;
 }
@@ -35,7 +35,15 @@
 .card_content {
   display: flex;
   flex-direction: row;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
+}
+
+.card_content_hidden {
+  visibility: hidden;
+}
+
+#account_info {
+  color: var(--ORANGE);
 }
 
 .card_info_box {

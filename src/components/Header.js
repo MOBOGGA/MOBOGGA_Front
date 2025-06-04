@@ -34,19 +34,23 @@ function Header() {
       </div>
 
       <div className={styles.right}>
-        <div className={location.pathname === "/main" ? `${styles.watching} ${styles.selectPadding}` : styles.back} onClick={() => navigate("/main")}>
-          <img src={header1} alt ="" className={location.pathname === "/main" ? styles.background : styles.nan}/>
-          <span className={location.pathname === "/main" ? styles.fronttext : ""}>볼거리</span>
+        <div className={location.pathname === "/main" || location.pathname.startsWith("/show") ? `${styles.watching} ${styles.selectPadding}` : styles.back} onClick={() => navigate("/main")}>
+          <img src={header1} alt ="" className={location.pathname === "/main" || location.pathname.startsWith("/show") || location.pathname.startsWith("/entertain") ? styles.background : styles.nan}/>
+          <span className={location.pathname === "/main" || location.pathname.startsWith("/show") || location.pathname.startsWith("/entertain")? styles.fronttext : ""}>볼거리</span>
+        </div> 
+
+        <div className={location.pathname.startsWith("/recruiting") ?
+     `${styles.recruiting} ${styles.selectPadding}`: styles.back} onClick={() => navigate("/recruiting")}>
+          <img src={header2} alt ="" className={location.pathname.startsWith("/recruiting") ? styles.background : styles.nan}/>
+          <span className={location.pathname.startsWith("/recruiting") ? styles.fronttext : ""}>리크루팅</span>
         </div>
 
-        <div className={location.pathname === "/recruiting" ? `${styles.recruiting} ${styles.selectPadding}`: styles.back} onClick={() => navigate("/recruiting")}>
-          <img src={header2} alt ="" className={location.pathname === "/recruiting" ? styles.background : styles.nan}/>
-          <span className={location.pathname === "/recruiting" ? styles.fronttext : ""}>리크루팅</span>
-        </div>
-
-        <div className={location.pathname === "/clubs" ? `${styles.club} ${styles.selectPadding}` : styles.back} onClick={() => navigate("/clubs")}>
-          <img src={header3} alt ="" className={location.pathname === "/clubs" ? styles.background : styles.nan}/>
-          <span className={location.pathname === "/clubs" ? styles.fronttext : ""}>동아리</span>
+        <div className={location.pathname.startsWith("/clubs") 
+    ? `${styles.club} ${styles.selectPadding}` : styles.back} onClick={() => navigate("/clubs")}>
+          <img src={header3} alt ="" className={location.pathname.startsWith("/clubs") 
+    ? styles.background : styles.nan}/>
+          <span className={location.pathname.startsWith("/clubs") 
+    ? styles.fronttext : ""}>동아리</span>
         </div>
 
         <div className={styles.login} onClick={() => navigate("/login")}>
