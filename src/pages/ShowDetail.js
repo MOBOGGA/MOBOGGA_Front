@@ -33,7 +33,7 @@ function ShowDetail() {
 
     try {
       const response = await axios.get(
-        `http://jinjigui.info:8080/show/detail/${showId}`
+        `${process.env.REACT_APP_API_URL}/show/detail/${showId}`
       );
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
@@ -71,7 +71,7 @@ function ShowDetail() {
       console.log(requestData);
       console.log("JWT_TOKEN: ", token);
       const response = await axios.post(
-        `http://jinjigui.info:8080/show/detail/reservation`,
+        `${process.env.REACT_APP_API_URL}/show/detail/reservation`,
         requestData,
         {
           headers: {
@@ -206,8 +206,8 @@ function ShowDetail() {
                 <div className={styles.title}>
                   {show?.showName || "타이틀 정보 없음"}
                 </div>
-                <div className={styles.club}>
-                  {show?.clubName ? `${show?.clubName}>` : "동아리 정보 없음"}
+                <div className={styles.club} onClick={() => navigate("/clubs/1")}>
+                  {show?.clubName ? `${show?.clubName} >` : "동아리 정보 없음"}
                 </div>
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
