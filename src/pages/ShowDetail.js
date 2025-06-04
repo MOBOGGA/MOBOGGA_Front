@@ -376,9 +376,7 @@ function ShowDetail() {
                     </button>
                   </div>
                 </div>
-                <button onClick={() => SetOpen(false)}>취소</button>
-                <button>예매하기</button>
-              </Modal> 
+              </Modal>
             </div>
           </div>
         </div>
