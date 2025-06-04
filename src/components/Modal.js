@@ -1,4 +1,4 @@
-import { IoClose } from "react-icons/io5";
+// import { IoClose } from "react-icons/io5";
 
 const Modal = ({ isOpen, onClose, children }) => {
   // 만약 isOpen이 false이면 null을 반환하여 모달을 렌더링하지 않음
