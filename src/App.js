@@ -42,7 +42,7 @@ function App() {
           <Route path="/mypage/update" element={<UpdateProfile />} />
           <Route path="/clubs/:id" element={<ClubDetail />} />
           <Route path="/loading" element={<Loading />} />
-          <Route path="/entertain/1" element={<EntertainDetail />} />
+          <Route path="/entertain/:id" element={<EntertainDetail />} />
 
         </Routes>
         <Footer />

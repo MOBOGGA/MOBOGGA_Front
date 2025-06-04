@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import { useState, useEffect } from "react";
-import styles from "./styles/"; // ⬅️ CSS 모듈 불러오기
+import styles from "./styles/Entertain.module.css"; 
 
 import BACK from "../assets/ShowBackButton.svg";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,51 +14,53 @@ function EntertainDetail() {
     navigate(-1); // ⬅️ 뒤로가기
   };
 
-  // const { id } = useParams();
-  // const [show, setShow] = useState(null);
+  const { id } = useParams();
+  const [entertainList, setShow] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchShow = async () => {
-  //     try {
-  //       const res = await axios.get(`/show/detail/${id}`);
-  //       setShow(res.data);
-  //     } catch (err) {
-  //       console.error("데이터 로드 실패:", err);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchShow = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_DB_URL}/entertain/detail/${id}`);
+        console.log(res.data);
 
-  //   fetchShow();
-  // }, [id]);
+        setShow(res.data);
+      } catch (err) {
+        console.error("데이터 로드 실패:", err);
+      }
+    };
 
-  const entertainList = 
-    {
-      entertainId: 1,
-      entertainName: "MIC WORKSHOP",
-      clubName: "MIC",
-      photo: "https://your-image-url.com/mic-workshop.jpg", // 실제 이미지 주소로 교체하세요
-      introductionLetter: "MIC에서 워크샵을 진행합니다.\nMIC 워크샵이란? 다양한 동작들을 배워 춤을 직접 춰보는 시간입니다. 또한, 무료로 춤 수업을 받으실 수 있습니다!",
-      category: "체험",
-      location: "학관 지하 대형 연습실",
-      date: "2025.03.11 - 2025.03.13",
-      timeList: "3월 11일(화) 19:00-20:30, 3월 13일(목) 19:00-20:30",
-      etcInfo: `<1차>
-  일시: 3월 11일 화요일(주차: 화요일)
-  시간: 19:00-20:30
-  장소: 학관 지하 대형 연습실
-  신청마감: 3/10(월) 자정
-  🎵1차 노래: Trip - Ella Mai
+    fetchShow();
+  }, [id]);
+
+  // const entertainList = 
+  //   {
+  //     entertainId: 1,
+  //     entertainName: "MIC WORKSHOP",
+  //     clubName: "MIC",
+  //     photo: "https://your-image-url.com/mic-workshop.jpg", // 실제 이미지 주소로 교체하세요
+  //     introductionLetter: "MIC에서 워크샵을 진행합니다.\nMIC 워크샵이란? 다양한 동작들을 배워 춤을 직접 춰보는 시간입니다. 또한, 무료로 춤 수업을 받으실 수 있습니다!",
+  //     category: "체험",
+  //     location: "학관 지하 대형 연습실",
+  //     date: "2025.03.11 - 2025.03.13",
+  //     timeList: "3월 11일(화) 19:00-20:30, 3월 13일(목) 19:00-20:30",
+  //     etcInfo: `<1차>
+  // 일시: 3월 11일 화요일(주차: 화요일)
+  // 시간: 19:00-20:30
+  // 장소: 학관 지하 대형 연습실
+  // 신청마감: 3/10(월) 자정
+  // 🎵1차 노래: Trip - Ella Mai
   
-  <2차>
-  일시: 3월 13일 목요일(주차: 목요일)
-  시간: 19:00-20:30
-  장소: 학관 지하 대형 연습실
-  🎵2차 노래: Light Show - Matt Corman
+  // <2차>
+  // 일시: 3월 13일 목요일(주차: 목요일)
+  // 시간: 19:00-20:30
+  // 장소: 학관 지하 대형 연습실
+  // 🎵2차 노래: Light Show - Matt Corman
   
-  인스타 프로필 하단 링크트리에서도 확인하실 수 있습니다!`,
-      instaUrl: "https://www.instagram.com/", // 실제 인스타 URL로 교체
-      url: "https://your-linktree-url.com"    // 실제 링크트리나 기타 URL로 교체
-    }
-  ;
+  // 인스타 프로필 하단 링크트리에서도 확인하실 수 있습니다!`,
+  //     instaUrl: "https://www.instagram.com/", // 실제 인스타 URL로 교체
+  //     url: "https://your-linktree-url.com"    // 실제 링크트리나 기타 URL로 교체
+  //   }
+  // ;
   
   
   return (
@@ -91,7 +93,7 @@ function EntertainDetail() {
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
                     <div className={styles.textBox}>
-                      <span className={styles.fixed_Info}>소개글</span>
+                      <span className={styles.fixed_Info1}>소개글</span>
                     </div>
 
                     <span className={styles.variable_Info}>
