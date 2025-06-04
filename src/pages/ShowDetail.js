@@ -403,9 +403,15 @@ function ShowDetail() {
                 <div className={styles.modal_top}>
                   <p>예매에 실패하였습니다.</p>
                 </div>
+                <div className={styles.modal_con}>
+                  {token === null ? "로그인 후 다시 이용해 주세요" : ""}
+                </div>
                 <button
                   className={styles.modal_ok_Btn}
-                  onClick={() => setFailModalOpen(false)}
+                  onClick={() => {
+                    setFailModalOpen(false);
+                    window.location.reload();
+                  }}
                 >
                   확인
                 </button>
