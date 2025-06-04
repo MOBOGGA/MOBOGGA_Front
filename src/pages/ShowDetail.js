@@ -19,7 +19,7 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // const navigate = useNavigate();
-  // const token = localStorage.getItem("token");
+  const Token = localStorage.getItem("token");
   const [open, setOpen] = useState(false);
   // const [completedModalOpen, setCompletedModalOpen] = useState(false);
 
@@ -367,10 +367,7 @@ function ShowDetail() {
                     </button>
                     <button
                       className={styles.modal_reserv_Btn}
-                      onClick={() => {
-                        handleReser;
-                        window.location.reload();
-                      }}
+                      onClick={handleReser}
                     >
                       예매하기
                     </button>
