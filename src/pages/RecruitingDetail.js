@@ -53,7 +53,7 @@ function RecruitingDetail() {
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
         setRecruiting(response.data);
-        console.log("API 전체", recruiting);
+        console.log("API 전체", response.data);
       } else {
         console.error("API에 recruiting 데이터가 없습니다.");
         setRecruiting(null);
@@ -84,10 +84,10 @@ function RecruitingDetail() {
       </div>
       <div className={styles.recruite_con}>
         <div className={styles.recruite_Intro}>
-          <div className={styles.intro_Info}>
+          <div className={styles.intro_Info} >
             <div className={styles.recruite_Top}>리크루팅 정보</div>
             <div className={styles.intro_con}>
-              <div className={styles.intro_con_left}>
+              <div className={styles.intro_con_left} style={{width: "600px"}}>
                 {recruiting && (
                   <img
                     src={recruiting.poster}
@@ -95,7 +95,7 @@ function RecruitingDetail() {
                     alt="recruite_IMG"
                   />
                 )}
-                <div className={styles.sns_icons}>
+                <div className={styles.sns_icons} style={{marginBottom: "20px"}}>
                   {recruiting && (
                     <a href={recruiting.instaUrl}>
                       <img
@@ -124,7 +124,7 @@ function RecruitingDetail() {
                     </a>
                   )}
                 </div>
-                <div className={styles.recruite_left_cont}>
+                <div className={styles.recruite_left_cont} style={{marginBottom: "20px"}}>
                   {
                     <span className={styles.clubDeatiltext}>
                       {/* {recruiting.eligibility.split("\n").map((line, index) => (
@@ -187,7 +187,7 @@ function RecruitingDetail() {
               </div>
             </div>
             <div className={styles.recruite_apply}>
-              <button className={styles.apply_Btn} onClick={navigateToAppypage}>
+              <button className={styles.apply_Btn} onClick={navigateToAppypage} style={{marginBottom: "20px"}}>
                 지원하러 가기
               </button>
             </div>
