@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./styles/Mypage.module.css";
 import MyReservCard from "../components/MyReservCard";
 import Modal from "../components/Modal";
+import reload_btn from "../assets/temp/reload_btn.png";
 
 function Mypage() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function Mypage() {
   const handleLogoutCancel = () => {
     setIsLogoutModalOpen(false);
     navigate(`/mypage`);
-  }
+  };
 
   const onClickProfileUpdateBtn = () => {
     navigate(`/mypage/update`);
@@ -214,9 +215,19 @@ function Mypage() {
           </div>
         </div>
         <div className={styles.container}>
-          <div className={styles.reservlist_title}>
-            공연 예매 내역{" "}
-            <span style={{ color: "gray", fontSize: "20px" }}>(최신순)</span>
+          <div className={styles.container_header}>
+            <div className={styles.reservlist_title}>
+              공연 예매 내역{" "}
+              <span style={{ color: "gray", fontSize: "20px" }}>(최신순)</span>
+            </div>
+            <div className={styles.reload_btn_box}>
+              <img
+                src={reload_btn}
+                alt="새로고침"
+                className={styles.reload_icon}
+                onClick={getMyReservCards}
+              />
+            </div>
           </div>
           <div className={styles.reservlist_content}>
             <div className={styles.reservlist_content}>
