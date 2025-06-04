@@ -37,7 +37,7 @@ function Header() {
         <div className={location.pathname === "/main" || location.pathname.startsWith("/show") ? `${styles.watching} ${styles.selectPadding}` : styles.back} onClick={() => navigate("/main")}>
           <img src={header1} alt ="" className={location.pathname === "/main" || location.pathname.startsWith("/show") || location.pathname.startsWith("/entertain") ? styles.background : styles.nan}/>
           <span className={location.pathname === "/main" || location.pathname.startsWith("/show") || location.pathname.startsWith("/entertain")? styles.fronttext : ""}>볼거리</span>
-        </div>
+        </div> 
 
         <div className={location.pathname.startsWith("/recruiting") ?
      `${styles.recruiting} ${styles.selectPadding}`: styles.back} onClick={() => navigate("/recruiting")}>
