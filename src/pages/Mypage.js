@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/Mypage.module.css";
 import MyReservCard from "../components/MyReservCard";
+import Modal from "../components/Modal";
 
 function Mypage() {
   const navigate = useNavigate();
@@ -33,9 +34,21 @@ function Mypage() {
     setIsHoveringUpdateBtn(false);
   };
 
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
   const onClickLogoutBtn = () => {
+    setIsLogoutModalOpen(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setIsLogoutModalOpen(false);
     navigate(`/logout`);
   };
+
+  const handleLogoutCancel = () => {
+    setIsLogoutModalOpen(false);
+    navigate(`/mypage`);
+  }
 
   const onClickProfileUpdateBtn = () => {
     navigate(`/mypage/update`);
@@ -84,7 +97,7 @@ function Mypage() {
     try {
       setIsLoading(true);
       setError(null);
-  
+
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/mypage/student/reservation`,
         {
@@ -95,26 +108,19 @@ function Mypage() {
           credentials: "include",
         }
       );
-  
+
       if (!response.ok) {
         throw new Error("예매 내역을 불러오는데 실패했습니다.");
       }
-  
+
       const data = await response.json();
-  
+
       if (!data || !data.performanceList) {
         throw new Error("예매 내역 데이터 형식이 올바르지 않습니다.");
       }
-  
-      // ✅ 공연일자 기준 최신순 정렬
-      const sortedList = [...data.performanceList].sort((a, b) => {
-        // 날짜 문자열을 Date 객체로 변환
-        const dateA = new Date(a.scheduleInfo.match(/\d{4}\.\d{2}\.\d{2}/)?.[0]);
-        const dateB = new Date(b.scheduleInfo.match(/\d{4}\.\d{2}\.\d{2}/)?.[0]);
-        return dateB - dateA;
-      });
-  
-      setMyReservCards(sortedList);
+
+      setMyReservCards(data.performanceList || []);
+      console.log("예매 내역 데이터:", data.performanceList);
     } catch (err) {
       console.error("에러 발생:", err);
       setError(err.message);
@@ -123,7 +129,6 @@ function Mypage() {
       setIsLoading(false);
     }
   };
-  
 
   // 사용자 정보 조회
   useEffect(() => {
@@ -209,7 +214,10 @@ function Mypage() {
           </div>
         </div>
         <div className={styles.container}>
-          <div className={styles.reservlist_title}>공연 예매 내역 (최신순)</div>
+          <div className={styles.reservlist_title}>
+            공연 예매 내역{" "}
+            <span style={{ color: "gray", fontSize: "20px" }}>(최신순)</span>
+          </div>
           <div className={styles.reservlist_content}>
             <div className={styles.reservlist_content}>
               {isLoading && <div className="loading">로딩중...</div>}
@@ -227,13 +235,38 @@ function Mypage() {
               {!isLoading &&
                 !error &&
                 myReservCards.map((myReservCard) => (
-                  <div key={myReservCard.scheduleId * Math.random()} className="myreservcard">
+                  <div
+                    key={myReservCard.scheduleId * Math.random()}
+                    className="myreservcard"
+                  >
                     <MyReservCard data={myReservCard} />
                   </div>
                 ))}
             </div>
           </div>
         </div>
+        <Modal
+          isOpen={isLogoutModalOpen}
+          onClose={() => setIsLogoutModalOpen(false)}
+        >
+          <div className={styles.modal_content}>
+            <div className={styles.modal_top}>로그아웃하시겠습니까?</div>
+            <div className={styles.modal_Btns}>
+              <button
+                onClick={handleLogoutCancel}
+                className={styles.modal_close_Btn}
+              >
+                취소
+              </button>
+              <button
+                onClick={handleLogoutConfirm}
+                className={styles.modal_ok_Btn}
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </Modal>
       </div>
     </>
   );
