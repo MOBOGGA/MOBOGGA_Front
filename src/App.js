@@ -9,6 +9,7 @@ import Landing from "./pages/Landing";
 import Show from "./pages/ShowDetail";
 
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import Clubs from "./pages/Clubs";
 import Recruiting from "./pages/Recruiting";
 import RecruitingDetail from "./pages/RecruitingDetail";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/show" element={<Show />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/recruiting" element={<Recruiting />} />
           <Route
