@@ -1,0 +1,218 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.back_Div {
+  margin-left: 85px;
+}
+
+.back_Btn {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.show_Intro {
+  display: flex;
+  padding-left: 20px;
+}
+
+.intro_Info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.intro_con {
+  width: 100vw - 24px;
+}
+
+.show_Intro {
+  display: flex;
+  max-width: 100vw;
+  gap: 40px;
+}
+
+.show_Pic {
+  width: 28.5625rem;
+  height: 40.375rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+
+  border: 8px solid var(--Gradient-01, #fbfbfb);
+}
+
+.intro_con {
+  display: flex;
+  flex-direction: row;
+}
+
+.show_Top {
+  width: 100vw - 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #121212;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.show_Info {
+  width: 550px;
+  margin-left: 64px;
+  text-align: left;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.club {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff3d12;
+  margin-bottom: 20px;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info_Box {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.textBox{
+  width:80px;
+  flex-shrink: 0;
+}
+
+.fixed_Info {
+  width: 80px;
+  font-weight: bold;
+  color: #6666ff;
+
+  display: inline-block; 
+  width: 100%;
+}
+
+.variable_Info {
+  color: #333;
+  white-space: pre-line;
+}
+
+/* 공연 회차 선택 등 */
+.show_ticket {
+  margin-top: 40px;
+  margin-bottom: 100px;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+  text-align: left;
+  gap: 20px;
+}
+
+.disabled_Label {
+  color: #acacac !important;
+}
+
+.people_Count {
+  color: #ff3d12;
+}
+
+.ticket_Box {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.section {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 24px;
+  letter-spacing: 0.045rem;
+}
+
+.fixed_Info {
+  color: #8e3dff;
+}
+
+.show_ticket {
+}
+
+.sch_Item {
+  display: flex;
+  width: 100%;
+}
+
+.ticket_Radio {
+  accent-color: #121212;
+  margin-bottom: 24px;
+  letter-spacing: 0.01rem;
+}
+
+.ticket_Btns {
+  display: flex;
+  width: 5.25rem;
+  height: 2.25rem;
+  border: solid 1px #acacac;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.ticket_Count {
+  font-size: 1rem;
+  font-style: normal;
+}
+
+.ticket_Btn {
+  border: none;
+  background-color: #fff;
+  font-size: 1.2rem;
+}
+
+.total {
+  font-family: "IBM Plex Sans KR";
+  font-weight: bold;
+  font-size: 56px;
+  letter-spacing: 0.105rem;
+  margin-bottom: 1.94rem;
+}
+
+.Reser_Btn {
+  width: 260px;
+  height: 41px;
+  background: #ff3d12;
+  color: #fbfbfb;
+  border: none;
+  font-family: "IBM Plex Sans KR";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.0625rem; /* 165% */
+  letter-spacing: 0.0125rem;
+}
+
+.Reser_Btn_dis {
+  width: 260px;
+  height: 41px;
+  color: #7f7f7f;
+  background: #acacac;
+  border: none;
+  font-family: "IBM Plex Sans KR";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.0625rem; /* 165% */
+  letter-spacing: 0.0125rem;
+}
