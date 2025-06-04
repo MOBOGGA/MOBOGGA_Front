@@ -10,6 +10,8 @@
 .fade {
   opacity: 0;
   transition: opacity 1s ease-in-out;
+
+  cursor: pointer;
 }
 
 .show {
@@ -130,4 +132,6 @@
 .imgBox img{
   width: 84.286px;
   height: 118px;
+
+  cursor: pointer;
 }

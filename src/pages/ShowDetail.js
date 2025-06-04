@@ -18,8 +18,8 @@ function ShowDetail() {
   const [reservation, setReservation] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  // const navigate = useNavigate();
+  // const token = localStorage.getItem("token");
   const [open, setOpen] = useState(false);
   // const [completedModalOpen, setCompletedModalOpen] = useState(false);
 
@@ -378,7 +378,7 @@ function ShowDetail() {
                 </div>
                 <button onClick={() => SetOpen(false)}>취소</button>
                 <button>예매하기</button>
-              </Modal> */}
+              </Modal> 
             </div>
           </div>
         </div>
