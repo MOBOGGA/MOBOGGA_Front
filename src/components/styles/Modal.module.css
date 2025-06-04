@@ -12,6 +12,7 @@
 
 .modal {
   display: flex;
+  flex-direction: column;
   background: white;
   padding: 20px;
   padding-bottom: 0px;
