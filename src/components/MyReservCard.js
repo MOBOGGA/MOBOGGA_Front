@@ -7,7 +7,7 @@ function MyReservCard({ data }) {
   if (!data) return null;
 
   const {
-    scheduleId,
+    showId,
     poster,
     title,
     scheduleInfo,
@@ -45,11 +45,7 @@ function MyReservCard({ data }) {
   console.log(parsed.isoDate); // "2024-11-23"
 
   const handleShowDetail = () => {
-    if (scheduleId < 5) {
-      navigate(`/show/1`);
-    } else {
-      navigate(`/show/${Math.floor(scheduleId / 5) + 1}`);
-    }
+    navigate(`/show/${showId}`);
   }
 
   return (
