@@ -81,13 +81,10 @@ function Mypage() {
   const [error, setError] = useState(null);
 
   const getMyReservCards = async () => {
-    console.log("getMyReservCards 함수 시작");
     try {
-      console.log("로딩 상태 설정: true");
       setIsLoading(true);
       setError(null);
-
-      console.log("API 요청 시작222");
+  
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/mypage/student/reservation`,
         {
@@ -95,39 +92,38 @@ function Mypage() {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
+          credentials: "include",
         }
       );
-      console.log("API 응답 수신:", response.status);
-
+  
       if (!response.ok) {
         throw new Error("예매 내역을 불러오는데 실패했습니다.");
       }
-
-      console.log("응답 데이터 파싱 시작");
-      const myreserv = await response.json();
-      console.log("파싱된 데이터:", myreserv);
-
-      // 데이터 검증 추가
-      if (!myreserv || !myreserv.performanceList) {
+  
+      const data = await response.json();
+  
+      if (!data || !data.performanceList) {
         throw new Error("예매 내역 데이터 형식이 올바르지 않습니다.");
       }
-
-      console.log("예매 내역 데이터 설정:", myreserv.performanceList);
-      setMyReservCards(myreserv.performanceList); // Update to set the correct data
-      console.log(myReservCards);
-
-      if (myreserv.performanceList.length === 0) {
-        console.warn("예매 내역이 없습니다.");
-      }
+  
+      // ✅ 공연일자 기준 최신순 정렬
+      const sortedList = [...data.performanceList].sort((a, b) => {
+        // 날짜 문자열을 Date 객체로 변환
+        const dateA = new Date(a.scheduleInfo.match(/\d{4}\.\d{2}\.\d{2}/)?.[0]);
+        const dateB = new Date(b.scheduleInfo.match(/\d{4}\.\d{2}\.\d{2}/)?.[0]);
+        return dateB - dateA;
+      });
+  
+      setMyReservCards(sortedList);
     } catch (err) {
       console.error("에러 발생:", err);
       setError(err.message);
-      setMyReservCards([]); // 오류 시 빈 배열로 설정
+      setMyReservCards([]);
     } finally {
-      console.log("로딩 상태 설정: false");
       setIsLoading(false);
     }
   };
+  
 
   // 사용자 정보 조회
   useEffect(() => {
@@ -213,7 +209,7 @@ function Mypage() {
           </div>
         </div>
         <div className={styles.container}>
-          <div className={styles.reservlist_title}>공연 예매 내역</div>
+          <div className={styles.reservlist_title}>공연 예매 내역 (최신순)</div>
           <div className={styles.reservlist_content}>
             <div className={styles.reservlist_content}>
               {isLoading && <div className="loading">로딩중...</div>}
@@ -231,7 +227,7 @@ function Mypage() {
               {!isLoading &&
                 !error &&
                 myReservCards.map((myReservCard) => (
-                  <div key={myReservCard.scheduleId} className="myreservcard">
+                  <div key={myReservCard.scheduleId * Math.random()} className="myreservcard">
                     <MyReservCard data={myReservCard} />
                   </div>
                 ))}
