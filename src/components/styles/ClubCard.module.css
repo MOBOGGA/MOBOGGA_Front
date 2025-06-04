@@ -8,6 +8,7 @@
   align-items: center;
 
   margin-bottom: 40px;
+  cursor: pointer;
 }
 
 .clubImg{
@@ -15,6 +16,11 @@
   height: 236px;
 
   background-color: rgb(67, 67, 67);
+}
+
+.mainImg{
+  width: 236px;
+  height: 236px;
 }
 
 .name{

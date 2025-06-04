@@ -1,7 +1,7 @@
 .wrap {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 80rem;
   padding-top: 20px;
 }
 
@@ -26,20 +26,23 @@
 }
 
 .intro_con {
-  width: 100vw - 24px;
+  width: 80rem;
 }
 
 .show_Intro {
   display: flex;
-  max-width: 1200px;
+  max-width: 100vw;
   gap: 40px;
 }
 
 .show_Pic {
-  width: 457px;
-  height: 646px;
+  width: 28.5625rem;
+  height: 40.375rem;
+  flex-shrink: 0;
   object-fit: contain;
   box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+
+  border: 8px solid var(--Gradient-01, #fbfbfb);
 }
 
 .intro_con {
@@ -47,8 +50,23 @@
   flex-direction: row;
 }
 
+.intro_con_left {
+  width: 22.5625rem;
+  flex-shrink: 0;
+}
+
+.recruite_left_cont {
+  width: 22.5625rem !important;
+  max-width: 500px !important;
+  flex-shrink: 0;
+}
+
+.recruiting_info_content {
+  max-width: 500px;
+}
+
 .show_Top {
-  width: 100vw;
+  width: 100vw - 20px;
   font-size: 24px;
   font-weight: bold;
   color: #121212;
@@ -90,23 +108,30 @@
 
 .fixed_Info {
   width: 60px;
+  flex-shrink: 0;
   font-weight: bold;
-  color: #6666ff;
+  color: #8e3dff;
+}
+.info_txt {
+  display: inline-block;
+  width: 100%;
 }
 
 .variable_Info {
   color: #333;
-  white-space: pre-line;
+  white-space: pre-wrap; /* 줄바꿈 유지 */
 }
 
 /* 공연 회차 선택 등 */
 .show_ticket {
   margin-top: 40px;
   margin-bottom: 100px;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
   display: flex;
   text-align: left;
-  gap: 84px;
+  gap: 20px;
 }
 
 .disabled_Label {
@@ -127,10 +152,6 @@
   font-size: 24px;
   margin-bottom: 24px;
   letter-spacing: 0.045rem;
-}
-
-.fixed_Info {
-  color: #8e3dff;
 }
 
 .show_ticket {

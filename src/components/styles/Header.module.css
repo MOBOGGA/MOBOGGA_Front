@@ -22,9 +22,10 @@
 }
 
 .right div{
-  height: 24px;
+  width:96px;
+  height: 32px;
   flex-shrink: 0;
-  padding: 4px 24px;
+  padding: auto;
 
   display: inline-flex;
   justify-content: center;
@@ -52,8 +53,8 @@
   font-weight: 700;
 }
 
-.back{
-  position:relative;
+.back {
+  position: relative;
 }
 
 .background{
@@ -68,4 +69,8 @@
   position:absolute;
   font-weight: 700;
   color: var(--gray-01-background, #FBFBFB);
+}
+
+.selectPadding{
+  padding: 0 !important;
 }

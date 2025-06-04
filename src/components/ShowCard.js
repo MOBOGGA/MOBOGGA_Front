@@ -5,9 +5,9 @@ import top1 from "../assets/main/topTag.png";
 import side1 from "../assets/main/sideTag.png";
 
 
-function ShowCard({ show }) {
+function ShowCard({ show , onClick }) {
   return (
-    <div className={styles.showCard}>
+    <div className={styles.showCard} onClick={onClick}>
       <div className={styles.card}>
         <img src={show.photo} alt={show.name} className={styles.mainImg}/>
         <img src={top1} alt="" className={styles.top}/> 
