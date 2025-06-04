@@ -20,8 +20,8 @@ function EntertainDetail() {
   useEffect(() => {
     const fetchShow = async () => {
       try {
-        const res = await axios.get(`http://jinjigui.info:8080/entertain/detail/${id}`);
-
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/entertain/detail/${id}`);
+        
         console.log(res.data);
 
         setShow(res.data);
@@ -32,6 +32,31 @@ function EntertainDetail() {
 
     fetchShow();
   }, [id]);
+
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchShow = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/entertain/detail/${id}`);
+        
+        console.log(res.data);
+
+        setShow(res.data);
+        setLoading(false);
+      } catch (err) {
+        console.error("데이터 로드 실패:", err);
+        setLoading(false);
+      }
+    };
+
+    fetchShow();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   // const entertainList = 
   //   {
