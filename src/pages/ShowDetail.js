@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./styles/ShowDetail.module.css";
 
 import BACK from "../assets/ShowBackButton.svg";
-import { redirect, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Modal from "../components/Modal";
 
@@ -18,13 +18,12 @@ function ShowDetail() {
   const [reservation, setReservation] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const navigate = useNavigate();
-  // const token = localStorage.getItem("token");
   const [open, setOpen] = useState(false);
-  // const [completedModalOpen, setCompletedModalOpen] = useState(false);
-
+  const [secondModalOpen, setSecondModalOpen] = useState(false);
+  const [failModalOpen, setFailModalOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
+
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
   };
@@ -70,33 +69,30 @@ function ShowDetail() {
 
     try {
       console.log(requestData);
-      console.log("JWT_TOKEN: ", JWT_TOKEN);
+      console.log("JWT_TOKEN: ", token);
       const response = await axios.post(
         `http://jinjigui.info:8080/show/detail/reservation`,
         requestData,
         {
           headers: {
-            Authorization: `Bearer ${JWT_TOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       console.log("예매 데이터 보내기 성공: ", response.data);
       reservationData(response.data);
-
-      alert("예매완료되었습니다!");
-      setOpen(false); // 모달 닫기
-      window.location.reload();
+      setOpen(false);
+      setSecondModalOpen(true);
     } catch (error) {
       console.log("예매 데이터 보내기 실패: ", error);
-      alert("예매 실패되었습니다");
-      setOpen(false);
-      window.location.reload();
 
       if (error.response) {
         console.error("서버 응답 데이터: ", error.response.data);
       } else {
         console.log("서버 응답이 없습니다. 네트워크를 확인해주세요. ");
       }
+      setOpen(false);
+      setFailModalOpen(true);
     }
   };
 
@@ -147,6 +143,18 @@ function ShowDetail() {
       const dateParts = dateString.split("-");
       if (dateParts.length >= 2) {
         return `${dateParts[1]}월${dateParts[2]}일`;
+      }
+    }
+    return dateString;
+  };
+
+  const formatTime = (timeString) => {
+    if (!timeString) return timeString;
+
+    if (timeString.includes(":")) {
+      const timeParts = timeString.split(":");
+      if (timeParts.length >= 2) {
+        return `${timeParts[0]}시${timeParts[1]}분`;
       }
     }
     return timeString;
@@ -332,53 +340,76 @@ function ShowDetail() {
               >
                 예매하기
               </button>
-
               <Modal
-                shouldCloseOnOverlayClick={false} // 오버레이 클릭 비활성화
-                onRequestClose={() => setOpen(false)}
                 className={styles.modal}
                 isOpen={open}
                 onClose={() => setOpen(false)}
               >
-                <div className={styles.modal_}>
-                  <div className={styles.modal_top}>
-                    <p>예매를 진행하시겠어요?</p>
-                  </div>
-                  <div>
+                <div className={styles.modal_top}>
+                  <p>예매를 진행하시겠어요?</p>
+                </div>
+                <div className={styles.modal_con}>
+                  <span className={styles.modal_strong}>
                     {selectedSch && (
-                      <div className={styles.modal_con}>
-                        <div>
-                          <span className={styles.modal_strong}>
-                            {selectedSch.order}공 {formatDate(selectedSch.date)}{" "}
-                            {count}매
-                          </span>
-                          가 맞는지{""}
-                        </div>
-                        <div>{"\n"}다시 확인해주세요.</div>
-                      </div>
-                    )}
-                  </div>
-                  <div className={styles.modal_Btns}>
-                    <button
-                      className={styles.modal_close_Btn}
-                      onClick={() => setOpen(false)}
-                    >
-                      취소
-                    </button>
-                    <button
-                      className={styles.modal_reserv_Btn}
-                      onClick={() => {
-                        handleReser;
-                        window.location.reload();
-                      }}
-                    >
-                      예매하기
-                    </button>
+                      <span>
+                        {selectedSch.order}공 {formatDate(selectedSch.date)}{" "}
+                        {formatTime(selectedSch.time)}
+                      </span>
+                    )}{" "}
+                    {count}매
+                  </span>
+                  <span>가 맞는지</span>
+                </div>
+                <div className={styles.modal_con}>다시 확인해주세요.</div>
+                <div className={styles.modal_Btns}>
+                  <button
+                    className={styles.modal_close_Btn}
+                    onClick={() => setOpen(false)}
+                  >
+                    취소
+                  </button>
+                  <button
+                    className={styles.modal_reserv_Btn}
+                    onClick={handleReser}
+                  >
+                    예매하기
+                  </button>
+                </div>
+              </Modal>
+              <Modal
+                isOpen={secondModalOpen}
+                onClose={() => setSecondModalOpen(false)}
+              >
+                <div className={styles.modal_top}>
+                  <p>예매가 완료되었습니다.</p>
+                </div>
+                <div className={styles.modal_con}>
+                  <img src={show.qrImage} alt="QR 코드"></img>
+                  <div className={styles.modal_con}>
+                    <span className={styles.modal_strong}>여기에 계좌</span>
                   </div>
                 </div>
-                <button onClick={() => SetOpen(false)}>취소</button>
-                <button>예매하기</button>
-              </Modal> 
+                <button
+                  className={styles.modal_ok_Btn}
+                  onClick={() => setSecondModalOpen(false)}
+                >
+                  확인
+                </button>
+              </Modal>
+              <Modal
+                isOpen={failModalOpen}
+                onClose={() => setFailModalOpen(false)}
+              >
+                <div className={styles.modal_top}>
+                  <p>예매에 실패하였습니다.</p>
+                </div>
+                <button
+                  className={styles.modal_ok_Btn}
+                  onClick={() => setFailModalOpen(false)}
+                >
+                  확인
+                </button>
+              </Modal>
             </div>
           </div>
         </div>
