@@ -20,7 +20,7 @@ function Header() {
           src={moboggaLogo}
           alt="MoboggaLogo"
           className="logoImg"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/main")}
         />
       </div>
 
