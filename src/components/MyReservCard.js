@@ -19,6 +19,31 @@ function MyReservCard({ data }) {
     paid,
   } = data;
 
+  function parseScheduleInfo(scheduleInfo) {
+    const regex = /^([\d공]+),\s*([\d.]+)\((.)\)$/; // 예: 2공, 2024.11.23(토)
+    const match = scheduleInfo.match(regex);
+
+    if (match) {
+      return {
+        order: match[1], // "2공"
+        date: match[2], // "2024.11.23"
+        weekday: match[3], // "토"
+        isoDate: match[2].replace(/\./g, "-"), // "2024-11-23" → 정렬용
+      };
+    } else {
+      return {
+        order: null,
+        date: null,
+        weekday: null,
+        isoDate: null,
+      };
+    }
+  }
+
+  const parsed = parseScheduleInfo(scheduleInfo);
+  console.log(parsed.order); // "2공"
+  console.log(parsed.isoDate); // "2024-11-23"
+
   const handleShowDetail = () => {
     if (scheduleId < 5) {
       navigate(`/show/1`);
@@ -37,7 +62,13 @@ function MyReservCard({ data }) {
         <div className={styles.card_info_box}>
           <div className={styles.card_content}>
             <div className={styles.card_info_header} id={styles.order_box}>
-              {scheduleInfo}
+              <div className={styles.card_order}>
+                {parsed.order || "공연 정보 없음"}
+              </div>
+              <div className={styles.card_date}>
+                {parsed.date || "날짜 정보 없음"} (
+                {parsed.weekday || "날짜 정보 없음"})
+              </div>
             </div>
           </div>
           <div className={styles.card_content}>
@@ -54,9 +85,7 @@ function MyReservCard({ data }) {
           </div>
           <div
             className={
-              paid === false
-                ? styles.card_content
-                : styles.card_content_hidden
+              paid === false ? styles.card_content : styles.card_content_hidden
             }
             id={styles.account_info}
           >
