@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./styles/MyReservCard.module.css";
 
 function MyReservCard({ data }) {
+  const navigate = useNavigate();
   if (!data) return null;
 
   const {
+    scheduleId,
     poster,
     title,
     scheduleInfo,
@@ -41,13 +44,21 @@ function MyReservCard({ data }) {
   console.log(parsed.order); // "2공"
   console.log(parsed.isoDate); // "2024-11-23"
 
+  const handleShowDetail = () => {
+    if (scheduleId < 5) {
+      navigate(`/show/1`);
+    } else {
+      navigate(`/show/${Math.floor(scheduleId / 5) + 1}`);
+    }
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.card_img_box}>
-        <img className={styles.card_img} src={poster} alt="공연 이미지" />
+        <img className={styles.card_img} src={poster} alt="공연 이미지" onClick={handleShowDetail} />
       </div>
       <div className={styles.card_text_box}>
-        <div className={styles.card_title}>{title || "공연 제목 없음"}</div>
+        <div className={styles.card_title} onClick={handleShowDetail}>{title || "공연 제목 없음"}</div>
         <div className={styles.card_info_box}>
           <div className={styles.card_content}>
             <div className={styles.card_info_header} id={styles.order_box}>

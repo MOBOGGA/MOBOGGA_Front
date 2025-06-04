@@ -227,7 +227,7 @@ function Mypage() {
               {!isLoading &&
                 !error &&
                 myReservCards.map((myReservCard) => (
-                  <div key={myReservCard.scheduleId} className="myreservcard">
+                  <div key={myReservCard.scheduleId * Math.random()} className="myreservcard">
                     <MyReservCard data={myReservCard} />
                   </div>
                 ))}
