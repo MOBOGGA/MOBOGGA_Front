@@ -17,7 +17,7 @@ function Banner() {
 useEffect(() => {
   const getShow = async () => {
     try {
-      const res = await axios.get(`http://jinjigui.info:8080/attraction/list`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/attraction/list`);
       console.log("rotatingPerformances 데이터 가져오기 성공");
       console.log(res.data.rotatingPerformances);
       console.log(res.data.rotatingPerformances[1]);
@@ -74,7 +74,7 @@ const current = show[currentIndex];
         <div className={styles.rightContainer}>
           <div className={`${styles.textContainer} ${styles.fade} ${fade ? styles.show : ""}`}>
             <span className={styles.clubName}>{current.clubID}</span>
-            <span className={styles.name}>{current.name}</span>
+            <span className={styles.name} onClick={() => navigate(`${current.category === "공연" ? `/show/${current.id}` : `/entertain/${current.id}`}`)}>{current.name}</span>
             <span className={styles.date}>{current.period}</span>
           </div>
 
