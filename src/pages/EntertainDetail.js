@@ -57,6 +57,10 @@ function EntertainDetail() {
     fetchShow();
   }, [id]);
 
+  const navigateToClubDetail = (clubId) => {
+    navigate(`/clubs/${clubId}`);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -115,7 +119,7 @@ function EntertainDetail() {
                 </div>
                 <div
                   className={styles.club}
-                  onClick={() => navigate("/clubs/1")}
+                  onClick={() => navigateToClubDetail(entertainList?.clubId)}
                 >
                   {entertainList?.clubName
                     ? `${entertainList?.clubName} >`
