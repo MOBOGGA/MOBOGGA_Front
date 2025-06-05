@@ -86,7 +86,7 @@ function ShowDetail() {
       console.log("예매 데이터 보내기 성공: ", response.data);
       reservationData(response.data);
       setOpen(false);
-      setSecondModalOpen(true);
+      setSecondModalOpen(false);
     } catch (error) {
       console.log("예매 데이터 보내기 실패: ", error);
 
