@@ -162,3 +162,8 @@
   flex-shrink: 0;
   aspect-ratio: 1/1;
 }
+
+.clubDetailText {
+  display: flex;
+  text-align: left;
+}
