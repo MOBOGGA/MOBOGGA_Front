@@ -212,7 +212,7 @@ function ShowDetail() {
                 <div className={styles.title}>
                   {show?.showName || "타이틀 정보 없음"}
                 </div>
-//                 <div className={styles.club} onClick={() => navigate(`/clubs/${show?.clubId}`)}>
+{/* //                 <div className={styles.club} onClick={() => navigate(`/clubs/${show?.clubId}`)}> */}
 
                 <div className={styles.club} onClick={() => navigateToClubDetail(show?.clubId)}>
 
