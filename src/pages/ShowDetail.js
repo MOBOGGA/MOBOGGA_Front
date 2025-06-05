@@ -19,7 +19,7 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [secondModalOpen, setSecondModalOpen] = useState(true);
+  const [secondModalOpen, setSecondModalOpen] = useState(false);
   const [failModalOpen, setFailModalOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
