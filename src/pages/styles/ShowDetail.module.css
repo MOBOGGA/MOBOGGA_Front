@@ -171,6 +171,9 @@
   accent-color: #121212;
   margin-bottom: 24px;
   letter-spacing: 0.01rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .ticket_Btns {
@@ -192,6 +195,9 @@
   border: none;
   background-color: #fff;
   font-size: 1.2rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .total {
@@ -220,6 +226,10 @@
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .Reser_Btn_dis {
@@ -344,6 +354,9 @@
   font-weight: 400;
   line-height: 1.5rem; /* 171.429% */
   letter-spacing: 0.00875rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .modal_reserv_Btn {
@@ -363,6 +376,9 @@
   font-weight: 400;
   line-height: 1.5rem; /* 171.429% */
   letter-spacing: 0.00875rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .modal_ok_Btn {
@@ -383,4 +399,7 @@
   font-weight: 400;
   line-height: 1.5rem; /* 171.429% */
   letter-spacing: 0.00875rem;
+  &:hover {
+    cursor: pointer;
+  }
 }
