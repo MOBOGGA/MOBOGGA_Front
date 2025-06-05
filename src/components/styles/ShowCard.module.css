@@ -79,12 +79,19 @@
   letter-spacing: 0.14px;
 
   position: absolute;
-  transform: translate(-200%, 1780%);
+  transform: translate(-150%, 1780%);
   z-index: 200;
 }
 
 .tag1 {
-  transform: translate(-160%, 1780%) !important;
+  transform: translate(-235%, 1780%) !important;
+}
+.tag3 {
+  transform: translate(-115%, 1780%) !important;
+}
+.tag5 {
+  font-size: 12px !important;
+  transform: translate(-100%, 1780%) !important;
 }
 
 .name {

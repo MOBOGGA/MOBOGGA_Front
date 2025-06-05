@@ -115,7 +115,7 @@ function EntertainDetail() {
                 </div>
                 <div
                   className={styles.club}
-                  onClick={() => navigate("/clubs/1")}
+                  onClick={() => navigate(`/clubs/${entertainList?.clubId}`)}
                 >
                   {entertainList?.clubName
                     ? `${entertainList?.clubName} >`
