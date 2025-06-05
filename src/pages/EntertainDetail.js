@@ -124,7 +124,7 @@ function EntertainDetail() {
 
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
-                    <div className={styles.textBox}>
+                    <div className={styles.textBox}> 
                       <span className={styles.fixed_Info1}>소개글</span>
                     </div>
 
