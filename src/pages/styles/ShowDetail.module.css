@@ -149,7 +149,6 @@
 .selected_Label {
   color: var(--gray-10-typo-color, #121212);
   /* Body 03 _ M */
-  font-family: "IBM Plex Sans KR";
   font-size: 1rem;
   font-style: normal;
   font-weight: bolder;
