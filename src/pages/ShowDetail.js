@@ -28,10 +28,6 @@ function ShowDetail() {
     navigate(-1); // 이전 페이지로 이동
   };
 
-//   const navigateToClubDetail = (clubid) => {
-//     navigate(`/clubs/${clubid}`);
-//   };
-
   const fetchData = async () => {
     console.log("받은 showId:", showId, typeof showId); // 디버깅용
 
@@ -58,6 +54,10 @@ function ShowDetail() {
     fetchData();
     // eslint-disable-next-line
   }, [showId]);
+
+  const navigateToClubDetail = (clubId) => {
+    navigate(`/clubs/${clubId}`);
+  };
 
   //예매 버튼 API 연결
   const handleReser = async () => {
@@ -213,7 +213,7 @@ function ShowDetail() {
                   {show?.showName || "타이틀 정보 없음"}
                 </div>
 
-                <div className={styles.club} onClick={() => navigate("/clubs/1")}>
+                <div className={styles.club} onClick={() => navigateToClubDetail(show?.clubId)}>
                   {show?.clubName ? `${show?.clubName} >` : "동아리 정보 없음"}
                 </div>
                 <div className={styles.infos}>
