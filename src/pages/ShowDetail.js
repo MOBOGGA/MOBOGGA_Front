@@ -19,7 +19,7 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [secondModalOpen, setSecondModalOpen] = useState(true);
+  const [secondModalOpen, setSecondModalOpen] = useState(false);
   const [failModalOpen, setFailModalOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
@@ -27,10 +27,6 @@ function ShowDetail() {
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
   };
-
-  //   const navigateToClubDetail = (clubid) => {
-  //     navigate(`/clubs/${clubid}`);
-  //   };
 
   const fetchData = async () => {
     console.log("받은 showId:", showId, typeof showId); // 디버깅용
@@ -58,6 +54,10 @@ function ShowDetail() {
     fetchData();
     // eslint-disable-next-line
   }, [showId]);
+
+  const navigateToClubDetail = (clubId) => {
+    navigate(`/clubs/${clubId}`);
+  };
 
   //예매 버튼 API 연결
   const handleReser = async () => {
@@ -111,6 +111,11 @@ function ShowDetail() {
       console.error("가져오기 ERROR:", error);
     }
   };
+
+  const reservConfirm =  async () => {
+    setSecondModalOpen(false)
+    window.location.reload()
+  }
 
   const formatPrice = (price) => {
     return price.toLocaleString("ko-KR");
@@ -212,11 +217,10 @@ function ShowDetail() {
                 <div className={styles.title}>
                   {show?.showName || "타이틀 정보 없음"}
                 </div>
+{/* //                 <div className={styles.club} onClick={() => navigate(`/clubs/${show?.clubId}`)}> */}
 
-                <div
-                  className={styles.club}
-                  onClick={() => navigate("/clubs/1")}
-                >
+                <div className={styles.club} onClick={() => navigateToClubDetail(show?.clubId)}>
+
                   {show?.clubName ? `${show?.clubName} >` : "동아리 정보 없음"}
                 </div>
                 <div className={styles.infos}>
@@ -429,7 +433,7 @@ function ShowDetail() {
                 <div className={styles.modal_Btns}>
                   <button
                     className={styles.modal_ok_Btn}
-                    onClick={() => setSecondModalOpen(false)}
+                    onClick={reservConfirm}
                   >
                     확인
                   </button>
