@@ -89,6 +89,10 @@
 .tag3 {
   transform: translate(-115%, 1780%) !important;
 }
+.tag4 {
+  font-size: 12px !important;
+  transform: translate(-105%, 1780%) !important;
+}
 .tag5 {
   font-size: 12px !important;
   transform: translate(-100%, 1780%) !important;
