@@ -91,7 +91,7 @@
   font-weight: bold;
   color: #ff3d12;
   margin-bottom: 20px;
-  width: 18%;
+  width: 40%;
 
   &:hover {
     cursor: pointer;
@@ -251,8 +251,34 @@
   letter-spacing: 0.01rem;
 }
 
+.modal_strong_bl {
+  color: var(--gray-10-typo-color, #121212);
+  text-align: center;
+  /* Body 03 _ B */
+  font-family: "IBM Plex Sans KR";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.6875rem; /* 168.75% */
+  letter-spacing: 0.01rem;
+}
+
 .modal {
-  flex-direction: row;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.modal_succ_re {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 20px;
+  padding-bottom: 0px;
+  position: relative;
+  width: 25.75rem;
+  height: 30rem;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
 }
@@ -273,15 +299,29 @@
   letter-spacing: 0.0125rem;
 }
 
+.modal_mid {
+  display: flex;
+  flex-direction: row;
+}
+
 .modal_con {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.modal_con img {
+  width: 9rem;
+  height: 9rem;
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
 .modal_Btns {
   display: flex;
-  padding-top: 32px;
+  padding-top: 1rem;
+  margin-bottom: 1.25rem;
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
