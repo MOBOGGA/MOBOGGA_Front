@@ -293,6 +293,10 @@ function ShowDetail() {
                       <label
                         className={`${styles.sch_Item} ${
                           isFull ? styles.disabled_Label : ""
+                        } ${
+                          selectedSch?.scheduleId === sch.scheduleId
+                            ? styles.selected_Label
+                            : ""
                         }`}
                         key={sch.scheduleId}
                       >
