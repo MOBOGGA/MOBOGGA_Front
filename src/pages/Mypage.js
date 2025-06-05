@@ -55,6 +55,14 @@ function Mypage() {
     navigate(`/mypage/update`);
   };
 
+  const [isLoginOverModalOpen, setIsLoginOverModalOpen] = useState(false);
+
+  const handleLoginOverConfirm = () => {
+    setIsLoginOverModalOpen(false);
+    localStorage.removeItem("jwt");
+    navigate(`/login`);
+  };
+
   const token = localStorage.getItem("jwt");
 
   const fetchUserProfile = async () => {
@@ -83,10 +91,11 @@ function Mypage() {
         stdId: userData.studentId || "",
       });
     } catch (error) {
+      setIsLoginOverModalOpen(true);
       console.error("Error fetching user profile:", error);
-      //   setError(error.message);
-      // } finally {
-      //   setIsLoading(false);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -232,14 +241,14 @@ function Mypage() {
           <div className={styles.reservlist_content}>
             <div className={styles.reservlist_content}>
               {isLoading && <div className="loading">로딩중...</div>}
-              {error && (
+              {/* {error && (
                 <div className="error-message">
                   에러: {error}
                   <button onClick={getMyReservCards} className="retry-button">
                     다시 시도
                   </button>
                 </div>
-              )}
+              )} */}
               {!isLoading && !error && myReservCards.length === 0 && (
                 <div className={styles.no_reserv}>예매 내역이 없습니다.</div>
               )}
@@ -271,6 +280,25 @@ function Mypage() {
               </button>
               <button
                 onClick={handleLogoutConfirm}
+                className={styles.modal_ok_Btn}
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </Modal>
+        <Modal
+          isOpen={isLoginOverModalOpen}
+          onClose={() => setIsLoginOverModalOpen(false)}
+        >
+          <div className={styles.modal_content}>
+            <div className={styles.modal_top}>세션이 만료되었습니다.</div>
+            <div className={styles.modal_con}>
+              다시 로그인해주세요.
+            </div>
+            <div className={styles.modal_Btns}>
+              <button
+                onClick={handleLoginOverConfirm}
                 className={styles.modal_ok_Btn}
               >
                 확인
