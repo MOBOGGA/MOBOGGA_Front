@@ -119,7 +119,9 @@ function EntertainDetail() {
                 </div>
                 <div
                   className={styles.club}
+                  //onClick={() => navigate(`/clubs/${entertainList?.clubId}`)}
                   onClick={() => navigateToClubDetail(entertainList?.clubId)}
+
                 >
                   {entertainList?.clubName
                     ? `${entertainList?.clubName} >`
@@ -128,14 +130,14 @@ function EntertainDetail() {
 
                 <div className={styles.infos}>
                   <div className={styles.info_Box}>
-                    <div className={styles.textBox}>
+                    <div className={styles.textBox}> 
                       <span className={styles.fixed_Info1}>소개글</span>
                     </div>
 
                     <span className={styles.variable_Info}>
                       {entertainList?.introductionLetter || "소개글 정보 없음"}
                     </span>
-                  </div>
+                  </div> 
 
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>카테고리</span>
