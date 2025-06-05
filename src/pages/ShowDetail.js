@@ -112,6 +112,11 @@ function ShowDetail() {
     }
   };
 
+  const reservConfirm =  async () => {
+    setSecondModalOpen(false)
+    window.location.reload()
+  }
+
   const formatPrice = (price) => {
     return price.toLocaleString("ko-KR");
   };
@@ -424,7 +429,7 @@ function ShowDetail() {
                 <div className={styles.modal_Btns}>
                   <button
                     className={styles.modal_ok_Btn}
-                    onClick={() => setSecondModalOpen(false)}
+                    onClick={reservConfirm}
                   >
                     확인
                   </button>
