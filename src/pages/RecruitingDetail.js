@@ -20,8 +20,11 @@ function RecruitingDetail() {
   const navigateToPrepage = () => {
     navigate(-1); // 이전 페이지로 이동
   };
-  const navigateToAppypage = () => {
+  const navigateToApplypage = () => {
     navigate(recruiting.applicationUrl);
+  };
+  const navigateToClubDetail = (clubId) => {
+    navigate(`/clubs/${clubId}`); // 동아리 상세 페이지로 이동
   };
 
   const recruite = {
@@ -48,7 +51,7 @@ function RecruitingDetail() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://jinjigui.info:8080/recruiting/detail/${recruitingId}`
+        `${process.env.REACT_APP_API_URL}/recruiting/detail/${recruitingId}`
       );
       console.log("API 응답 데이터:", response.data);
       if (response.data) {
@@ -140,7 +143,7 @@ function RecruitingDetail() {
               </div>
 
               <div className={styles.recruite_Info}>
-                <div className={styles.club}>
+                <div className={styles.club} onClick={() => navigateToClubDetail(recruiting?.clubId)}>
                   {recruiting?.clubName || "동아리 정보 없음"}
                 </div>
                 <div className={styles.title}>
@@ -187,7 +190,7 @@ function RecruitingDetail() {
               </div>
             </div>
             <div className={styles.recruite_apply}>
-              <button className={styles.apply_Btn} onClick={navigateToAppypage}>
+              <button className={styles.apply_Btn} onClick={navigateToApplypage}>
                 지원하러 가기
               </button>
             </div>
