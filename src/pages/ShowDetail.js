@@ -379,9 +379,8 @@ function ShowDetail() {
                     )}{" "}
                     {count}매
                   </span>
-                  <span>가 맞는지</span>
                 </div>
-                <div className={styles.modal_con}>다시 확인해주세요.</div>
+                <div className={styles.modal_con}>예매 정보가 맞는지 확인해주세요.</div>
                 <div className={styles.modal_Btns}>
                   <button
                     className={styles.modal_close_Btn}
