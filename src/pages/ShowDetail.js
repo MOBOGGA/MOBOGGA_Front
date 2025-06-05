@@ -19,7 +19,7 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [secondModalOpen, setSecondModalOpen] = useState(false);
+  const [secondModalOpen, setSecondModalOpen] = useState(true);
   const [failModalOpen, setFailModalOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
@@ -354,7 +354,7 @@ function ShowDetail() {
                 예매하기
               </button>
               <Modal
-                className={styles.modal}
+                className={null}
                 isOpen={open}
                 onClose={() => setOpen(false)}
               >
@@ -390,26 +390,49 @@ function ShowDetail() {
                 </div>
               </Modal>
               <Modal
+                className={styles.modal_succ_re}
                 isOpen={secondModalOpen}
                 onClose={() => setSecondModalOpen(false)}
               >
                 <div className={styles.modal_top}>
                   <p>예매가 완료되었습니다.</p>
                 </div>
-                <div className={styles.modal_con}>
-                  {show && <img src={show.qrImage} alt="QR 코드"></img>}
+                <div className={styles.modal_mid}>
                   <div className={styles.modal_con}>
-                    <span className={styles.modal_strong}>여기에 계좌</span>
+                    {show && <img src={show.qrImage} alt="QR 코드"></img>}
+                    <div className={styles.modal_con}>
+                      <span className={styles.modal_strong_bl}>
+                        한동은행 1001 - 1234 - 5678 -90
+                      </span>
+                      <span>
+                        혹은{" "}
+                        <span className={styles.modal_strong_bl}>QR 코드</span>
+                        로{" "}
+                        <span>
+                          {formatPrice((selectedSch?.cost || 0) * count)}원
+                        </span>{" "}
+                        송금해주세요.
+                      </span>
+                      <span>
+                        입금자명은{" "}
+                        <span className={styles.modal_strong}>학번+이름</span>
+                        으로 해주세요.
+                      </span>
+                      계좌번호는 마이페이지에서 다시 볼 수 있습니다.
+                    </div>
                   </div>
                 </div>
-                <button
-                  className={styles.modal_ok_Btn}
-                  onClick={() => setSecondModalOpen(false)}
-                >
-                  확인
-                </button>
+                <div className={styles.modal_Btns}>
+                  <button
+                    className={styles.modal_ok_Btn}
+                    onClick={() => setSecondModalOpen(false)}
+                  >
+                    확인
+                  </button>
+                </div>
               </Modal>
               <Modal
+                className={null}
                 isOpen={failModalOpen}
                 onClose={() => setFailModalOpen(false)}
               >
@@ -419,15 +442,18 @@ function ShowDetail() {
                 <div className={styles.modal_con}>
                   {token === null ? "로그인 후 다시 이용해 주세요" : ""}
                 </div>
-                <button
-                  className={styles.modal_ok_Btn}
-                  onClick={() => {
-                    setFailModalOpen(false);
-                    window.location.reload();
-                  }}
-                >
-                  확인
-                </button>
+                <div className={styles.modal_Btns}>
+                  {" "}
+                  <button
+                    className={styles.modal_ok_Btn}
+                    onClick={() => {
+                      setFailModalOpen(false);
+                      window.location.reload();
+                    }}
+                  >
+                    확인
+                  </button>
+                </div>
               </Modal>
             </div>
           </div>
