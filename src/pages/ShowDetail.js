@@ -19,7 +19,7 @@ function ShowDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [secondModalOpen, setSecondModalOpen] = useState(true);
+  const [secondModalOpen, setSecondModalOpen] = useState(false);
   const [failModalOpen, setFailModalOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
@@ -86,7 +86,7 @@ function ShowDetail() {
       console.log("예매 데이터 보내기 성공: ", response.data);
       reservationData(response.data);
       setOpen(false);
-      setSecondModalOpen(false);
+      setSecondModalOpen(true);
     } catch (error) {
       console.log("예매 데이터 보내기 실패: ", error);
 
