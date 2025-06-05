@@ -29,7 +29,7 @@ function ShowCard({ show , onClick }) {
       </div>
       <span className={styles.name}>{show.name}</span> 
       <div className={styles.clubDate}>
-        <span className={styles.club}>{show.clubID}</span>
+        <span className={`${styles.club} ${show.category === "즐길거리" ? styles.tagdetail : ""}`}>{show.clubID}</span>
         <span>|</span>
         <span className={styles.date}>{show.startDate}</span>
         <span >{" - "}</span>

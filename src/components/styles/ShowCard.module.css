@@ -129,6 +129,9 @@
   margin-right: 16px;
 }
 
+.tagdetail{
+  color: var(--point-02, #7512FF) !important;
+}
 .date {
   color: var(--Gray-08, #3e3e3e);
   font-size: 14px;
