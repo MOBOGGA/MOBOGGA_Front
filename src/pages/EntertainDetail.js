@@ -131,7 +131,7 @@ function EntertainDetail() {
                     <span className={styles.variable_Info}>
                       {entertainList?.introductionLetter || "소개글 정보 없음"}
                     </span>
-                  </div>
+                  </div> 
 
                   <div className={styles.info_Box}>
                     <span className={styles.fixed_Info}>카테고리</span>
