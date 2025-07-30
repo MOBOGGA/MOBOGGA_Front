@@ -72,7 +72,7 @@ function AddInfo() {
     }
 
     // 전화번호는 숫자만 + 하이픈 추가
-    else if (name === "phone") {
+    else if (name === "phoneNumber") {
       const onlyNums = value.replace(/[^\d]/g, "");
       if (onlyNums.length < 4) newValue = onlyNums;
       else if (onlyNums.length < 8)
@@ -197,6 +197,9 @@ function AddInfo() {
                 placeholder="이름을 입력해주세요."
                 value={formData.name}
                 onChange={handleInputChange}
+                className={`${styles.input} ${
+                  errors.name ? styles.inputError : ""
+                }`}
               />
             </div>
           </div>
@@ -227,11 +230,12 @@ function AddInfo() {
             <div className={styles.info_body}>
               <input
                 type="text"
+                inputMode="numeric"
+                maxLength="13"
                 name="phoneNumber"
                 placeholder="전화번호를 입력해주세요."
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
-                maxLength={13}
                 className={styles.input}
               />
               {errors.phoneNumber && (
