@@ -24,6 +24,28 @@
   align-items: center;
 }
 
+.imgBox::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); 
+  z-index: 0; /* 배경 뒤쪽 */
+  pointer-events: none;
+}
+
+.miniImgBox::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 0; /* 배경 뒤쪽 */
+  pointer-events: none;
+}
+
 .MainImg{
   position: relative;
   width: 313.682px;
@@ -32,7 +54,7 @@
 
   margin:0px 10px 0px 10px;
 
-  z-index: 1;
+  z-index: 2;
 }
 
 .MainImg img{
@@ -52,17 +74,17 @@
   height: 102%;
 
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45.94%, #000 100%);
-  z-index: 2;
-  pointer-events: none; /* ✅ 클릭은 이미지로 전달되게 */
+  z-index: 3;
+  pointer-events: none; 
 }
 
 .MainImg span{
   color: #FFF;
   position: absolute;
 
-  white-space: nowrap;         /* ✅ 한 줄로 표시 */
-  overflow: hidden;            /* ✅ 넘치는 건 잘라냄 */
-  text-overflow: ellipsis;     /* ✅ 잘린 부분에 ... */
+  white-space: nowrap;        
+  overflow: hidden;          
+  text-overflow: ellipsis;     
   max-width: 270px;        
 }
 
@@ -95,6 +117,7 @@
   aspect-ratio: 293.86/415.00;
 
   margin:0px 10px 0px 10px;
+  position: relative;
 }
 
 .miniImgBox{
@@ -104,6 +127,7 @@
   aspect-ratio: 273.86/385.00;
 
   margin:0px 10px 0px 10px;
+  position: relative;
 }
 
 .miniImgBox img{

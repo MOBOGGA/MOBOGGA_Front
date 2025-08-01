@@ -99,7 +99,7 @@ const current = show[currentIndex];
         </div>
 
        <div className={styles.MainImg}>
-          <div className={styles.overlay}></div> {/* ✅ 그라데이션 오버레이 */}
+          <div className={styles.overlay}></div> 
           <img
             src={current.photo}
             alt={current.name}
