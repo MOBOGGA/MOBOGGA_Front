@@ -3,8 +3,10 @@ import styles from "./styles/MobileBanner.module.css";
 import axios from "axios";
 import { useNavigate} from "react-router-dom";
 
-
-
+import top2_orange from "../assets/main/m_banner_top_orange.svg";
+import top2_purple from "../assets/main/m_banner_top_purple.svg";
+import top3 from "../assets/main/m_banner_top_orange3.svg";
+import top5 from "../assets/main/m_banner_top_orange5.svg";
 
 function MobileBanner() {
 
@@ -13,7 +15,7 @@ function MobileBanner() {
   const [fade, setFade] = useState(true);
   const navigate = useNavigate();
 
-
+// 1) 배너 이미지 데이터 가져오기
 useEffect(() => {
   const getShow = async () => {
     try {
@@ -37,6 +39,7 @@ useEffect(() => {
   getShow();
 }, []);
 
+// 2) 배너 이미지 자동 슬라이드 기능
 useEffect(() => {
   if (show.length === 0) return;
 
@@ -55,6 +58,7 @@ if (show.length === 0) {
   return <div className={styles.banner}>Loading...</div>;
 }
 
+// 3) 현재 인덱스에 따라 이전, 다음 이미지 계산
 const len = show.length;
 const prev2 = show[(currentIndex - 2 + len) % len];
 const prev1 = show[(currentIndex - 1 + len) % len];
@@ -98,12 +102,13 @@ const current = show[currentIndex];
           />
         </div>
 
+{/* 중앙 메인 이미지 */}
        <div className={styles.MainImg}>
           <div className={styles.overlay}></div> 
           <img
             src={current.photo}
             alt={current.name}
-            className={`${styles.fade} ${fade ? styles.show : ""}`}
+            className={`${styles.fade} ${fade ? styles.show : ""} ${styles.mainImg}`}
             onClick={() => navigate(
               current.category === "공연" ? `/show/${current.id}` : `/entertain/${current.id}`
             )}
@@ -113,6 +118,11 @@ const current = show[currentIndex];
           <span className={styles.date}>{current.period}</span>
           <span className={styles.clubName}>{current.clubID}</span>
 
+
+          <img src={top2_orange} alt="" className={`${current.category === "체험" || current.category === "전시" ? styles.top2_orange : styles.hide}`}/>
+          <img src={top2_purple} alt="" className={`${current.category === "공연" ? styles.top2_purple : styles.hide}`}/>
+          <img src={top3} alt="" className={`${current.category === "먹거리" ? styles.top3 : styles.hide}`}/>
+          <img src={top5} alt="" className={`${current.category === "스트릿공연" || current.category === "전시" ? styles.top5 : styles.hide}`}/>
         </div>
 
         <div className={`${styles.imgBox3} ${styles.imgBox}`}>
