@@ -119,10 +119,10 @@ const current = show[currentIndex];
           <span className={styles.clubName}>{current.clubID}</span>
 
 
-          <img src={top2_orange} alt="" className={`${current.category === "체험" || current.category === "전시" ? styles.top2_orange : styles.hide}`}/>
+          <img src={top2_orange} alt="" className={`${current.category === "체험" || current.category === "전시" || current.category === "예배" ? styles.top2_orange : styles.hide}`}/>
           <img src={top2_purple} alt="" className={`${current.category === "공연" ? styles.top2_purple : styles.hide}`}/>
           <img src={top3} alt="" className={`${current.category === "먹거리" ? styles.top3 : styles.hide}`}/>
-          <img src={top5} alt="" className={`${current.category === "스트릿공연" || current.category === "전시" ? styles.top5 : styles.hide}`}/>
+          <img src={top5} alt="" className={`${current.category === "스트릿공연" ? styles.top5 : styles.hide}`}/>
         </div>
 
         <div className={`${styles.imgBox3} ${styles.imgBox}`}>

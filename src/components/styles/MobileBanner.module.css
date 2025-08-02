@@ -170,36 +170,31 @@
 
 .top2_orange {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
-  width: 61.5px;
+  top: -12px;
+  left: 126px;
+  width: 85px;
 }
 
 .top2_purple {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
-  width: 61.5px;
+  top: -12px;
+  left: 126px;
+  width: 85px;
+
 }
 
 .top3 {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
+  top: -12px;
+  left: 122px;
+  width: 100px;
 }
 
 .top5 {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
+  top: -12px;
+  left: 120px;
+  width: 115px;
 }
 
 .hide {
