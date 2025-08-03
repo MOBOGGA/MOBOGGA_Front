@@ -123,6 +123,12 @@ const current = show[currentIndex];
           <img src={top2_purple} alt="" className={`${current.category === "공연" ? styles.top2_purple : styles.hide}`}/>
           <img src={top3} alt="" className={`${current.category === "먹거리" ? styles.top3 : styles.hide}`}/>
           <img src={top5} alt="" className={`${current.category === "스트릿공연" ? styles.top5 : styles.hide}`}/>
+
+          <span className={`${styles.tagspan}
+          ${current.category === "체험" || current.category === "전시" || current.category === "예배" || current.category === "공연"  ? styles.top2_orange : ""}
+          ${current.category === "먹거리" ? styles.top3 : ""}
+          ${current.category === "스트릿공연" ? styles.top5 : ""}`
+          }>{current.category}</span>
         </div>
 
         <div className={`${styles.imgBox3} ${styles.imgBox}`}>

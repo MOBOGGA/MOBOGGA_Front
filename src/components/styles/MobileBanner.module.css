@@ -200,3 +200,10 @@
 .hide {
   display: none;
 }
+
+.tagspan{
+  color: var(--WHITE) !important;
+  font: var(--BODY04_SB) !important;
+  position: absolute !important;
+  z-index: 10 !important;
+}
