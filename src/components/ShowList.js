@@ -84,6 +84,11 @@ useEffect(() => {
     getAuth();
   }, []);
 
+  const isClub = (() => {
+    if (auth.authority === "ROLE_CLUB") return true;
+    else return false;
+  })();
+
   return (
     <div className={styles.column}>
       <div className={styles.buttons}>
@@ -104,13 +109,14 @@ useEffect(() => {
         </div>
         
         {/* 드롭다운 !! */}
-        {dropdownOpen && (
+        {isClub &&dropdownOpen && (
           <div
             className={styles.dimmed}
             onClick={() => setDropdownOpen(false)} // 바깥 클릭 시 드롭다운 닫기
           />
         )}
         
+        {isClub && (
         <div className={styles.selectBox2}>
 
           <button
@@ -153,6 +159,7 @@ useEffect(() => {
             )}
           </ul>
         </div>
+        )}
 
       </div>
 
