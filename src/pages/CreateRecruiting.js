@@ -38,10 +38,7 @@ function CreateRecruiting() {
     photo: "",
   });
 
-  const onChangeInput = (e) => {
-    const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
-  };
+
 
   // 1) 누락된 정보 확인 모달
   const [notEnteredModalOpen, setNotEnteredModalOpen] = useState(false);
@@ -73,7 +70,8 @@ function CreateRecruiting() {
   // 7) 리쿠르팅 생성 post
   const handleSubmit = async () => {
     try {
-      const url = `${process.env.REACT_APP_API_URL}/manager/recruiting/create`;
+      const token = window.tempToken;
+      const url = `${process.env.REACT_APP_API_URL}/manager/recruiting/edit`;
 
       // photo는 미리보기 전용이므로 서버 전송용 request에서는 제외
       const { photo, ...requestDto } = data;
@@ -88,39 +86,47 @@ function CreateRecruiting() {
       }
 
       await axios.post(url, formData, {
+        headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       });
 
-      alert("리쿠르팅 생성 완료"); //이제 이게 모달이 되어야겠지?
+      alert("리쿠르팅 수정 완료"); //이제 이게 모달이 되어야겠지?
+
+      // 수정 후 최신 데이터 재조회
+      await getRecruiting();
     } catch (err) {
-      console.error("리쿠르팅 생성 실패", err);
+      console.error("리쿠르팅 수정 실패", err);
       alert("요청 중 오류가 발생했습니다.");
     }
   };
 
   // 8) 이미지 업로드
   const [photoFile, setPhotoFile] = useState(null);
-  const fileInputRef = useRef(null);
-
-
-  const handleFileButtonClick = () => fileInputRef.current?.click();
-
-  const handleFileChange = (e) => {
-    const f = e.target.files?.[0] ?? null;
-    setPhotoFile(f);
-    if (f) {
-      const preview = URL.createObjectURL(f);
-      setData((prev) => ({ ...prev, photo: preview }));
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      if (data.photo?.startsWith("blob:")) {
-        URL.revokeObjectURL(data.photo);
+    const fileInputRef = useRef(null);
+  
+    const onChangeInput = (e) => {
+      setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+  
+    const handleFileButtonClick = () => fileInputRef.current?.click();
+  
+    const handleFileChange = (e) => {
+      const f = e.target.files?.[0] ?? null;
+      setPhotoFile(f);
+      if (f) {
+        const preview = URL.createObjectURL(f);
+        setData((prev) => ({ ...prev, photo: preview }));
       }
     };
-  }, [photoFile]);
+  
+    useEffect(() => {
+      return () => {
+        if (data.photo?.startsWith("blob:")) {
+          URL.revokeObjectURL(data.photo);
+        }
+      };
+    }, [photoFile]);
+  
 
   return (
     <>
