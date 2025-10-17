@@ -105,6 +105,10 @@ function ShowDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showId, authLoading]);
 
+  useEffect(() => {
+    setSelectedIds([]); // 회차가 바뀌면 선택 좌석 초기화
+  }, [selectedSch]);
+
   const navigateToClubDetail = (clubId) => navigate(`/clubs/${clubId}`);
 
   // 예매 버튼 API
@@ -452,6 +456,7 @@ const handleSelectSch = (scheduleId) => {
 
             <Seats
               seatTicket={show.scheduleList?.find(s => s.scheduleId === selectedShowId)?.seatTicket || []}
+              selectedIds={selectedIds}
               onSelectedSeatsChange={(selectedIds) => {
                 setSelectedIds(selectedIds);
                 console.log("선택된 좌석 인덱스 번호:", selectedIds);

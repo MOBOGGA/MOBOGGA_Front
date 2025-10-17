@@ -5,7 +5,7 @@ import Seat from "./Seat";
 
 import selected from "../../assets/seat/seatSelcted_26.svg";
 
-function Seats({ seatTicket = [] , onSelectedSeatsChange }) {
+function Seats({ seatTicket = [] , selectedIds, onSelectedSeatsChange }) {
   const [seats, setSeats] = useState([
     // row 1 (ids 1~12)
     { id: 1, row: 1, col: 1, reservation: 0, selected: 0 },
@@ -241,6 +241,15 @@ function Seats({ seatTicket = [] , onSelectedSeatsChange }) {
     );
     setSelectedSeats(seatTicket ?? []);
   }, [seatTicket]);
+
+  useEffect(() => {
+    setSeats(prev =>
+      prev.map(seat => ({
+        ...seat,
+        selected: (selectedIds ?? []).includes(seat.id) ? 1 : 0
+      }))
+    );
+  }, [selectedIds]);
 
 
   return (
