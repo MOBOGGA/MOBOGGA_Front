@@ -84,7 +84,7 @@ function Footer() {
         </div>
         <div className={styles.contact}>
           <span>연락처: 010-9543-8893</span> |{" "}
-          <span>메일: moboggahandong@gmail.com</span>
+          <span>메일: mobogga.service@gmail.com</span>
         </div>
 
         <div className={styles.address}>주소: 경상북도 포항시 북구 흥해읍 한동로 558, 한동대학교</div>

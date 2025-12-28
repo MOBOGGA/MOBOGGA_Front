@@ -178,8 +178,8 @@ function FAQ() {
           <div className={styles.contactInfo}>
             <div className={styles.email}>
               메일:{" "}
-              <span onClick={() => handleCopy("moboggahandong@gmail.com")}>
-                moboggahandong@gmail.com
+              <span onClick={() => handleCopy("mobogga.service@gmail.com")}>
+                mobogga.service@gmail.com
               </span>
             </div>
             <div className={styles.phone}>
